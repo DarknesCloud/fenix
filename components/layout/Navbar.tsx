@@ -35,13 +35,17 @@ export default function Navbar() {
       .map(([, href]) => document.querySelector<HTMLElement>(href))
       .filter((section): section is HTMLElement => Boolean(section));
 
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-      if (visible?.target instanceof HTMLElement) setActiveId(`#${visible.target.id}`);
-    }, { threshold: [0.2, 0.45, 0.7], rootMargin: '-18% 0px -58% 0px' });
+        if (visible?.target instanceof HTMLElement)
+          setActiveId(`#${visible.target.id}`);
+      },
+      { threshold: [0.2, 0.45, 0.7], rootMargin: '-18% 0px -58% 0px' }
+    );
 
     sections.forEach((section) => observer.observe(section));
 
@@ -51,9 +55,13 @@ export default function Navbar() {
     };
   }, [isHome]);
 
-  const getHref = (href: string) => href.startsWith('#') && !isHome ? `/${href}` : href;
+  const getHref = (href: string) =>
+    href.startsWith('#') && !isHome ? `/${href}` : href;
 
-  const handleNavigation = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavigation = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     setOpen(false);
 
     if (!isHome || !href.startsWith('#')) return;
@@ -64,8 +72,11 @@ export default function Navbar() {
     event.preventDefault();
     setActiveId(href);
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const focusTarget = target.querySelector<HTMLElement>('h1, h2, h3') ?? target;
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    const focusTarget =
+      target.querySelector<HTMLElement>('h1, h2, h3') ?? target;
     const hadTabIndex = focusTarget.hasAttribute('tabindex');
 
     if (!hadTabIndex) focusTarget.setAttribute('tabindex', '-1');
@@ -77,22 +88,50 @@ export default function Navbar() {
     focusTarget.focus({ preventScroll: true });
 
     if (!hadTabIndex) {
-      focusTarget.addEventListener('blur', () => focusTarget.removeAttribute('tabindex'), { once: true });
+      focusTarget.addEventListener(
+        'blur',
+        () => focusTarget.removeAttribute('tabindex'),
+        { once: true }
+      );
     }
 
     window.history.replaceState(null, '', href);
   };
 
   return (
-    <header className={`${styles.navbar} ${scrolled || !isHome ? styles.scrolled : ''}`}>
-      <Link href="/" className={styles.logo} aria-label="Fénix Solutions, inicio">
-        <span className={styles.logoMark} aria-hidden="true"><Image src="/images/fenix-logo-transparent.png" alt="" width={34} height={34} priority /></span>
-        <span className={styles.logoType}>FÉNIX <b>SOLUTIONS</b></span>
+    <header
+      className={`${styles.navbar} ${
+        scrolled || !isHome ? styles.scrolled : ''
+      }`}
+    >
+      <Link
+        href="/"
+        className={styles.logo}
+        aria-label="Fénix Solutions, inicio"
+      >
+        <span className={styles.logoMark} aria-hidden="true">
+          <Image
+            src="/images/fenix-logo-transparent.png"
+            alt=""
+            width={34}
+            height={34}
+            priority
+          />
+        </span>
+        <span className={styles.logoType}>
+          FÉNIX <b>SOLUTIONS</b>
+        </span>
       </Link>
-      <nav id="primary-navigation" className={`${styles.navLinks} ${open ? styles.navOpen : ''}`} aria-label="Navegación principal">
+      <nav
+        id="primary-navigation"
+        className={`${styles.navLinks} ${open ? styles.navOpen : ''}`}
+        aria-label="Navegación principal"
+      >
         {links.map(([label, href]) => {
           const isContact = href === '/contacto';
-          const isActive = isContact ? pathname === '/contacto' : isHome && activeId === href;
+          const isActive = isContact
+            ? pathname === '/contacto'
+            : isHome && activeId === href;
           return (
             <Link
               key={href}
@@ -105,7 +144,14 @@ export default function Navbar() {
             </Link>
           );
         })}
-        <Button component={Link} className={styles.cta} href="/contacto" onClick={() => setOpen(false)}>Hablemos</Button>
+        <Button
+          component={Link}
+          className={styles.cta}
+          href="/contacto"
+          onClick={() => setOpen(false)}
+        >
+          Hablemos
+        </Button>
       </nav>
       <IconButton
         className={styles.menuButton}

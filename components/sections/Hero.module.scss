@@ -1,50 +1,709 @@
 @use '../../styles/variables' as *;
 
-.hero { position: relative; overflow: hidden; padding: clamp(5rem, 10vw, 8rem) 0 2rem; color: $neutral-light; background: radial-gradient(circle at 78% 24%, rgba($secondary-tech,.28), transparent 28%), radial-gradient(circle at 12% 78%, rgba($accent-gold,.1), transparent 26%), linear-gradient(135deg, $primary-base 0%, $primary-card 100%); animation: heroBackground .9s $ease both; }
-.hero::before { position: absolute; inset: 0; opacity: .3; pointer-events: none; content: ''; background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 52px 52px; mask-image: linear-gradient(to bottom, black, transparent 86%); }
-.grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 3rem; min-height: 610px; }
-.copy { max-width: 720px; }
-.copy > .eyebrow { animation: heroReveal .72s $ease .12s both; }
-.copy h1 { animation: heroReveal .78s $ease .22s both; }
-.copy p { animation: heroReveal .78s $ease .32s both; }
-.serviceDescriptor { animation: heroReveal .78s $ease .42s both; }
-.copy h1 { margin: 1.6rem 0 1.6rem; font-size: clamp(3rem, 6.5vw, 6.4rem); font-weight: 800; line-height: 1.01; letter-spacing: -.06em; }
-.copy h1 span { display: inline; background: linear-gradient(135deg, $gold-light 0%, $accent-gold 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.copy p { max-width: 600px; margin: 0; color: rgba($neutral-light,.72); font-size: 1.05rem; line-height: 1.75; }
-.serviceDescriptor { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; max-width: 620px; margin-top: 1.2rem; color: rgba($neutral-light,.56); font-size: .72rem; font-weight: 600; letter-spacing: .045em; line-height: 1.6; }
-.serviceDescriptor::before { width: 34px; height: 1px; margin-right: .15rem; background: $gold-light; box-shadow: 0 0 8px rgba($gold-light,.45); content: ''; }
-.serviceDescriptor span { color: $gold-light; }
-.actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2.4rem; padding-top: 1.4rem; border-top: 1px solid rgba($gold-light,.22); animation: heroReveal .78s $ease .56s both; }
-.primaryAction { border-radius: 8px !important; color: $primary-base !important; background: linear-gradient(135deg, $gold-light 0%, $accent-gold 100%) !important; box-shadow: 0 4px 20px rgba($accent-gold,.25) !important; }
-.primaryAction:hover { box-shadow: 0 8px 28px rgba($accent-gold,.38) !important; }
-.secondaryAction { border: 1px solid rgba($neutral-light,.4) !important; border-radius: 8px !important; color: $neutral-light !important; }
-.secondaryAction:hover { border-color: $gold-light !important; color: $gold-light !important; background: rgba($gold-light,.06) !important; }
-.visual { position: relative; display: grid; place-items: center; min-height: 500px; animation: heroReveal .9s $ease .76s both; }
-@keyframes heroBackground { from { opacity: 0; } to { opacity: 1; } }
-@keyframes heroReveal { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-.svg { width: min(100%, 560px); height: auto; overflow: visible; }
-.ring, .ringSmall { fill: none; stroke: rgba($gold-light,.42); stroke-width: 1; }
-.ring { stroke-dasharray: 5 12; transform-origin: center; animation: rotate 36s linear infinite; }
-.ringSmall { stroke: rgba($secondary-accent,.6); stroke-dasharray: 2 10; transform-origin: center; animation: rotateReverse 28s linear infinite; }
-@keyframes rotate { to { transform: rotate(360deg); } }
-@keyframes rotateReverse { to { transform: rotate(-360deg); } }
-.featherGold { transform-origin: 280px 280px; animation: pulse 5s ease-in-out infinite; }
-@keyframes pulse { 0%,100% { opacity: .82; transform: scale(1); } 50% { opacity: 1; transform: scale(1.025); } }
-.circuits { opacity: .85; stroke-dasharray: 3 8; }
-.nodes { filter: drop-shadow(0 0 7px rgba($gold-light,.6)); }
-.caption { position: absolute; right: 0; bottom: 10%; color: rgba($neutral-light,.45); font-size: .62rem; letter-spacing: .2em; line-height: 1.7; }
-.caption::before { display: block; width: 38px; height: 1px; margin-bottom: .6rem; background: $gold-light; opacity: .75; content: ''; }
-.caption b { color: $gold-light; font-weight: 600; }
-.footer { position: relative; z-index: 1; display: flex; justify-content: space-between; color: rgba($neutral-light,.45); font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; }
-.footer a { display: inline-flex; align-items: center; gap: .5rem; }
-.footer svg { color: $gold-light; font-size: 1rem; }
+.hero {
+  position: relative;
+  overflow: hidden;
 
-@media (max-width: $bp-md) { .grid { grid-template-columns: 1fr; min-height: auto; gap: 2rem; } .copy { padding-top: 1rem; } .visual { min-height: 350px; } .svg { width: min(100%, 430px); } .caption { right: 4%; bottom: 6%; } }
-@media (max-width: $bp-sm) { .copy h1 { font-size: 2.85rem; } .copy p { font-size: 1rem; } .serviceDescriptor { font-size: .68rem; } .actions { margin-top: 1.8rem; } .visual { min-height: 290px; } .footer { font-size: .57rem; } }
-@media (prefers-reduced-motion: reduce) { .hero, .copy > .eyebrow, .copy h1, .copy p, .serviceDescriptor, .actions, .visual, .fenixImage, .ring, .ringSmall, .featherGold { animation: none; } }
+  padding: clamp(5rem, 10vw, 8rem) 0 2rem;
 
-.imageHalo { position: absolute; width: 74%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba($gold-light,.24) 0%, rgba($secondary-tech,.15) 35%, transparent 72%); filter: blur(12px); }
-.fenixImage { position: relative; z-index: 1; width: min(100%, 560px); height: auto; filter: drop-shadow(0 0 24px rgba($gold-light,.2)) drop-shadow(0 22px 32px rgba(0,0,0,.18)); animation: floating 7s ease-in-out 1.7s infinite; }
-@media (max-width: $bp-md) { .fenixImage { width: min(100%, 430px); } }
-@media (max-width: $bp-sm) { .fenixImage { width: min(100%, 340px); } }
+  color: $neutral-light;
+
+  background: radial-gradient(
+      circle at 78% 24%,
+      rgba($secondary-tech, 0.28),
+      transparent 28%
+    ),
+    radial-gradient(circle at 12% 78%, rgba($accent-gold, 0.1), transparent 26%),
+    linear-gradient(135deg, $primary-base 0%, $primary-card 100%);
+
+  animation: heroBackground 1.1s $ease both;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.3;
+  pointer-events: none;
+
+  content: '';
+
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+
+  background-size: 52px 52px;
+
+  mask-image: linear-gradient(to bottom, black, transparent 86%);
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+
+  align-items: center;
+
+  gap: 3rem;
+
+  min-height: 610px;
+}
+
+/* =========================================================
+   COPY
+========================================================= */
+
+.copy {
+  max-width: 720px;
+
+  opacity: calc(1 - (var(--scroll-progress, 0) * 0.9));
+
+  transform: translate3d(0, calc(var(--scroll-progress, 0) * -65px), 0);
+
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+
+  will-change: transform, opacity;
+}
+
+.copy > :global(.eyebrow) {
+  animation: heroReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+.copy h1 {
+  margin: 1.6rem 0;
+
+  font-size: clamp(3rem, 6.5vw, 6.4rem);
+  font-weight: 800;
+  line-height: 1.01;
+  letter-spacing: -0.06em;
+
+  animation: heroReveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.copy h1 span {
+  display: inline;
+
+  background: linear-gradient(135deg, $gold-light 0%, $accent-gold 100%);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+.copy p {
+  max-width: 600px;
+
+  margin: 0;
+
+  color: rgba($neutral-light, 0.72);
+
+  font-size: 1.05rem;
+  line-height: 1.75;
+
+  animation: heroReveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+/* =========================================================
+   SERVICE DESCRIPTOR
+========================================================= */
+
+.serviceDescriptor {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+
+  align-items: center;
+
+  max-width: 620px;
+
+  margin-top: 1.2rem;
+
+  color: rgba($neutral-light, 0.56);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  letter-spacing: 0.045em;
+  line-height: 1.6;
+
+  animation: heroReveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+.serviceDescriptor::before {
+  width: 34px;
+  height: 1px;
+
+  margin-right: 0.15rem;
+
+  background: $gold-light;
+
+  box-shadow: 0 0 8px rgba($gold-light, 0.45);
+
+  content: '';
+}
+
+.serviceDescriptor span {
+  color: $gold-light;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.85rem;
+
+  margin-top: 2.4rem;
+
+  padding-top: 1.4rem;
+
+  border-top: 1px solid rgba($gold-light, 0.22);
+
+  animation: heroReveal 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+/* =========================================================
+   BUTTON BASE
+========================================================= */
+
+.primaryAction,
+.secondaryAction {
+  position: relative;
+
+  overflow: hidden;
+
+  transform: translate3d(0, 0, 0);
+
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.65s cubic-bezier(0.22, 1, 0.36, 1) !important;
+
+  will-change: transform, box-shadow;
+
+  backface-visibility: hidden;
+}
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.primaryAction {
+  border-radius: 8px !important;
+
+  color: $primary-base !important;
+
+  background: linear-gradient(
+    135deg,
+    $gold-light 0%,
+    $accent-gold 100%
+  ) !important;
+
+  box-shadow: 0 4px 20px rgba($accent-gold, 0.22) !important;
+
+  filter: brightness(1);
+}
+
+.primaryAction:hover {
+  transform: translate3d(0, -1px, 0);
+
+  box-shadow: 0 9px 28px rgba($accent-gold, 0.3) !important;
+
+  filter: brightness(1.035);
+}
+
+.primaryAction:active {
+  transform: translate3d(0, 0, 0);
+
+  transition-duration: 0.18s !important;
+
+  box-shadow: 0 4px 16px rgba($accent-gold, 0.22) !important;
+}
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.secondaryAction {
+  border: 1px solid rgba($neutral-light, 0.4) !important;
+
+  border-radius: 8px !important;
+
+  color: rgba($neutral-light, 0.92) !important;
+
+  background-color: rgba($neutral-light, 0) !important;
+
+  box-shadow: 0 0 0 rgba($accent-gold, 0) !important;
+}
+
+.secondaryAction:hover {
+  transform: translate3d(0, -1px, 0);
+
+  border-color: rgba($gold-light, 0.72) !important;
+
+  color: $gold-light !important;
+
+  background-color: rgba($gold-light, 0.045) !important;
+
+  box-shadow: 0 7px 24px rgba($accent-gold, 0.055) !important;
+}
+
+.secondaryAction:active {
+  transform: translate3d(0, 0, 0);
+
+  transition-duration: 0.18s !important;
+}
+
+/* =========================================================
+   BUTTON ICONS
+========================================================= */
+
+.primaryAction :global(.MuiButton-endIcon),
+.secondaryAction :global(.MuiButton-endIcon) {
+  transform: translate3d(0, 0, 0);
+
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.primaryAction:hover :global(.MuiButton-endIcon),
+.secondaryAction:hover :global(.MuiButton-endIcon) {
+  transform: translate3d(2px, 0, 0);
+}
+
+/* =========================================================
+   VISUAL
+========================================================= */
+
+.visual {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  min-height: 500px;
+
+  opacity: calc(1 - (var(--scroll-progress, 0) * 0.65));
+
+  transform: translate3d(0, calc(var(--scroll-progress, 0) * -28px), 0)
+    scale(calc(1 - (var(--scroll-progress, 0) * 0.025)));
+
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+
+  will-change: transform, opacity;
+
+  animation: heroReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.imageHalo {
+  position: absolute;
+
+  width: 74%;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba($gold-light, 0.24) 0%,
+    rgba($secondary-tech, 0.15) 35%,
+    transparent 72%
+  );
+
+  filter: blur(12px);
+
+  opacity: calc(1 - (var(--scroll-progress, 0) * 0.45));
+
+  transform: scale(calc(1 + (var(--scroll-progress, 0) * 0.05)));
+
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+
+  will-change: transform, opacity;
+}
+
+.fenixImage {
+  position: relative;
+  z-index: 1;
+
+  width: min(100%, 560px);
+  height: auto;
+
+  filter: drop-shadow(0 0 24px rgba($gold-light, 0.2))
+    drop-shadow(0 22px 32px rgba(0, 0, 0, 0.18));
+
+  animation: floating 8s ease-in-out 1.7s infinite;
+}
+
+/* =========================================================
+   CAPTION
+========================================================= */
+
+.caption {
+  position: absolute;
+
+  right: 0;
+  bottom: 10%;
+
+  color: rgba($neutral-light, 0.45);
+
+  font-size: 0.62rem;
+
+  letter-spacing: 0.2em;
+  line-height: 1.7;
+
+  opacity: calc(1 - (var(--scroll-progress, 0) * 1.25));
+
+  transform: translate3d(0, calc(var(--scroll-progress, 0) * -16px), 0);
+
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+
+  will-change: transform, opacity;
+}
+
+.caption::before {
+  display: block;
+
+  width: 38px;
+  height: 1px;
+
+  margin-bottom: 0.6rem;
+
+  background: $gold-light;
+
+  opacity: 0.75;
+
+  content: '';
+}
+
+.caption b {
+  color: $gold-light;
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  color: rgba($neutral-light, 0.45);
+
+  font-size: 0.68rem;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+
+  opacity: calc(1 - (var(--scroll-progress, 0) * 1.8));
+
+  transform: translate3d(0, calc(var(--scroll-progress, 0) * -15px), 0);
+
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+
+  will-change: transform, opacity;
+}
+
+.footer a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footer a svg {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footer a:hover {
+  color: $gold-light;
+}
+
+.footer a:hover svg {
+  transform: translate3d(2px, 0, 0);
+}
+
+.footer svg {
+  color: $gold-light;
+
+  font-size: 1rem;
+}
+
+/* =========================================================
+   SVG / DECORATIVE
+========================================================= */
+
+.svg {
+  width: min(100%, 560px);
+
+  height: auto;
+
+  overflow: visible;
+}
+
+.ring,
+.ringSmall {
+  fill: none;
+
+  stroke: rgba($gold-light, 0.42);
+
+  stroke-width: 1;
+}
+
+.ring {
+  stroke-dasharray: 5 12;
+
+  transform-origin: center;
+
+  animation: rotate 36s linear infinite;
+}
+
+.ringSmall {
+  stroke: rgba($secondary-accent, 0.6);
+
+  stroke-dasharray: 2 10;
+
+  transform-origin: center;
+
+  animation: rotateReverse 28s linear infinite;
+}
+
+.featherGold {
+  transform-origin: 280px 280px;
+
+  animation: pulse 5s ease-in-out infinite;
+}
+
+.circuits {
+  opacity: 0.85;
+
+  stroke-dasharray: 3 8;
+}
+
+.nodes {
+  filter: drop-shadow(0 0 7px rgba($gold-light, 0.6));
+}
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+
+@keyframes heroBackground {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+
+    transform: translate3d(0, 28px, 0);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.82;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.025);
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: $bp-md) {
+  .grid {
+    grid-template-columns: 1fr;
+
+    min-height: auto;
+
+    gap: 2rem;
+  }
+
+  .copy {
+    padding-top: 1rem;
+
+    transform: translate3d(0, calc(var(--scroll-progress, 0) * -45px), 0);
+  }
+
+  .visual {
+    min-height: 350px;
+
+    transform: translate3d(0, calc(var(--scroll-progress, 0) * -18px), 0)
+      scale(calc(1 - (var(--scroll-progress, 0) * 0.018)));
+  }
+
+  .svg {
+    width: min(100%, 430px);
+  }
+
+  .fenixImage {
+    width: min(100%, 430px);
+  }
+
+  .caption {
+    right: 4%;
+    bottom: 6%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: $bp-sm) {
+  .copy h1 {
+    font-size: 2.85rem;
+  }
+
+  .copy p {
+    font-size: 1rem;
+  }
+
+  .serviceDescriptor {
+    font-size: 0.68rem;
+  }
+
+  .actions {
+    margin-top: 1.8rem;
+  }
+
+  .visual {
+    min-height: 290px;
+  }
+
+  .fenixImage {
+    width: min(100%, 340px);
+  }
+
+  .footer {
+    font-size: 0.57rem;
+  }
+}
+
+/* =========================================================
+   DEVICES WITHOUT REAL HOVER
+========================================================= */
+
+@media (hover: none) {
+  .primaryAction:hover,
+  .secondaryAction:hover {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .primaryAction:hover :global(.MuiButton-endIcon),
+  .secondaryAction:hover :global(.MuiButton-endIcon) {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .copy > :global(.eyebrow),
+  .copy h1,
+  .copy p,
+  .serviceDescriptor,
+  .actions,
+  .visual,
+  .fenixImage,
+  .ring,
+  .ringSmall,
+  .featherGold {
+    animation: none;
+  }
+
+  .copy,
+  .visual,
+  .imageHalo,
+  .caption,
+  .footer {
+    opacity: 1;
+    transform: none;
+
+    transition: none;
+  }
+
+  .primaryAction,
+  .secondaryAction,
+  .primaryAction :global(.MuiButton-endIcon),
+  .secondaryAction :global(.MuiButton-endIcon),
+  .footer a,
+  .footer a svg {
+    transition: none !important;
+  }
+}
