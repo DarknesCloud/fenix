@@ -1,0 +1,64 @@
+$primary-base: #0B1F33;
+$primary-card: #102A43;
+$secondary-tech: #1E5A8A;
+$secondary-accent: #245F91;
+$accent-gold: #C58A24;
+$gold-light: #E0AF4F;
+$neutral-light: #FFFFFF;
+$neutral-gray: #F5F7F9;
+$text-muted: #667085;
+$line: #E8EDF2;
+
+// Backward-compatible aliases used by existing CSS Modules.
+$color-navy: $primary-base;
+$color-navy-surface: $primary-card;
+$color-blue: $secondary-tech;
+$color-blue-light: $secondary-accent;
+$color-gold: $accent-gold;
+$color-gold-light: #D39A32;
+$color-gold-soft: $gold-light;
+$color-white: $neutral-light;
+$color-cold-gray: $neutral-gray;
+$color-line: $line;
+$color-text: $primary-card;
+$color-muted: $text-muted;
+
+$max-width: 1240px;
+$nav-height: 80px;
+$section-space: clamp(5.5rem, 10vw, 9.5rem);
+$shadow-subtle: 0 12px 40px rgba(11, 31, 51, 0.07);
+$shadow-dark: 0 24px 70px rgba(3, 17, 29, 0.22);
+$ease: cubic-bezier(0.23, 1, 0.32, 1);
+
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+@mixin container {
+  width: min(100% - 2.5rem, $max-width);
+  margin-inline: auto;
+
+  @media (min-width: $bp-md) {
+    width: min(100% - 5rem, $max-width);
+  }
+}
+
+@mixin eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: $gold-light;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  &::before {
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    content: '';
+  }
+}

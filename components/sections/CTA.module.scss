@@ -1,0 +1,34 @@
+@use '../../styles/variables' as *;
+
+.section { padding: clamp(4rem, 8vw, 7rem) 0; background: $primary-base; }
+.trust { max-width: 860px; margin: 0 auto clamp(3.5rem, 7vw, 6rem); padding: 0 0 0 clamp(1.25rem, 3vw, 2rem); border-left: 3px solid $accent-gold; }
+.trust h3 { max-width: 760px; margin: 1rem 0 1rem; color: $neutral-light; font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 500; letter-spacing: -.04em; line-height: 1.1; }
+.trust p { max-width: 720px; margin: 0; color: rgba($neutral-light,.68); font-size: 1rem; line-height: 1.8; }
+.flow { display: flex; flex-wrap: wrap; gap: .65rem 1.2rem; margin: 1.75rem 0 0; padding: 0; color: $gold-light; font-size: .72rem; font-weight: 800; letter-spacing: .11em; line-height: 1.4; list-style: none; }
+.flow li { display: inline-flex; align-items: center; gap: 1.2rem; }
+.flow li:not(:last-child)::after { color: rgba($gold-light,.58); content: '→'; }
+.banner { position: relative; overflow: hidden; padding: clamp(2.5rem, 6vw, 5.5rem); border: 1px solid transparent; border-radius: 24px; color: $neutral-light; background: linear-gradient($primary-card, $primary-base) padding-box, linear-gradient(135deg, $gold-light, rgba($gold-light,.18), $accent-gold) border-box; box-shadow: 0 24px 65px rgba(0,0,0,.2); }
+.banner::after { position: absolute; top: -30%; right: -6%; width: 48%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba($gold-light,.16), transparent 68%); filter: blur(8px); pointer-events: none; content: ''; }
+.banner h2, .banner p, .banner .button, .banner .eyebrow, .banner small { position: relative; z-index: 1; }
+.banner h2 { max-width: 780px; margin: 1.5rem 0; font-size: clamp(2.4rem, 5vw, 5rem); line-height: 1.04; letter-spacing: -.055em; }
+.banner p { max-width: 650px; margin: 0; color: rgba($neutral-light,.76); font-size: 1.1rem; line-height: 1.75; }
+.button { margin-top: 2rem; border-radius: 50px !important; color: $primary-base !important; background: linear-gradient(135deg, $gold-light 0%, $accent-gold 100%) !important; box-shadow: 0 4px 25px rgba($accent-gold,.4) !important; }
+.button:hover { box-shadow: 0 6px 28px rgba($accent-gold,.46) !important; transform: translateY(-1px); }
+.banner small { display: block; max-width: 530px; margin-top: 1.3rem; color: rgba($neutral-light,.52); font-size: .82rem; line-height: 1.6; }
+
+@media (max-width: 600px) {
+  .trust { margin-bottom: 3rem; }
+  .flow { gap: .55rem 1rem; font-size: .66rem; }
+  .flow li { gap: 1rem; }
+  .banner { border-radius: 18px; }
+}
+
+/* El CTA acompaña el movimiento global; solo el matiz ambiental se suaviza de forma independiente. */
+.section { position: relative; overflow: hidden; }
+.section::before { position: absolute; inset: 0; z-index: 0; background: radial-gradient(circle at 72% 22%, rgba($gold-light,.09), transparent 30%); opacity: 0; transition: opacity 1s cubic-bezier(.22, 1, .36, 1); pointer-events: none; content: ''; }
+.section > :global(.container) { position: relative; z-index: 1; }
+.section[data-motion-state='visible']::before { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .section::before { opacity: 1; transition: none; }
+}

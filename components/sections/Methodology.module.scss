@@ -1,0 +1,147 @@
+@use '../../styles/variables' as *;
+
+.methodology { background: $neutral-light; }
+
+.header { display: grid; grid-template-columns: 1fr .7fr; gap: 2rem; align-items: end; }
+.header h2 { margin: 1.5rem 0 0; color: $primary-card; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.02; letter-spacing: -.06em; }
+.header > p { max-width: 390px; margin: 0; color: $text-muted; line-height: 1.75; }
+
+.rail {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2.3vw, 2rem);
+  margin-top: 4.5rem;
+}
+
+.connector {
+  position: absolute;
+  top: 175px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 8px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.connector path {
+  fill: none;
+  stroke: $gold-light;
+  stroke-width: 1.5;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  filter: drop-shadow(0 0 4px rgba($gold-light,.35));
+}
+
+.methodology[data-motion-state='visible'] .connector path { animation: drawCircuit 1.8s $ease .2s forwards; }
+
+.stage {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: .7rem;
+  border: 1px solid rgba($primary-card,.12);
+  border-radius: 5px;
+  background: rgba($neutral-light,.84);
+  box-shadow: 0 10px 26px rgba($primary-base,.035);
+  transition: transform .42s cubic-bezier(.16, 1, .3, 1), border-color .42s cubic-bezier(.16, 1, .3, 1);
+}
+
+.stage:hover { border-color: rgba($accent-gold,.42); transform: translateY(-2px); }
+
+.imageFrame {
+  position: relative;
+  height: clamp(120px, 11vw, 156px);
+  overflow: hidden;
+  border: 1px solid rgba($primary-card,.16);
+  border-radius: 3px;
+  background: $neutral-gray;
+}
+
+.imageFrame::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: '';
+  background: rgba($primary-base,.055);
+  pointer-events: none;
+}
+
+.imageFrame :global(img) { object-fit: cover; transition: transform .5s $ease; }
+.stage:hover .imageFrame :global(img) { transform: scale(1.02); }
+
+.node {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-top: -1px;
+  border: 1px solid rgba($accent-gold,.52);
+  border-radius: 50%;
+  color: $accent-gold;
+  background: $neutral-light;
+  font-size: .68rem;
+  font-weight: 800;
+  opacity: .65;
+  transform: scale(.96);
+}
+
+.methodology[data-motion-state='visible'] .stage:nth-of-type(1) .node { animation: nodeActivate .42s $ease .18s forwards; }
+.methodology[data-motion-state='visible'] .stage:nth-of-type(2) .node { animation: nodeActivate .42s $ease .68s forwards; }
+.methodology[data-motion-state='visible'] .stage:nth-of-type(3) .node { animation: nodeActivate .42s $ease 1.18s forwards; }
+.methodology[data-motion-state='visible'] .stage:nth-of-type(4) .node { animation: nodeActivate .42s $ease 1.68s forwards; }
+
+.node i {
+  position: absolute;
+  top: 50%;
+  right: -3px;
+  width: 5px;
+  height: 5px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: $gold-light;
+  box-shadow: 0 0 8px rgba($gold-light,.8);
+}
+
+.stageCopy { padding: 1.1rem .2rem .5rem; }
+.stage h3 { margin: 0 0 .6rem; color: $primary-card; font-size: .8rem; letter-spacing: .15em; }
+.stage p { margin: 0; color: $text-muted; font-size: .88rem; line-height: 1.65; }
+
+@keyframes drawCircuit { to { stroke-dashoffset: 0; } }
+
+@keyframes nodeActivate {
+  0% { opacity: .65; transform: scale(.96); }
+  70% { opacity: 1; transform: scale(1.04); box-shadow: 0 0 0 5px rgba($gold-light,.08), 0 0 16px rgba($gold-light,.22); }
+  100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 3px rgba($gold-light,.06); }
+}
+
+@media (max-width: $bp-md) {
+  .header { grid-template-columns: 1fr; gap: 1rem; }
+  .rail { grid-template-columns: 1fr; gap: 0; margin-top: 3rem; padding-left: 1.4rem; }
+  .connector { top: 170px; bottom: 38px; left: 24px; width: 2px; height: auto; }
+  .connector path { d: path('M1 0V1000'); }
+  .stage { display: grid; grid-template-columns: minmax(150px, 220px) 48px 1fr; gap: 1.2rem; align-items: start; padding: .75rem; border-color: transparent; border-bottom-color: rgba($primary-card,.13); border-radius: 0; box-shadow: none; }
+  .stage:hover { transform: none; }
+  .imageFrame { height: 132px; }
+  .node { margin-top: 1.1rem; }
+  .stageCopy { padding: 1.5rem 0 0; }
+}
+
+@media (max-width: $bp-sm) {
+  .rail { padding-left: 0; }
+  .connector { display: none; }
+  .stage { grid-template-columns: 44px 1fr; gap: 1rem; padding: 1.2rem 0; }
+  .imageFrame { grid-column: 1 / -1; grid-row: 1; height: 144px; }
+  .node { grid-column: 1; grid-row: 2; margin-top: 0; width: 44px; height: 44px; }
+  .stageCopy { grid-column: 2; grid-row: 2; padding: .35rem 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connector path { stroke-dashoffset: 0; }
+  .node { opacity: 1; transform: none; }
+  .stage, .imageFrame :global(img) { transition: none; }
+  .methodology[data-motion-state='visible'] .connector path, .methodology[data-motion-state='visible'] .node { animation: none; }
+}

@@ -1,0 +1,224 @@
+@use '../../styles/variables' as *;
+
+.caseStudy {
+  position: relative;
+  overflow: hidden;
+  color: $neutral-light;
+  background:
+    radial-gradient(circle at 82% 12%, rgba($accent-gold, .075), transparent 27%),
+    radial-gradient(circle at 8% 82%, rgba($secondary-tech, .13), transparent 28%),
+    $primary-base;
+}
+
+.caseStudy::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  opacity: .2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .028) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, transparent, black 14%, black 86%, transparent);
+}
+
+.caseStudy > div { position: relative; z-index: 1; }
+
+.header { max-width: 850px; }
+
+.header h2 {
+  margin: 1.35rem 0 .75rem;
+  font-size: clamp(2.7rem, 5.6vw, 5.9rem);
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+
+.header h2 em { color: $gold-light; font-style: normal; }
+
+.header p {
+  max-width: 680px;
+  margin: 0;
+  color: rgba($neutral-light, .72);
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.65;
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+  margin-top: clamp(2.3rem, 5vw, 4rem);
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba($neutral-light, .18);
+}
+
+.tab,
+.tabActive {
+  min-height: 38px;
+  padding: .58rem .9rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: rgba($neutral-light, .7);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .7rem;
+  font-weight: 750;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+  transition: color .42s cubic-bezier(.16, 1, .3, 1), background-color .42s cubic-bezier(.16, 1, .3, 1), border-color .42s cubic-bezier(.16, 1, .3, 1), transform .42s cubic-bezier(.16, 1, .3, 1);
+}
+
+.tab:hover,
+.tab:focus-visible {
+  border-color: rgba($gold-light, .38);
+  color: $neutral-light;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.tabActive {
+  border-color: rgba($gold-light, .5);
+  color: $primary-base;
+  background: $gold-light;
+}
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 4vw, 3.2rem);
+  animation: projectFilterIn .5s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.projectCard {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border: 1px solid rgba($neutral-light, .15);
+  border-radius: 12px;
+  background: rgba($primary-card, .36);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: transform .5s cubic-bezier(.16, 1, .3, 1), border-color .5s cubic-bezier(.16, 1, .3, 1), background-color .5s cubic-bezier(.16, 1, .3, 1);
+  animation: projectCardIn .65s cubic-bezier(.22, 1, .36, 1) forwards;
+  animation-delay: calc(var(--card-index) * 70ms + 70ms);
+}
+
+.projectCard:hover,
+.projectCard:focus-within {
+  border-color: rgba($gold-light, .45);
+  background: rgba($primary-card, .56);
+  transform: translateY(-2px);
+}
+
+.imageFrame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid rgba($neutral-light, .13);
+  background: $primary-card;
+}
+
+.imageFrame::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(135deg, rgba($primary-base, .22), transparent 56%);
+}
+
+.imageFrame img {
+  object-fit: cover;
+  transition: transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+
+.projectCard:hover .imageFrame img,
+.projectCard:focus-within .imageFrame img { transform: scale(1.012); }
+
+.cardBody {
+  display: flex;
+  min-height: 210px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1.35rem, 2.5vw, 1.8rem);
+}
+
+.tag {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 1rem;
+  padding: .35rem .5rem;
+  border: 1px solid rgba($gold-light, .42);
+  border-radius: 3px;
+  color: $gold-light;
+  background: rgba($accent-gold, .09);
+  font-size: .59rem;
+  font-weight: 800;
+  letter-spacing: .09em;
+  line-height: 1.3;
+}
+
+.cardBody h3 {
+  margin: 0;
+  color: $neutral-light;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  letter-spacing: -.03em;
+  line-height: 1.16;
+}
+
+.cardBody p {
+  margin: .9rem 0 1.35rem;
+  color: rgba($neutral-light, .67);
+  line-height: 1.7;
+}
+
+.projectLink {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: auto;
+  color: $gold-light;
+  font-size: .8rem;
+  font-weight: 750;
+}
+
+.projectLink svg { font-size: 1rem; transition: transform .36s cubic-bezier(.22, 1, .36, 1); }
+.projectLink:hover svg,
+.projectLink:focus-visible svg { transform: translateX(2px); }
+.projectLink:focus-visible { outline: 2px solid rgba($gold-light, .65); outline-offset: 4px; }
+
+@keyframes projectFilterIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes projectCardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: $bp-md) {
+  .tabList { gap: .5rem; }
+  .tab,
+  .tabActive { font-size: .64rem; }
+}
+
+@media (max-width: $bp-sm) {
+  .projectGrid { grid-template-columns: 1fr; gap: 1.15rem; }
+  .cardBody { min-height: 0; }
+  .tabList { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: thin; }
+  .tab,
+  .tabActive { flex: 0 0 auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projectGrid,
+  .projectCard { animation: none; opacity: 1; transform: none; }
+  .tab,
+  .tabActive,
+  .projectCard,
+  .imageFrame img,
+  .projectLink svg { transition: none; }
+}

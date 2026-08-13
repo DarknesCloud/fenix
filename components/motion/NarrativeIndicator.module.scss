@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+
+.indicator { display: inline-flex; align-items: center; gap: .65rem; color: rgba($neutral-light,.58); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; }
+.number { color: $gold-light; font-variant-numeric: tabular-nums; font-weight: 800; }
+.label { display: inline-block; animation: labelIn .32s $ease both; }
+
+@keyframes labelIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label { animation: none; }
+}

@@ -1,0 +1,113 @@
+@use '@/styles/variables' as *;
+
+.founder {
+  position: relative;
+  overflow: hidden;
+  background: $neutral-light;
+  color: $primary-base;
+}
+
+.layout {
+  display: grid;
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.copy {
+  max-width: 42rem;
+}
+
+.copy h2 {
+  max-width: 15ch;
+  margin: 1rem 0 1.5rem;
+  font-size: clamp(2.2rem, 5vw, 4.7rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.copy h2 em {
+  color: $accent-gold;
+  font-style: normal;
+}
+
+.copy p {
+  max-width: 35rem;
+  margin: 0;
+  color: $text-muted;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.85;
+}
+
+.copy p + p { margin-top: 1.15rem; }
+
+.copy p strong { color: $primary-base; font-weight: 800; }
+.copy p em { color: $accent-gold; font-style: italic; }
+
+.figure {
+  position: relative;
+  width: min(100%, 34rem);
+  margin: 0;
+  justify-self: end;
+  background: $neutral-gray;
+  overflow: hidden;
+}
+
+.figure::before,
+.figure::after {
+  position: absolute;
+  z-index: 1;
+  content: '';
+  pointer-events: none;
+}
+
+.figure::before {
+  inset: 1rem;
+  border: 1px solid rgba($accent-gold, 0.55);
+}
+
+.figure::after {
+  top: 50%;
+  left: -2.5rem;
+  width: 5rem;
+  height: 1px;
+  background: $accent-gold;
+  box-shadow: 0 0 0 4px rgba($accent-gold, 0.08);
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(0.82) contrast(1.02);
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .figure {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .figure::before {
+    inset: 0.75rem;
+  }
+
+  .figure::after {
+    left: 1.5rem;
+    top: 1.5rem;
+    width: 3rem;
+  }
+}
+
+/* La sección usa la transición direccional global para mantener un ritmo sereno. */
+.figure::before {
+  background: linear-gradient(135deg, rgba($primary-base,.06), transparent 50%);
+}

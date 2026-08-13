@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+
+.section { background: $neutral-light; }
+.header { display: grid; grid-template-columns: 1fr .7fr; gap: 2rem; align-items: end; }
+.header h2 { margin: 1.5rem 0 0; color: $primary-card; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.02; letter-spacing: -.06em; }
+.header h2 em { color: $accent-gold; font-style: normal; }
+.header > p { max-width: 390px; margin: 0; color: $text-muted; line-height: 1.75; }
+.list { margin-top: 4rem; border-top: 1px solid rgba($accent-gold,.35); }
+.pillar { display: grid; grid-template-columns: 90px 1fr; gap: 2rem; align-items: start; padding: 2rem 0; border-bottom: 1px solid rgba($primary-card,.12); }
+.node { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid $accent-gold; border-radius: 50%; color: $accent-gold; font-size: .7rem; font-weight: 800; }
+.pillar h3 { margin: 0 0 .55rem; color: $primary-card; font-size: clamp(1.35rem, 2.5vw, 2rem); letter-spacing: -.025em; }
+.pillar p { max-width: 760px; margin: 0; color: $text-muted; line-height: 1.75; }
+@media (max-width: $bp-md) { .header { grid-template-columns: 1fr; gap: 1rem; } .list { margin-top: 2.5rem; } }
+@media (max-width: $bp-sm) { .pillar { grid-template-columns: 56px 1fr; gap: 1rem; } }

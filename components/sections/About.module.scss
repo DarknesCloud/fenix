@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+
+.about { background: $neutral-light; }
+.grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(3rem, 10vw, 10rem); align-items: start; }
+.heading { padding-top: .5rem; }
+.badge { display: inline-flex; padding: .55rem .8rem; border: 1px solid rgba($accent-gold,.3); border-radius: 2px; color: $accent-gold; background: rgba($accent-gold,.1); font-size: .66rem; font-weight: 800; letter-spacing: .16em; }
+.heading h2 { max-width: 520px; margin: 1.8rem 0 0; color: $primary-card; font-size: clamp(2.5rem, 5vw, 5.4rem); line-height: 1.02; letter-spacing: -.06em; }
+.heading h2 em { background: linear-gradient(135deg, $gold-light, $accent-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-style: normal; }
+.editorial { max-width: 650px; padding-top: 2.8rem; }
+.editorial p { margin: 0 0 1.5rem; color: $text-muted; font-size: clamp(1.05rem, 1.8vw, 1.3rem); line-height: 1.85; }
+.editorial p:first-child { color: $primary-card; font-size: clamp(1.2rem, 2.2vw, 1.55rem); line-height: 1.55; }
+.signatureLine { display: flex; align-items: center; gap: .8rem; margin-top: 2.5rem; color: $accent-gold; font-size: .66rem; font-weight: 800; letter-spacing: .14em; }
+.signatureLine span { width: 44px; height: 1px; background: $accent-gold; box-shadow: 0 0 8px rgba($accent-gold,.35); }
+@media (max-width: $bp-md) { .grid { grid-template-columns: 1fr; gap: 1rem; } .editorial { padding-top: 1.2rem; } }

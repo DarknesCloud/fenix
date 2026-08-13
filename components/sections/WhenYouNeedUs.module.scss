@@ -1,0 +1,89 @@
+@use '../../styles/variables' as *;
+
+.section { background: $neutral-gray; }
+
+.heading > :global(.eyebrow) { display: block; }
+
+.headingGrid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  margin-top: 1.4rem;
+}
+
+.heading h2 {
+  max-width: 760px;
+  margin: 0;
+  color: $primary-card;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -.052em;
+}
+
+.heading p {
+  max-width: 470px;
+  margin: 0;
+  color: $text-muted;
+  font-size: clamp(.98rem, 1.35vw, 1.08rem);
+  line-height: 1.75;
+}
+
+.divider {
+  height: 1px;
+  margin: 3rem 0;
+  background: rgba($accent-gold,.34);
+}
+
+.list { max-width: none; }
+
+.item {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid rgba($primary-card,.12);
+}
+
+.node {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid $accent-gold;
+  border-radius: 50%;
+  color: $accent-gold;
+  font-size: .68rem;
+  font-weight: 800;
+}
+
+.item p {
+  max-width: 900px;
+  margin: 0;
+  color: $primary-card;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.quote {
+  max-width: 760px;
+  margin: 3.5rem 0 0;
+  padding: 1.5rem 1.8rem;
+  border-left: 3px solid $accent-gold;
+  color: $primary-card;
+  background: rgba($neutral-light,.7);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+@media (max-width: $bp-md) {
+  .headingGrid { grid-template-columns: 1fr; gap: 1rem; }
+  .heading p { max-width: 620px; }
+}
+
+@media (max-width: $bp-sm) {
+  .divider { margin: 2.5rem 0; }
+  .item { grid-template-columns: 48px 1fr; gap: 1rem; }
+}

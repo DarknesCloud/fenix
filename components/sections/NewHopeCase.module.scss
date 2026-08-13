@@ -1,0 +1,207 @@
+@use '../../styles/variables' as *;
+
+.newHopeCase {
+  position: relative;
+  overflow: hidden;
+  background: $neutral-gray;
+}
+
+.newHopeCase::before {
+  position: absolute;
+  top: 11%;
+  right: -12rem;
+  width: clamp(16rem, 38vw, 36rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba($accent-gold, .17);
+  border-radius: 50%;
+  content: '';
+}
+
+.newHopeCase > div { position: relative; z-index: 1; }
+
+.featuredCase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.03fr) minmax(20rem, .97fr);
+  overflow: hidden;
+  border: 1px solid rgba($accent-gold, .42);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba($accent-gold, .12), transparent 29%),
+    radial-gradient(circle at 12% 98%, rgba($secondary-tech, .20), transparent 35%),
+    $primary-base;
+  box-shadow: 0 20px 54px rgba($primary-base, .13);
+}
+
+.caseHeader {
+  padding: clamp(2.2rem, 5vw, 5.25rem) clamp(1.6rem, 4.5vw, 4.8rem) clamp(1.8rem, 4vw, 3.75rem);
+}
+
+.caseHeader h2 {
+  max-width: 12ch;
+  margin: 1.2rem 0 1rem;
+  color: $neutral-light;
+  font-size: clamp(2.7rem, 5.2vw, 5.6rem);
+  letter-spacing: -.065em;
+  line-height: .94;
+}
+
+.caseHeader h2 em {
+  color: $gold-light;
+  font-style: normal;
+}
+
+.caseHeader p {
+  max-width: 37rem;
+  margin: 0;
+  color: rgba($neutral-light, .74);
+  font-size: clamp(1.02rem, 1.65vw, 1.24rem);
+  line-height: 1.68;
+}
+
+.imageFrame {
+  position: relative;
+  min-height: clamp(19rem, 36vw, 34rem);
+  overflow: hidden;
+  border-left: 1px solid rgba($neutral-light, .16);
+  background: $primary-card;
+}
+
+.imageFrame::before,
+.imageFrame::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: '';
+}
+
+.imageFrame::before {
+  background: linear-gradient(140deg, rgba($primary-base, .22), transparent 56%);
+}
+
+.imageFrame::after {
+  inset: auto 0 0;
+  height: 44%;
+  background: linear-gradient(to top, rgba($primary-base, .70), transparent);
+}
+
+.imageFrame img {
+  object-fit: cover;
+  transition: transform .7s $ease;
+}
+
+.featuredCase:hover .imageFrame img { transform: scale(1.025); }
+
+.narrative {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba($neutral-light, .15);
+}
+
+.narrativeItem {
+  position: relative;
+  min-height: 16rem;
+  padding: clamp(1.6rem, 3vw, 2.8rem);
+}
+
+.narrativeItem + .narrativeItem { border-left: 1px solid rgba($neutral-light, .15); }
+
+.itemNumber {
+  display: block;
+  margin-bottom: 2.25rem;
+  color: $gold-light;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.narrativeItem h3 {
+  margin: 0 0 .75rem;
+  color: $neutral-light;
+  font-size: .83rem;
+  font-weight: 800;
+  letter-spacing: .095em;
+}
+
+.narrativeItem p {
+  max-width: 34ch;
+  margin: 0;
+  color: rgba($neutral-light, .68);
+  line-height: 1.72;
+}
+
+.caseFooter {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.6rem, 3vw, 2.8rem) clamp(1.6rem, 4.5vw, 4.8rem);
+  border-top: 1px solid rgba($accent-gold, .33);
+  background: rgba($primary-card, .30);
+}
+
+.caseFooter p {
+  max-width: 52ch;
+  margin: 0;
+  padding-left: 1.1rem;
+  border-left: 2px solid $accent-gold;
+  color: rgba($neutral-light, .86);
+  font-size: clamp(1rem, 1.5vw, 1.14rem);
+  font-weight: 600;
+  line-height: 1.65;
+}
+
+.caseLink {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: .6rem;
+  color: $gold-light;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .035em;
+  line-height: 1.4;
+}
+
+.caseLink svg { font-size: 1.05rem; }
+
+@media (max-width: $bp-md) {
+  .featuredCase { grid-template-columns: 1fr; }
+
+  .imageFrame {
+    grid-row: 2;
+    min-height: clamp(17rem, 56vw, 26rem);
+    border-top: 1px solid rgba($neutral-light, .15);
+    border-left: 0;
+  }
+
+  .narrative { grid-row: 3; }
+}
+
+@media (max-width: $bp-sm) {
+  .featuredCase { border-radius: 10px; }
+
+  .caseHeader { padding-bottom: 2.15rem; }
+
+  .narrative { grid-template-columns: 1fr; }
+
+  .narrativeItem { min-height: 0; }
+
+  .narrativeItem + .narrativeItem {
+    border-top: 1px solid rgba($neutral-light, .15);
+    border-left: 0;
+  }
+
+  .itemNumber { margin-bottom: 1.25rem; }
+
+  .caseFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imageFrame img { transition: none; }
+}

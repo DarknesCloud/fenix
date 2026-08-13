@@ -1,0 +1,46 @@
+@use '../../styles/variables' as *;
+
+.footer { padding: 4.5rem 0 1.5rem; color: rgba($neutral-light,.72); background: $primary-base; }
+.top { display: grid; grid-template-columns: 1.35fr .8fr 1fr; gap: 3rem; padding-bottom: 3.5rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+.logo { display: inline-flex; align-items: center; gap: .75rem; color: $neutral-light; font-size: .86rem; font-weight: 700; letter-spacing: .14em; }
+.logoMark { display: grid; place-items: center; width: 42px; height: 42px; overflow: hidden; border: 1px solid rgba($gold-light,.6); border-radius: 50% 50% 50% 4px; background: $neutral-light; }
+.logoMark img { width: 150%; height: 150%; object-fit: cover; }
+.logo b { display: block; margin-top: .2rem; color: $gold-light; font-size: .56rem; letter-spacing: .25em; }
+.brand p { margin: 1.5rem 0 0; color: rgba($neutral-light,.54); font-size: .9rem; line-height: 1.75; }
+.nav, .contact { display: flex; flex-direction: column; align-items: flex-start; gap: .85rem; }
+.nav span, .contact span { margin-bottom: .35rem; color: $gold-light; font-size: .64rem; font-weight: 800; letter-spacing: .16em; }
+.nav a, .contact a { color: rgba($neutral-light,.68); font-size: .86rem; transition: color .2s $ease; }
+.nav a:hover, .contact a:hover { color: $gold-light; }
+.contact a { display: inline-flex; align-items: center; gap: .5rem; }
+.contact a svg { color: $gold-light; font-size: 1rem; }
+.contactPlaceholder { display: inline-flex; align-items: flex-start; gap: .5rem; max-width: 16rem; margin: 0; color: rgba($neutral-light,.58); font-size: .86rem; line-height: 1.55; }
+.contactPlaceholder svg { flex: 0 0 auto; color: $gold-light; font-size: 1rem; }
+.socials { display: flex; gap: .2rem; margin-top: .4rem; }
+.socials button { padding: .35rem; color: rgba($neutral-light,.68); }
+.socials button:hover { color: $gold-light; background: rgba($gold-light,.1); }
+.bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-top: 1.5rem; color: rgba($neutral-light,.4); font-size: .68rem; }
+.bottom strong { color: $gold-light; font-weight: 600; letter-spacing: .06em; }
+@media (max-width: $bp-md) { .top { grid-template-columns: 1fr 1fr; } .brand { grid-column: 1 / -1; } }
+@media (max-width: $bp-sm) { .top { grid-template-columns: 1fr; gap: 2rem; } .brand { grid-column: auto; } .bottom { flex-direction: column; } }
+
+/* Espacio de cierre entre CTA y Footer: pausa visual seguida de una línea institucional. */
+.footer {
+  position: relative;
+  padding-top: clamp(7rem, 12vw, 10rem);
+}
+
+.footer::before {
+  position: absolute;
+  top: clamp(2.5rem, 5vw, 4.25rem);
+  right: max(1.5rem, calc((100% - 1200px) / 2));
+  left: max(1.5rem, calc((100% - 1200px) / 2));
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba($gold-light,.38), transparent);
+  opacity: .8;
+  content: '';
+}
+
+@media (max-width: $bp-sm) {
+  .footer { padding-top: 6rem; }
+  .footer::before { top: 2.15rem; }
+}

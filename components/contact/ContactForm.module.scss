@@ -1,0 +1,99 @@
+@use '../../styles/variables' as *;
+
+.form { display: grid; gap: 1.2rem; }
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form label { display: grid; gap: .55rem; }
+
+.form label > span {
+  color: rgba($neutral-light, .86);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.form b { color: $gold-light; }
+.form small { margin-left: .35rem; color: rgba($neutral-light, .48); font-size: .72rem; font-weight: 500; }
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  border: 1px solid rgba($neutral-light, .16);
+  border-radius: 7px;
+  outline: none;
+  color: $neutral-light;
+  background: rgba($neutral-light, .055);
+  font: inherit;
+  line-height: 1.4;
+  transition: border-color .2s $ease, background-color .2s $ease, box-shadow .2s $ease;
+}
+
+.form input,
+.form select { min-height: 48px; padding: .7rem .85rem; }
+.form textarea { min-height: 154px; padding: .85rem; resize: vertical; }
+.form select { appearance: auto; }
+.form select option { color: $primary-base; background: $neutral-light; }
+
+.form input::placeholder,
+.form textarea::placeholder { color: rgba($neutral-light, .42); }
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color: rgba($gold-light, .78);
+  background: rgba($neutral-light, .08);
+  box-shadow: 0 0 0 3px rgba($accent-gold, .12);
+}
+
+.formFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.4rem;
+  padding-top: .35rem;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  min-height: 48px;
+  padding: .75rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: $primary-base;
+  background: linear-gradient(135deg, $gold-light, $accent-gold);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  transition: box-shadow .2s $ease, transform .2s $ease, opacity .2s $ease;
+}
+
+.submit:hover:not(:disabled) { box-shadow: 0 8px 20px rgba($accent-gold, .22); transform: translateY(-2px); }
+.submit:active:not(:disabled) { transform: translateY(0); }
+.submit:disabled { cursor: wait; opacity: .75; }
+.submit svg { transition: transform .2s $ease; }
+.submit:hover:not(:disabled) svg { transform: translateX(3px); }
+
+.formFooter p { margin: 0; color: rgba($neutral-light, .56); font-size: .8rem; line-height: 1.5; }
+
+@media (max-width: $bp-sm) {
+  .fieldGrid { grid-template-columns: 1fr; }
+  .submit { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form input,
+  .form select,
+  .form textarea,
+  .submit,
+  .submit svg { transition: none; }
+  .submit:hover:not(:disabled),
+  .submit:hover:not(:disabled) svg { transform: none; }
+}
