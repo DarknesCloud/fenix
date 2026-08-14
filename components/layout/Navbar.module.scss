@@ -16,10 +16,22 @@
 
   padding: 0 max(1.25rem, calc((100vw - $max-width) / 2));
 
-  color: $neutral-light;
+  /*
+   * ÚNICO CAMBIO VISUAL IMPORTANTE:
+   * En TOP usamos azul oscuro sobre el Hero claro.
+   */
+  color: $primary-base;
 
-  background: transparent;
-  border-bottom: 1px solid transparent;
+  /*
+   * Fondo marfil/translúcido para separar ligeramente
+   * el navbar del Hero sin convertirlo en una barra pesada.
+   */
+  background: rgba(255, 253, 248, 0.72);
+
+  border-bottom: 1px solid rgba($primary-base, 0.06);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   transition: min-height 0.6s ease, background 0.6s ease, border-color 0.6s ease,
     box-shadow 0.6s ease;
@@ -27,6 +39,11 @@
 
 .scrolled {
   min-height: 68px;
+
+  /*
+   * Se conserva exactamente el estado azul que ya tenías.
+   */
+  color: $neutral-light;
 
   background: rgba($primary-base, 0.86);
 
@@ -48,9 +65,19 @@
 
   gap: 0.7rem;
 
-  color: $neutral-light;
+  /*
+   * TOP: azul oscuro
+   */
+  color: $primary-base;
 
   text-decoration: none;
+}
+
+/*
+ * SCROLL: vuelve al blanco original.
+ */
+.scrolled .logo {
+  color: $neutral-light;
 }
 
 .logoMark {
@@ -90,11 +117,15 @@
 
   margin-top: 0.14rem;
 
-  color: $gold-light;
+  color: $accent-gold;
 
   font-size: 0.53rem;
 
   letter-spacing: 0.25em;
+}
+
+.scrolled .logoType b {
+  color: $gold-light;
 }
 
 /* =========================================================
@@ -107,7 +138,10 @@
 
   gap: clamp(1rem, 2.2vw, 2rem);
 
-  color: rgba($neutral-light, 0.72);
+  /*
+   * TOP: azul oscuro.
+   */
+  color: rgba($primary-base, 0.72);
 
   font-size: 0.78rem;
 }
@@ -124,15 +158,25 @@
 
   padding: 0.35rem 0;
 
-  color: rgba($neutral-light, 0.72);
+  /*
+   * TOP: azul oscuro.
+   */
+  color: rgba($primary-base, 0.72);
 
   text-decoration: none;
 
   /*
-   * IMPORTANTE:
-   * El elemento NO se mueve ni cambia de tamaño.
+   * Se conserva tu transición.
    */
   transition: color 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*
+ * SCROLL:
+ * recupera exactamente el color claro original.
+ */
+.scrolled .navLinks > a {
+  color: rgba($neutral-light, 0.72);
 }
 
 /* =========================================================
@@ -147,6 +191,7 @@
   right: 0;
   bottom: -0.38rem;
   left: 0;
+
   width: 100%;
   height: 1.3px;
 
@@ -165,7 +210,7 @@
   transform-origin: center;
 
   /*
-   * Entrada y salida lentas.
+   * TU TRANSICIÓN ORIGINAL SE CONSERVA.
    */
   transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1),
     transform 1.1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -176,6 +221,10 @@
 ========================================================= */
 
 .navLinks > a:hover {
+  color: $accent-gold;
+}
+
+.scrolled .navLinks > a:hover {
   color: $gold-light;
 }
 
@@ -190,6 +239,10 @@
 ========================================================= */
 
 .navLinks > a.active {
+  color: $accent-gold;
+}
+
+.scrolled .navLinks > a.active {
   color: $gold-light;
 }
 
@@ -240,6 +293,13 @@
 .menuButton {
   display: none !important;
 
+  /*
+   * TOP: azul oscuro.
+   */
+  color: $primary-base !important;
+}
+
+.scrolled .menuButton {
   color: $neutral-light !important;
 }
 
@@ -272,6 +332,10 @@
 
     padding: 1rem 1.25rem 1.4rem;
 
+    /*
+     * El menú desplegable conserva exactamente
+     * su aspecto oscuro original.
+     */
     background: rgba($primary-base, 0.97);
 
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -305,7 +369,8 @@
     transition-delay: 0s;
   }
 
-  .navLinks > a {
+  .navLinks > a,
+  .scrolled .navLinks > a {
     padding: 1rem 0;
 
     color: rgba($neutral-light, 0.82);
@@ -323,7 +388,13 @@
     transition: opacity 0.7s ease, transform 0.8s ease;
   }
 
-  .navLinks > a:hover {
+  .navLinks > a:hover,
+  .scrolled .navLinks > a:hover {
+    color: $gold-light;
+  }
+
+  .navLinks > a.active,
+  .scrolled .navLinks > a.active {
     color: $gold-light;
   }
 
@@ -347,10 +418,6 @@
   .menuButton {
     transition-duration: 0.01ms !important;
   }
-}
-.navLinks > a {
-  color: rgba($neutral-light, 0.7) !important;
-  transition: color 0.8s ease-in-out !important;
 }
 
 .navLinks > a:hover {

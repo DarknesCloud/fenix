@@ -1,147 +1,616 @@
 @use '../../styles/variables' as *;
 
-.methodology { background: $neutral-light; }
+/* =========================================================
+   SECTION
+   ========================================================= */
 
-.header { display: grid; grid-template-columns: 1fr .7fr; gap: 2rem; align-items: end; }
-.header h2 { margin: 1.5rem 0 0; color: $primary-card; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.02; letter-spacing: -.06em; }
-.header > p { max-width: 390px; margin: 0; color: $text-muted; line-height: 1.75; }
-
-.rail {
+.methodology {
   position: relative;
+  overflow: hidden;
+  background: $neutral-light;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(1rem, 2.3vw, 2rem);
-  margin-top: 4.5rem;
+  grid-template-columns: 1fr 0.7fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
 }
 
-.connector {
-  position: absolute;
-  top: 175px;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-  height: 8px;
-  overflow: visible;
-  pointer-events: none;
+.header h2 {
+  margin: 1.5rem 0 0;
+
+  color: $primary-card;
+
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1.02;
+
+  letter-spacing: -0.06em;
 }
 
-.connector path {
-  fill: none;
-  stroke: $gold-light;
-  stroke-width: 1.5;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  filter: drop-shadow(0 0 4px rgba($gold-light,.35));
+.header > p {
+  max-width: 470px;
+  margin: 0;
+
+  color: $text-muted;
+
+  font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+  line-height: 1.75;
 }
 
-.methodology[data-motion-state='visible'] .connector path { animation: drawCircuit 1.8s $ease .2s forwards; }
+/* =========================================================
+   EXPLORER
+   ========================================================= */
 
-.stage {
-  position: relative;
-  z-index: 1;
+.explorer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.72fr);
+
+  gap: clamp(2.5rem, 6vw, 6rem);
+
+  align-items: center;
+
+  margin-top: clamp(4rem, 7vw, 6rem);
+}
+
+/* =========================================================
+   VISUAL PANEL
+   ========================================================= */
+
+.visualPanel {
   min-width: 0;
-  padding: .7rem;
-  border: 1px solid rgba($primary-card,.12);
-  border-radius: 5px;
-  background: rgba($neutral-light,.84);
-  box-shadow: 0 10px 26px rgba($primary-base,.035);
-  transition: transform .42s cubic-bezier(.16, 1, .3, 1), border-color .42s cubic-bezier(.16, 1, .3, 1);
-}
 
-.stage:hover { border-color: rgba($accent-gold,.42); transform: translateY(-2px); }
+  animation: visualEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
 .imageFrame {
   position: relative;
-  height: clamp(120px, 11vw, 156px);
+
+  min-height: clamp(320px, 37vw, 500px);
+
   overflow: hidden;
-  border: 1px solid rgba($primary-card,.16);
-  border-radius: 3px;
+
+  border: 1px solid rgba($primary-card, 0.13);
+
+  border-radius: 4px;
+
   background: $neutral-gray;
+
+  box-shadow: 0 18px 45px rgba($primary-base, 0.06);
 }
 
-.imageFrame::after {
+.imageFrame :global(img) {
+  object-fit: cover;
+
+  filter: saturate(0.92) contrast(1.01);
+
+  transform: scale(1.015);
+
+  animation: imageReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.imageOverlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  content: '';
-  background: rgba($primary-base,.055);
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    rgba($primary-base, 0.02),
+    rgba($primary-base, 0.09)
+  );
+}
+
+.visualMeta {
+  position: absolute;
+  right: 1.4rem;
+  bottom: 1.2rem;
+  left: 1.4rem;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 0.85rem;
+
+  border-top: 1px solid rgba($neutral-light, 0.5);
+
+  color: rgba($neutral-light, 0.9);
+
+  font-size: 0.56rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  text-shadow: 0 1px 8px rgba($primary-base, 0.35);
+}
+
+/* =========================================================
+   STAGE INFO
+   ========================================================= */
+
+.stageInfo {
+  position: relative;
+
+  animation: infoEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.infoTop {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-bottom: 1.35rem;
+}
+
+.bigNumber {
+  display: grid;
+  place-items: center;
+
+  width: 50px;
+  height: 50px;
+
+  flex: 0 0 auto;
+
+  border: 1px solid rgba($accent-gold, 0.55);
+
+  border-radius: 50%;
+
+  color: $accent-gold;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+.context {
+  color: $accent-gold;
+
+  font-size: 0.62rem;
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.stageInfo h3 {
+  margin: 0 0 1rem;
+
+  color: $primary-card;
+
+  font-size: clamp(2rem, 3.8vw, 3.6rem);
+
+  line-height: 1.03;
+
+  letter-spacing: -0.05em;
+}
+
+.short {
+  display: block;
+
+  max-width: 400px;
+
+  margin-bottom: 1.2rem;
+
+  color: $primary-card;
+
+  font-size: clamp(1rem, 1.35vw, 1.1rem);
+  font-weight: 650;
+
+  line-height: 1.55;
+}
+
+.stageInfo > p {
+  max-width: 430px;
+
+  margin: 0;
+
+  color: $text-muted;
+
+  font-size: 0.95rem;
+
+  line-height: 1.75;
+}
+
+/* =========================================================
+   STAGE POSITION
+   ========================================================= */
+
+.stagePosition {
+  position: relative;
+
+  width: 100%;
+  height: 2px;
+
+  margin-top: 2rem;
+
+  overflow: hidden;
+
+  background: rgba($primary-card, 0.1);
+}
+
+.stagePosition span {
+  display: block;
+
+  width: var(--progress);
+  height: 100%;
+
+  background: $accent-gold;
+
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+.timeline {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  margin-top: clamp(3.5rem, 6vw, 5rem);
+
+  padding-top: 0.25rem;
+}
+
+.timelineTrack {
+  position: absolute;
+
+  top: 24px;
+  left: calc(12.5% - 12px);
+  right: calc(12.5% - 12px);
+
+  height: 1px;
+
+  background: rgba($accent-gold, 0.2);
+
   pointer-events: none;
 }
 
-.imageFrame :global(img) { object-fit: cover; transition: transform .5s $ease; }
-.stage:hover .imageFrame :global(img) { transform: scale(1.02); }
+.timelineProgress {
+  display: block;
 
-.node {
+  width: var(--timeline-progress);
+  height: 100%;
+
+  background: $accent-gold;
+
+  box-shadow: 0 0 8px rgba($gold-light, 0.25);
+
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   TIMELINE STAGE
+   ========================================================= */
+
+.timelineStage {
   position: relative;
-  z-index: 3;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 0.85rem;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  font: inherit;
+  text-align: center;
+
+  cursor: pointer;
+
+  appearance: none;
+}
+
+.timelineNode {
   display: grid;
   place-items: center;
+
   width: 48px;
   height: 48px;
-  margin-top: -1px;
-  border: 1px solid rgba($accent-gold,.52);
+
+  border: 1px solid rgba($accent-gold, 0.4);
+
   border-radius: 50%;
-  color: $accent-gold;
+
   background: $neutral-light;
-  font-size: .68rem;
+
+  color: rgba($accent-gold, 0.7);
+
+  font-size: 0.65rem;
   font-weight: 800;
-  opacity: .65;
-  transform: scale(.96);
+
+  letter-spacing: 0.07em;
+
+  transition: background-color 0.4s ease, border-color 0.4s ease,
+    color 0.4s ease, box-shadow 0.45s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.methodology[data-motion-state='visible'] .stage:nth-of-type(1) .node { animation: nodeActivate .42s $ease .18s forwards; }
-.methodology[data-motion-state='visible'] .stage:nth-of-type(2) .node { animation: nodeActivate .42s $ease .68s forwards; }
-.methodology[data-motion-state='visible'] .stage:nth-of-type(3) .node { animation: nodeActivate .42s $ease 1.18s forwards; }
-.methodology[data-motion-state='visible'] .stage:nth-of-type(4) .node { animation: nodeActivate .42s $ease 1.68s forwards; }
+.completed .timelineNode {
+  border-color: rgba($accent-gold, 0.75);
 
-.node i {
-  position: absolute;
-  top: 50%;
-  right: -3px;
-  width: 5px;
-  height: 5px;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: $gold-light;
-  box-shadow: 0 0 8px rgba($gold-light,.8);
+  color: $accent-gold;
 }
 
-.stageCopy { padding: 1.1rem .2rem .5rem; }
-.stage h3 { margin: 0 0 .6rem; color: $primary-card; font-size: .8rem; letter-spacing: .15em; }
-.stage p { margin: 0; color: $text-muted; font-size: .88rem; line-height: 1.65; }
+.active .timelineNode {
+  background: $accent-gold;
 
-@keyframes drawCircuit { to { stroke-dashoffset: 0; } }
+  color: $primary-card;
 
-@keyframes nodeActivate {
-  0% { opacity: .65; transform: scale(.96); }
-  70% { opacity: 1; transform: scale(1.04); box-shadow: 0 0 0 5px rgba($gold-light,.08), 0 0 16px rgba($gold-light,.22); }
-  100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 3px rgba($gold-light,.06); }
+  border-color: $accent-gold;
+
+  box-shadow: 0 0 0 5px rgba($gold-light, 0.07),
+    0 0 18px rgba($gold-light, 0.14);
+
+  transform: scale(1.05);
 }
+
+.timelineStage:hover .timelineNode,
+.timelineStage:focus-visible .timelineNode {
+  transform: scale(1.05);
+}
+
+.timelineStage:focus-visible {
+  outline: none;
+}
+
+/* =========================================================
+   TIMELINE COPY
+   ========================================================= */
+
+.timelineCopy {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.32rem;
+}
+
+.timelineContext {
+  color: $text-muted;
+
+  font-size: 0.53rem;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
+
+  transition: color 0.35s ease;
+}
+
+.timelineCopy strong {
+  color: $primary-card;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+
+  transition: color 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.active .timelineContext {
+  color: $accent-gold;
+}
+
+.active .timelineCopy strong {
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes visualEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes imageReveal {
+  from {
+    opacity: 0.4;
+    transform: scale(1.035);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+}
+
+@keyframes infoEnter {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: $bp-md) {
-  .header { grid-template-columns: 1fr; gap: 1rem; }
-  .rail { grid-template-columns: 1fr; gap: 0; margin-top: 3rem; padding-left: 1.4rem; }
-  .connector { top: 170px; bottom: 38px; left: 24px; width: 2px; height: auto; }
-  .connector path { d: path('M1 0V1000'); }
-  .stage { display: grid; grid-template-columns: minmax(150px, 220px) 48px 1fr; gap: 1.2rem; align-items: start; padding: .75rem; border-color: transparent; border-bottom-color: rgba($primary-card,.13); border-radius: 0; box-shadow: none; }
-  .stage:hover { transform: none; }
-  .imageFrame { height: 132px; }
-  .node { margin-top: 1.1rem; }
-  .stageCopy { padding: 1.5rem 0 0; }
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .header > p {
+    max-width: 650px;
+  }
+
+  .explorer {
+    grid-template-columns: 1fr;
+
+    gap: 2.25rem;
+
+    margin-top: 3.5rem;
+  }
+
+  .imageFrame {
+    min-height: 380px;
+  }
+
+  .stageInfo {
+    max-width: 640px;
+  }
+
+  .timeline {
+    margin-top: 3.5rem;
+  }
 }
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: $bp-sm) {
-  .rail { padding-left: 0; }
-  .connector { display: none; }
-  .stage { grid-template-columns: 44px 1fr; gap: 1rem; padding: 1.2rem 0; }
-  .imageFrame { grid-column: 1 / -1; grid-row: 1; height: 144px; }
-  .node { grid-column: 1; grid-row: 2; margin-top: 0; width: 44px; height: 44px; }
-  .stageCopy { grid-column: 2; grid-row: 2; padding: .35rem 0 0; }
+  .imageFrame {
+    min-height: 240px;
+  }
+
+  .visualMeta {
+    right: 1rem;
+    bottom: 0.85rem;
+    left: 1rem;
+
+    font-size: 0.48rem;
+  }
+
+  .infoTop {
+    margin-bottom: 1rem;
+  }
+
+  .bigNumber {
+    width: 42px;
+    height: 42px;
+
+    font-size: 0.62rem;
+  }
+
+  .stageInfo h3 {
+    font-size: clamp(1.85rem, 10vw, 2.5rem);
+  }
+
+  /*
+   * En móvil convertimos el timeline horizontal
+   * en una lista vertical para evitar compresión.
+   */
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+
+    margin-top: 3rem;
+
+    padding-left: 42px;
+  }
+
+  .timelineTrack {
+    top: 24px;
+    bottom: 24px;
+
+    left: 18px;
+    right: auto;
+
+    width: 1px;
+    height: auto;
+  }
+
+  .timelineProgress {
+    width: 100%;
+
+    height: var(--timeline-progress);
+
+    transition: height 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .timelineStage {
+    position: relative;
+
+    align-items: flex-start;
+
+    min-height: 82px;
+
+    padding-bottom: 1.2rem;
+
+    text-align: left;
+  }
+
+  .timelineNode {
+    position: absolute;
+
+    top: 0;
+    left: -42px;
+
+    width: 36px;
+    height: 36px;
+
+    font-size: 0.56rem;
+  }
+
+  .timelineCopy {
+    padding-top: 0.15rem;
+  }
+
+  .timelineContext {
+    font-size: 0.5rem;
+  }
+
+  .timelineCopy strong {
+    font-size: 0.65rem;
+  }
 }
 
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .connector path { stroke-dashoffset: 0; }
-  .node { opacity: 1; transform: none; }
-  .stage, .imageFrame :global(img) { transition: none; }
-  .methodology[data-motion-state='visible'] .connector path, .methodology[data-motion-state='visible'] .node { animation: none; }
+  .visualPanel,
+  .imageFrame :global(img),
+  .stageInfo,
+  .stagePosition span,
+  .timelineProgress,
+  .timelineNode,
+  .timelineCopy strong {
+    animation: none;
+    transition: none;
+  }
 }

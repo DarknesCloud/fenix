@@ -12,37 +12,69 @@
   right: -12rem;
   width: clamp(16rem, 38vw, 36rem);
   aspect-ratio: 1;
-  border: 1px solid rgba($accent-gold, .17);
+
+  border: 1px solid rgba($accent-gold, 0.17);
   border-radius: 50%;
+
   content: '';
 }
 
-.newHopeCase > div { position: relative; z-index: 1; }
+.newHopeCase > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   CASE WRAPPER
+   ========================================================= */
 
 .featuredCase {
   display: grid;
-  grid-template-columns: minmax(0, 1.03fr) minmax(20rem, .97fr);
+
+  grid-template-columns:
+    minmax(0, 1.03fr)
+    minmax(20rem, 0.97fr);
+
   overflow: hidden;
-  border: 1px solid rgba($accent-gold, .42);
+
+  border: 1px solid rgba($accent-gold, 0.42);
   border-radius: 14px;
-  background:
-    radial-gradient(circle at 85% 15%, rgba($accent-gold, .12), transparent 29%),
-    radial-gradient(circle at 12% 98%, rgba($secondary-tech, .20), transparent 35%),
+
+  background: radial-gradient(
+      circle at 85% 15%,
+      rgba($accent-gold, 0.12),
+      transparent 29%
+    ),
+    radial-gradient(
+      circle at 12% 98%,
+      rgba($secondary-tech, 0.2),
+      transparent 35%
+    ),
     $primary-base;
-  box-shadow: 0 20px 54px rgba($primary-base, .13);
+
+  box-shadow: 0 20px 54px rgba($primary-base, 0.13);
 }
 
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 .caseHeader {
-  padding: clamp(2.2rem, 5vw, 5.25rem) clamp(1.6rem, 4.5vw, 4.8rem) clamp(1.8rem, 4vw, 3.75rem);
+  padding: clamp(2.2rem, 5vw, 5.25rem) clamp(1.6rem, 4.5vw, 4.8rem)
+    clamp(1.8rem, 4vw, 3.75rem);
 }
 
 .caseHeader h2 {
   max-width: 12ch;
+
   margin: 1.2rem 0 1rem;
+
   color: $neutral-light;
+
   font-size: clamp(2.7rem, 5.2vw, 5.6rem);
-  letter-spacing: -.065em;
-  line-height: .94;
+
+  letter-spacing: -0.065em;
+  line-height: 0.94;
 }
 
 .caseHeader h2 em {
@@ -50,19 +82,75 @@
   font-style: normal;
 }
 
-.caseHeader p {
+.caseHeader > p {
   max-width: 37rem;
+
   margin: 0;
-  color: rgba($neutral-light, .74);
+
+  color: rgba($neutral-light, 0.74);
+
   font-size: clamp(1.02rem, 1.65vw, 1.24rem);
+
   line-height: 1.68;
 }
 
+/* =========================================================
+   META
+   ========================================================= */
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 1.25rem;
+
+  margin-top: clamp(2.4rem, 4vw, 3.5rem);
+  padding-top: 1.35rem;
+
+  border-top: 1px solid rgba($neutral-light, 0.14);
+}
+
+.meta div {
+  min-width: 0;
+}
+
+.meta span {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  color: rgba($gold-light, 0.78);
+
+  font-size: 0.55rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+}
+
+.meta strong {
+  display: block;
+
+  color: rgba($neutral-light, 0.82);
+
+  font-size: 0.72rem;
+  font-weight: 650;
+
+  line-height: 1.45;
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
 .imageFrame {
   position: relative;
+
   min-height: clamp(19rem, 36vw, 34rem);
+
   overflow: hidden;
-  border-left: 1px solid rgba($neutral-light, .16);
+
+  border-left: 1px solid rgba($neutral-light, 0.16);
+
   background: $primary-card;
 }
 
@@ -71,137 +159,428 @@
   position: absolute;
   inset: 0;
   z-index: 1;
+
   pointer-events: none;
+
   content: '';
 }
 
 .imageFrame::before {
-  background: linear-gradient(140deg, rgba($primary-base, .22), transparent 56%);
+  background: linear-gradient(
+    140deg,
+    rgba($primary-base, 0.22),
+    transparent 56%
+  );
 }
 
 .imageFrame::after {
   inset: auto 0 0;
+
   height: 44%;
-  background: linear-gradient(to top, rgba($primary-base, .70), transparent);
+
+  background: linear-gradient(to top, rgba($primary-base, 0.72), transparent);
 }
 
 .imageFrame img {
   object-fit: cover;
-  transition: transform .7s $ease;
+
+  transform: scale(1.01);
+
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
 }
 
-.featuredCase:hover .imageFrame img { transform: scale(1.025); }
+.featuredCase:hover .imageFrame img {
+  transform: scale(1.03);
+}
+
+.imageLabel {
+  position: absolute;
+
+  right: 1.4rem;
+  bottom: 1.25rem;
+  left: 1.4rem;
+
+  z-index: 3;
+
+  padding-top: 0.8rem;
+
+  border-top: 1px solid rgba($neutral-light, 0.38);
+}
+
+.imageLabel span {
+  display: block;
+
+  margin-bottom: 0.35rem;
+
+  color: rgba($gold-light, 0.9);
+
+  font-size: 0.52rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+}
+
+.imageLabel strong {
+  color: rgba($neutral-light, 0.88);
+
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+/* =========================================================
+   NARRATIVE
+   ========================================================= */
 
 .narrative {
+  position: relative;
+
   display: grid;
+
   grid-column: 1 / -1;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid rgba($neutral-light, .15);
+
+  border-top: 1px solid rgba($neutral-light, 0.15);
 }
+
+/* =========================================================
+   PROGRESS LINE
+   ========================================================= */
+
+.progressLine {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 2px;
+
+  background: rgba($gold-light, 0.08);
+
+  pointer-events: none;
+}
+
+.progressLine span {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    rgba($gold-light, 0.25),
+    rgba($gold-light, 0.55),
+    $gold-light
+  );
+}
+
+/* =========================================================
+   NARRATIVE ITEM
+   ========================================================= */
 
 .narrativeItem {
   position: relative;
+
   min-height: 16rem;
+
   padding: clamp(1.6rem, 3vw, 2.8rem);
+
+  transition: background-color 0.45s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.narrativeItem + .narrativeItem { border-left: 1px solid rgba($neutral-light, .15); }
+.narrativeItem + .narrativeItem {
+  border-left: 1px solid rgba($neutral-light, 0.15);
+}
+
+.narrativeItem:hover {
+  background: rgba($neutral-light, 0.018);
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   ITEM TOP
+   ========================================================= */
+
+.itemTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+}
 
 .itemNumber {
   display: block;
-  margin-bottom: 2.25rem;
+
   color: $gold-light;
-  font-size: .72rem;
+
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: .12em;
+
+  letter-spacing: 0.12em;
+}
+
+.phase {
+  color: rgba($neutral-light, 0.38);
+
+  font-size: 0.5rem;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+
+  text-transform: uppercase;
 }
 
 .narrativeItem h3 {
-  margin: 0 0 .75rem;
+  margin: 0 0 0.75rem;
+
   color: $neutral-light;
-  font-size: .83rem;
+
+  font-size: 0.83rem;
   font-weight: 800;
-  letter-spacing: .095em;
+
+  letter-spacing: 0.095em;
 }
 
 .narrativeItem p {
   max-width: 34ch;
+
   margin: 0;
-  color: rgba($neutral-light, .68);
+
+  color: rgba($neutral-light, 0.68);
+
   line-height: 1.72;
 }
 
+/* =========================================================
+   EVOLUTION — CLIMAX
+   ========================================================= */
+
+.evolution {
+  background: linear-gradient(
+    180deg,
+    rgba($accent-gold, 0.06),
+    rgba($accent-gold, 0.015)
+  );
+}
+
+.evolution::after {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  left: 0;
+
+  height: 2px;
+
+  background: $gold-light;
+
+  content: '';
+}
+
+.evolution .itemNumber,
+.evolution h3 {
+  color: $gold-light;
+}
+
+.evolutionNote {
+  display: block;
+
+  margin-top: 1.25rem;
+
+  color: rgba($gold-light, 0.9);
+
+  font-size: 0.62rem;
+  font-weight: 750;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 .caseFooter {
   display: flex;
+
   grid-column: 1 / -1;
+
   align-items: flex-end;
   justify-content: space-between;
+
   gap: 2rem;
-  padding: clamp(1.6rem, 3vw, 2.8rem) clamp(1.6rem, 4.5vw, 4.8rem);
-  border-top: 1px solid rgba($accent-gold, .33);
-  background: rgba($primary-card, .30);
+
+  padding: clamp(1.7rem, 3vw, 2.8rem) clamp(1.6rem, 4.5vw, 4.8rem);
+
+  border-top: 1px solid rgba($accent-gold, 0.33);
+
+  background: rgba($primary-card, 0.3);
+}
+
+.footerCopy {
+  max-width: 58ch;
+}
+
+.footerLabel {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  color: rgba($gold-light, 0.86);
+
+  font-size: 0.54rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
 }
 
 .caseFooter p {
-  max-width: 52ch;
   margin: 0;
-  padding-left: 1.1rem;
+
+  padding-left: 1.15rem;
+
   border-left: 2px solid $accent-gold;
-  color: rgba($neutral-light, .86);
-  font-size: clamp(1rem, 1.5vw, 1.14rem);
+
+  color: rgba($neutral-light, 0.9);
+
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+
   font-weight: 600;
+
   line-height: 1.65;
 }
 
+/* =========================================================
+   CASE LINK
+   ========================================================= */
+
 .caseLink {
   display: inline-flex;
+
   flex: 0 0 auto;
+
   align-items: center;
-  gap: .6rem;
+
+  gap: 0.6rem;
+
   color: $gold-light;
-  font-size: .78rem;
+
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: .035em;
+
+  letter-spacing: 0.035em;
   line-height: 1.4;
+
+  text-decoration: none;
 }
 
-.caseLink svg { font-size: 1.05rem; }
+.caseLink svg {
+  font-size: 1.05rem;
+
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.caseLink:hover svg,
+.caseLink:focus-visible svg {
+  transform: translateX(4px);
+}
+
+.caseLink:focus-visible {
+  outline: 2px solid rgba($gold-light, 0.65);
+
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: $bp-md) {
-  .featuredCase { grid-template-columns: 1fr; }
+  .featuredCase {
+    grid-template-columns: 1fr;
+  }
 
   .imageFrame {
     grid-row: 2;
+
     min-height: clamp(17rem, 56vw, 26rem);
-    border-top: 1px solid rgba($neutral-light, .15);
+
+    border-top: 1px solid rgba($neutral-light, 0.15);
+
     border-left: 0;
   }
 
-  .narrative { grid-row: 3; }
+  .narrative {
+    grid-row: 3;
+  }
 }
 
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: $bp-sm) {
-  .featuredCase { border-radius: 10px; }
+  .featuredCase {
+    border-radius: 10px;
+  }
 
-  .caseHeader { padding-bottom: 2.15rem; }
+  .caseHeader {
+    padding-bottom: 2.15rem;
+  }
 
-  .narrative { grid-template-columns: 1fr; }
+  .meta {
+    grid-template-columns: 1fr;
 
-  .narrativeItem { min-height: 0; }
+    gap: 1rem;
+
+    margin-top: 2rem;
+  }
+
+  .narrative {
+    grid-template-columns: 1fr;
+  }
+
+  .narrativeItem {
+    min-height: 0;
+  }
 
   .narrativeItem + .narrativeItem {
-    border-top: 1px solid rgba($neutral-light, .15);
+    border-top: 1px solid rgba($neutral-light, 0.15);
+
     border-left: 0;
   }
 
-  .itemNumber { margin-bottom: 1.25rem; }
+  .itemTop {
+    margin-bottom: 1.25rem;
+  }
 
   .caseFooter {
     flex-direction: column;
+
     align-items: flex-start;
+  }
+
+  .imageLabel {
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
   }
 }
 
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .imageFrame img { transition: none; }
+  .imageFrame img,
+  .narrativeItem,
+  .caseLink svg {
+    transition: none;
+  }
 }

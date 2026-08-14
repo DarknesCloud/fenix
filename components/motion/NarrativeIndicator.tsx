@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import styles from './NarrativeIndicator.module.scss';
 
 const sections = [
-  ['inicio', 'INTRODUCCIÓN'],
+  ['inicio', ''],
   ['nosotros', 'NOSOTROS'],
   ['necesidades', 'NECESIDADES'],
   ['soluciones', 'SOLUCIONES'],
@@ -26,23 +26,35 @@ export default function NarrativeIndicator() {
       .map(([id]) => document.getElementById(id))
       .filter((element): element is HTMLElement => Boolean(element));
 
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible?.target instanceof HTMLElement) setActiveId(visible.target.id);
-    }, { threshold: [0.2, 0.45, 0.7], rootMargin: '-20% 0px -60% 0px' });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target instanceof HTMLElement)
+          setActiveId(visible.target.id);
+      },
+      { threshold: [0.2, 0.45, 0.7], rootMargin: '-20% 0px -60% 0px' }
+    );
 
     targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
   }, []);
 
-  const activeIndex = Math.max(0, sections.findIndex(([id]) => id === activeId));
+  const activeIndex = Math.max(
+    0,
+    sections.findIndex(([id]) => id === activeId)
+  );
   const [label, name] = sections[activeIndex];
   return (
     <span className={styles.indicator} aria-hidden="true">
-      <span className={styles.number}>{String(activeIndex + 1).padStart(2, '0')} / {String(sections.length).padStart(2, '0')}</span>
-      <span className={styles.label} key={label}>{name}</span>
+      <span className={styles.number}>
+        {String(activeIndex + 1).padStart(2, '0')} /{' '}
+        {String(sections.length).padStart(2, '0')}
+      </span>
+      <span className={styles.label} key={label}>
+        {name}
+      </span>
     </span>
   );
 }

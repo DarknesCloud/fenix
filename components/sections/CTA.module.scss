@@ -1,34 +1,630 @@
 @use '../../styles/variables' as *;
 
-.section { padding: clamp(4rem, 8vw, 7rem) 0; background: $primary-base; }
-.trust { max-width: 860px; margin: 0 auto clamp(3.5rem, 7vw, 6rem); padding: 0 0 0 clamp(1.25rem, 3vw, 2rem); border-left: 3px solid $accent-gold; }
-.trust h3 { max-width: 760px; margin: 1rem 0 1rem; color: $neutral-light; font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 500; letter-spacing: -.04em; line-height: 1.1; }
-.trust p { max-width: 720px; margin: 0; color: rgba($neutral-light,.68); font-size: 1rem; line-height: 1.8; }
-.flow { display: flex; flex-wrap: wrap; gap: .65rem 1.2rem; margin: 1.75rem 0 0; padding: 0; color: $gold-light; font-size: .72rem; font-weight: 800; letter-spacing: .11em; line-height: 1.4; list-style: none; }
-.flow li { display: inline-flex; align-items: center; gap: 1.2rem; }
-.flow li:not(:last-child)::after { color: rgba($gold-light,.58); content: '→'; }
-.banner { position: relative; overflow: hidden; padding: clamp(2.5rem, 6vw, 5.5rem); border: 1px solid transparent; border-radius: 24px; color: $neutral-light; background: linear-gradient($primary-card, $primary-base) padding-box, linear-gradient(135deg, $gold-light, rgba($gold-light,.18), $accent-gold) border-box; box-shadow: 0 24px 65px rgba(0,0,0,.2); }
-.banner::after { position: absolute; top: -30%; right: -6%; width: 48%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba($gold-light,.16), transparent 68%); filter: blur(8px); pointer-events: none; content: ''; }
-.banner h2, .banner p, .banner .button, .banner .eyebrow, .banner small { position: relative; z-index: 1; }
-.banner h2 { max-width: 780px; margin: 1.5rem 0; font-size: clamp(2.4rem, 5vw, 5rem); line-height: 1.04; letter-spacing: -.055em; }
-.banner p { max-width: 650px; margin: 0; color: rgba($neutral-light,.76); font-size: 1.1rem; line-height: 1.75; }
-.button { margin-top: 2rem; border-radius: 50px !important; color: $primary-base !important; background: linear-gradient(135deg, $gold-light 0%, $accent-gold 100%) !important; box-shadow: 0 4px 25px rgba($accent-gold,.4) !important; }
-.button:hover { box-shadow: 0 6px 28px rgba($accent-gold,.46) !important; transform: translateY(-1px); }
-.banner small { display: block; max-width: 530px; margin-top: 1.3rem; color: rgba($neutral-light,.52); font-size: .82rem; line-height: 1.6; }
+/* =========================================================
+   SECTION
+   ========================================================= */
 
-@media (max-width: 600px) {
-  .trust { margin-bottom: 3rem; }
-  .flow { gap: .55rem 1rem; font-size: .66rem; }
-  .flow li { gap: 1rem; }
-  .banner { border-radius: 18px; }
+.section {
+  position: relative;
+  overflow: hidden;
+
+  padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+
+  background: $primary-base;
 }
 
-/* El CTA acompaña el movimiento global; solo el matiz ambiental se suaviza de forma independiente. */
-.section { position: relative; overflow: hidden; }
-.section::before { position: absolute; inset: 0; z-index: 0; background: radial-gradient(circle at 72% 22%, rgba($gold-light,.09), transparent 30%); opacity: 0; transition: opacity 1s cubic-bezier(.22, 1, .36, 1); pointer-events: none; content: ''; }
-.section > :global(.container) { position: relative; z-index: 1; }
-.section[data-motion-state='visible']::before { opacity: 1; }
+.section::before {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  background: radial-gradient(
+      circle at 72% 22%,
+      rgba($gold-light, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 12% 85%,
+      rgba($secondary-tech, 0.12),
+      transparent 28%
+    );
+
+  opacity: 0;
+
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+
+  pointer-events: none;
+
+  content: '';
+}
+
+.section > :global(.container) {
+  position: relative;
+  z-index: 1;
+}
+
+.section[data-motion-state='visible']::before {
+  opacity: 1;
+}
+
+/* =========================================================
+   TRUST / CONTINUITY BLOCK
+   ========================================================= */
+
+.trust {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(340px, 0.9fr);
+
+  gap: clamp(3rem, 7vw, 6rem);
+
+  align-items: end;
+
+  max-width: 1180px;
+
+  margin: 0 auto clamp(4rem, 7vw, 6.5rem);
+
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+
+  border-bottom: 1px solid rgba($neutral-light, 0.13);
+}
+
+/* =========================================================
+   TRUST COPY
+   ========================================================= */
+
+.trustCopy {
+  padding-left: clamp(1.2rem, 2.5vw, 1.8rem);
+
+  border-left: 3px solid $accent-gold;
+}
+
+.trustCopy h3 {
+  max-width: 760px;
+
+  margin: 1rem 0;
+
+  color: $neutral-light;
+
+  font-size: clamp(1.9rem, 3.4vw, 3.4rem);
+
+  font-weight: 500;
+
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.trustCopy p {
+  max-width: 680px;
+
+  margin: 0;
+
+  color: rgba($neutral-light, 0.67);
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   LIFECYCLE
+   ========================================================= */
+
+.lifecycle {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 0.75rem;
+
+  padding-top: 1rem;
+}
+
+/* =========================================================
+   LIFECYCLE LINE
+   ========================================================= */
+
+.lifecycleLine {
+  position: absolute;
+
+  top: 28px;
+  left: 12.5%;
+  right: 12.5%;
+
+  height: 1px;
+
+  background: rgba($gold-light, 0.2);
+
+  pointer-events: none;
+}
+
+.lifecycleLine span {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(90deg, rgba($gold-light, 0.3), $gold-light);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section[data-motion-state='visible'] .lifecycleLine span {
+  transform: scaleX(1);
+}
+
+/* =========================================================
+   LIFECYCLE STEP
+   ========================================================= */
+
+.lifecycleStep {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 0.7rem;
+
+  text-align: center;
+}
+
+.lifecycleNode {
+  display: grid;
+  place-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid rgba($gold-light, 0.48);
+
+  border-radius: 50%;
+
+  background: $primary-base;
+
+  color: $gold-light;
+
+  font-size: 0.62rem;
+  font-weight: 800;
+
+  letter-spacing: 0.07em;
+
+  transition: background-color 0.4s ease, border-color 0.4s ease,
+    color 0.4s ease, box-shadow 0.45s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lifecycleStep:hover .lifecycleNode {
+  background: $gold-light;
+
+  color: $primary-base;
+
+  border-color: $gold-light;
+
+  box-shadow: 0 0 0 5px rgba($gold-light, 0.06),
+    0 0 16px rgba($gold-light, 0.12);
+
+  transform: scale(1.05);
+}
+
+.lifecycleStep strong {
+  color: rgba($neutral-light, 0.82);
+
+  font-size: 0.64rem;
+  font-weight: 800;
+
+  letter-spacing: 0.09em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   BANNER
+   ========================================================= */
+
+.banner {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(260px, 0.55fr);
+
+  gap: clamp(2.5rem, 6vw, 5rem);
+
+  align-items: end;
+
+  overflow: hidden;
+
+  padding: clamp(3rem, 6vw, 5.5rem);
+
+  border: 1px solid transparent;
+
+  border-radius: 18px;
+
+  color: $neutral-light;
+
+  background: linear-gradient($primary-card, $primary-base) padding-box,
+    linear-gradient(135deg, $gold-light, rgba($gold-light, 0.14), $accent-gold)
+      border-box;
+
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.2);
+}
+
+/* ambient glow */
+
+.banner::before {
+  position: absolute;
+
+  top: -35%;
+  right: -8%;
+
+  width: 52%;
+
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle, rgba($gold-light, 0.18), transparent 67%);
+
+  filter: blur(10px);
+
+  pointer-events: none;
+
+  content: '';
+}
+
+/* subtle technical rings */
+
+.banner::after {
+  position: absolute;
+
+  right: -6rem;
+  bottom: -7rem;
+
+  width: 22rem;
+  height: 22rem;
+
+  border: 1px solid rgba($gold-light, 0.07);
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 42px rgba($gold-light, 0.012),
+    0 0 0 84px rgba($gold-light, 0.009);
+
+  pointer-events: none;
+
+  content: '';
+}
+
+/* =========================================================
+   BANNER CONTENT
+   ========================================================= */
+
+.bannerContent {
+  position: relative;
+  z-index: 2;
+}
+
+.banner h2 {
+  max-width: 800px;
+
+  margin: 1.5rem 0;
+
+  font-size: clamp(2.6rem, 5vw, 5.2rem);
+
+  line-height: 1.02;
+
+  letter-spacing: -0.06em;
+}
+
+.banner p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: rgba($neutral-light, 0.76);
+
+  font-size: 1.08rem;
+
+  line-height: 1.75;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  margin-top: 2.2rem;
+}
+
+.button {
+  min-height: 48px !important;
+
+  padding: 0.75rem 1.3rem !important;
+
+  border-radius: 4px !important;
+
+  color: $primary-base !important;
+
+  background: linear-gradient(
+    135deg,
+    $gold-light 0%,
+    $accent-gold 100%
+  ) !important;
+
+  box-shadow: 0 6px 24px rgba($accent-gold, 0.22) !important;
+
+  font-family: inherit !important;
+
+  font-size: 0.72rem !important;
+
+  font-weight: 800 !important;
+
+  letter-spacing: 0.065em !important;
+
+  transition: box-shadow 0.45s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.button:hover {
+  box-shadow: 0 10px 30px rgba($accent-gold, 0.3) !important;
+
+  transform: translateY(-2px);
+}
+
+.button :global(svg) {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button:hover :global(svg) {
+  transform: translate(2px, -2px);
+}
+
+.actions small {
+  display: block;
+
+  max-width: 520px;
+
+  margin-top: 1.3rem;
+
+  color: rgba($neutral-light, 0.5);
+
+  font-size: 0.8rem;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   SIGNATURE
+   ========================================================= */
+
+.signature {
+  position: relative;
+  z-index: 2;
+
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  padding-left: clamp(1.5rem, 3vw, 2.5rem);
+
+  border-left: 1px solid rgba($neutral-light, 0.12);
+}
+
+.signatureLabel {
+  color: rgba($gold-light, 0.82);
+
+  font-size: 0.56rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.signatureFlow {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.95rem;
+
+  margin-top: 1.2rem;
+}
+
+.signatureFlow span {
+  color: rgba($neutral-light, 0.78);
+
+  font-size: 0.67rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.11em;
+}
+
+.signatureFlow i {
+  width: 1px;
+  height: 18px;
+
+  margin-left: 0.2rem;
+
+  background: linear-gradient(
+    to bottom,
+    rgba($gold-light, 0.6),
+    rgba($gold-light, 0.12)
+  );
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .trust {
+    grid-template-columns: 1fr;
+
+    gap: 2.75rem;
+  }
+
+  .banner {
+    grid-template-columns: 1fr;
+  }
+
+  .signature {
+    padding: 1.75rem 0 0;
+
+    border-top: 1px solid rgba($neutral-light, 0.12);
+
+    border-left: 0;
+  }
+
+  .signatureFlow {
+    flex-direction: row;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.75rem;
+  }
+
+  .signatureFlow i {
+    width: 24px;
+    height: 1px;
+
+    margin: 0;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .trust {
+    margin-bottom: 3.5rem;
+  }
+
+  .trustCopy {
+    padding-left: 1rem;
+  }
+
+  .lifecycle {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+
+    padding-left: 44px;
+  }
+
+  .lifecycleLine {
+    top: 22px;
+    bottom: 22px;
+    left: 17px;
+    right: auto;
+
+    width: 1px;
+    height: auto;
+  }
+
+  .lifecycleLine span {
+    width: 100%;
+    height: 100%;
+
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  .section[data-motion-state='visible'] .lifecycleLine span {
+    transform: scaleY(1);
+  }
+
+  .lifecycleStep {
+    position: relative;
+
+    align-items: flex-start;
+
+    min-height: 68px;
+
+    padding-bottom: 0.8rem;
+
+    text-align: left;
+  }
+
+  .lifecycleNode {
+    position: absolute;
+
+    top: 0;
+    left: -44px;
+
+    width: 36px;
+    height: 36px;
+
+    font-size: 0.56rem;
+  }
+
+  .lifecycleStep strong {
+    padding-top: 0.45rem;
+  }
+
+  .banner {
+    padding: 2.5rem 1.5rem;
+
+    border-radius: 12px;
+  }
+
+  .banner h2 {
+    font-size: clamp(2.3rem, 12vw, 3.7rem);
+  }
+
+  .button {
+    width: 100%;
+
+    justify-content: space-between !important;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .section::before { opacity: 1; transition: none; }
+  .section::before,
+  .lifecycleLine span,
+  .lifecycleNode,
+  .button,
+  .button :global(svg) {
+    transition: none !important;
+  }
+
+  .section::before {
+    opacity: 1;
+  }
+
+  .lifecycleLine span {
+    transform: none;
+  }
+
+  .button:hover {
+    transform: none;
+  }
 }

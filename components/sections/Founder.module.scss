@@ -1,113 +1,470 @@
 @use '@/styles/variables' as *;
 
+/* =========================================================
+   SECTION
+   ========================================================= */
+
 .founder {
   position: relative;
   overflow: hidden;
+
   background: $neutral-light;
+
   color: $primary-base;
 }
 
-.layout {
-  display: grid;
-  gap: clamp(2.5rem, 7vw, 7rem);
-  align-items: center;
-  grid-template-columns: 1fr;
+/* subtle brand accent */
+
+.founder::before {
+  position: absolute;
+
+  top: 12%;
+  left: -8rem;
+
+  width: clamp(12rem, 24vw, 22rem);
+  aspect-ratio: 1;
+
+  border: 1px solid rgba($accent-gold, 0.08);
+
+  border-radius: 50%;
+
+  content: '';
+
+  pointer-events: none;
 }
 
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.08fr)
+    minmax(18rem, 0.92fr);
+
+  gap: clamp(3rem, 7vw, 7rem);
+
+  align-items: center;
+}
+
+/* =========================================================
+   COPY
+   ========================================================= */
+
 .copy {
+  position: relative;
+
   max-width: 42rem;
 }
 
+/* =========================================================
+   TITLE
+   ========================================================= */
+
 .copy h2 {
   max-width: 15ch;
-  margin: 1rem 0 1.5rem;
+
+  margin: 1rem 0 1.6rem;
+
+  color: $primary-base;
+
   font-size: clamp(2.2rem, 5vw, 4.7rem);
+
   font-weight: 500;
+
   letter-spacing: -0.055em;
   line-height: 1.02;
 }
 
-.copy h2 em {
-  color: $accent-gold;
-  font-style: normal;
-}
+/* =========================================================
+   INTRO
+   ========================================================= */
 
-.copy p {
-  max-width: 35rem;
+.intro {
+  max-width: 34rem;
+
   margin: 0;
+
   color: $text-muted;
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  line-height: 1.85;
+
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+
+  line-height: 1.82;
 }
 
-.copy p + p { margin-top: 1.15rem; }
+/* =========================================================
+   IDENTITY
+   ========================================================= */
 
-.copy p strong { color: $primary-base; font-weight: 800; }
-.copy p em { color: $accent-gold; font-style: italic; }
+.identity {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.identityLine {
+  flex: 0 0 auto;
+
+  width: 38px;
+  height: 1px;
+
+  background: $accent-gold;
+}
+
+.identity > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.28rem;
+}
+
+.identity strong {
+  color: $primary-base;
+
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.identity span:last-child {
+  color: $accent-gold;
+
+  font-size: 0.78rem;
+  font-style: italic;
+
+  line-height: 1.4;
+}
+
+/* =========================================================
+   PERSONAL STATEMENT
+   ========================================================= */
+
+.statement {
+  position: relative;
+
+  max-width: 31rem;
+
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+
+  padding: 1.2rem 0 1.2rem 1.45rem;
+
+  border-left: 2px solid rgba($accent-gold, 0.85);
+
+  color: $primary-base;
+
+  font-family: Georgia, 'Times New Roman', serif;
+
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+
+  font-weight: 500;
+
+  letter-spacing: -0.025em;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   BODY COPY
+   ========================================================= */
+
+.bodyCopy {
+  max-width: 34rem;
+
+  margin: 1.75rem 0 0;
+
+  color: $text-muted;
+
+  font-size: clamp(0.98rem, 1.35vw, 1.08rem);
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   VALUES
+   ========================================================= */
+
+.values {
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 0.65rem 0.8rem;
+
+  margin-top: clamp(2rem, 4vw, 3rem);
+
+  color: $primary-card;
+
+  font-size: 0.6rem;
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.values span {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.8rem;
+}
+
+.values i {
+  display: inline-block;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: $accent-gold;
+}
+
+/* =========================================================
+   FIGURE
+   ========================================================= */
 
 .figure {
   position: relative;
+
   width: min(100%, 34rem);
+
   margin: 0;
+
   justify-self: end;
-  background: $neutral-gray;
+
   overflow: hidden;
+
+  background: $neutral-gray;
+
+  box-shadow: 0 20px 50px rgba($primary-base, 0.06);
 }
 
-.figure::before,
+/* subtle image treatment */
+
 .figure::after {
   position: absolute;
+  inset: 0;
+
   z-index: 1;
+
+  pointer-events: none;
+
   content: '';
+
+  background: linear-gradient(
+      135deg,
+      rgba($primary-base, 0.08),
+      transparent 48%
+    ),
+    linear-gradient(to top, rgba($primary-base, 0.08), transparent 35%);
+}
+
+/* =========================================================
+   TECHNICAL FRAME
+   ========================================================= */
+
+.figureFrame {
+  position: absolute;
+
+  inset: 0.85rem;
+
+  z-index: 3;
+
   pointer-events: none;
 }
 
-.figure::before {
-  inset: 1rem;
-  border: 1px solid rgba($accent-gold, 0.55);
+/* top-left */
+
+.figureFrame::before {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 28%;
+  height: 24%;
+
+  border-top: 1px solid rgba($accent-gold, 0.8);
+
+  border-left: 1px solid rgba($accent-gold, 0.8);
+
+  content: '';
 }
 
-.figure::after {
-  top: 50%;
-  left: -2.5rem;
-  width: 5rem;
-  height: 1px;
-  background: $accent-gold;
-  box-shadow: 0 0 0 4px rgba($accent-gold, 0.08);
+/* bottom-right */
+
+.figureFrame::after {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 28%;
+  height: 24%;
+
+  border-right: 1px solid rgba($accent-gold, 0.8);
+
+  border-bottom: 1px solid rgba($accent-gold, 0.8);
+
+  content: '';
 }
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
 
 .figure img {
   display: block;
+
   width: 100%;
   height: auto;
-  filter: saturate(0.82) contrast(1.02);
+
   object-fit: cover;
+
+  filter: saturate(0.84) contrast(1.02);
+
+  transform: scale(1.005);
+
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
 }
 
-@media (min-width: 768px) {
+.figure:hover img {
+  filter: saturate(0.9) contrast(1.025);
+
+  transform: scale(1.018);
+}
+
+/* =========================================================
+   SIDE ACCENT
+   ========================================================= */
+
+.figure::before {
+  position: absolute;
+
+  top: 50%;
+  left: -2.5rem;
+
+  z-index: 4;
+
+  width: 5rem;
+  height: 1px;
+
+  background: $accent-gold;
+
+  box-shadow: 0 0 0 4px rgba($accent-gold, 0.06);
+
+  content: '';
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   FIGURE META
+   ========================================================= */
+
+.figureMeta {
+  position: absolute;
+
+  right: 1.2rem;
+  bottom: 1rem;
+  left: 1.2rem;
+
+  z-index: 4;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding-top: 0.7rem;
+
+  border-top: 1px solid rgba($neutral-light, 0.42);
+
+  color: rgba($neutral-light, 0.9);
+
+  font-size: 0.52rem;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+
+  text-shadow: 0 1px 7px rgba($primary-base, 0.25);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
   .layout {
-    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(17rem, 0.85fr);
+
+    gap: clamp(2rem, 5vw, 4rem);
   }
 }
 
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 767px) {
+  .layout {
+    grid-template-columns: 1fr;
+
+    gap: 2.75rem;
+  }
+
+  .copy {
+    max-width: 100%;
+  }
+
   .figure {
     width: 100%;
+
     justify-self: stretch;
   }
 
-  .figure::before {
-    inset: 0.75rem;
+  .figureFrame {
+    inset: 0.7rem;
   }
 
-  .figure::after {
-    left: 1.5rem;
-    top: 1.5rem;
+  .figure::before {
+    top: 1.4rem;
+    left: 1.4rem;
+
     width: 3rem;
+  }
+
+  .statement {
+    max-width: 100%;
+  }
+
+  .values {
+    max-width: 32rem;
   }
 }
 
-/* La sección usa la transición direccional global para mantener un ritmo sereno. */
-.figure::before {
-  background: linear-gradient(135deg, rgba($primary-base,.06), transparent 50%);
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .figure img {
+    transition: none;
+
+    transform: none;
+  }
+
+  .figure:hover img {
+    transform: none;
+  }
 }
