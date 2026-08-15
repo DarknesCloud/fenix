@@ -209,12 +209,14 @@
   border-color: rgba($accent-gold, 0.38);
 
   box-shadow: 0 14px 34px rgba($primary-base, 0.06);
+  transition: transform 0.3s linear !important;
 
   transform: translateY(-3px);
 }
 
 .pillar:hover .imageFrame :global(img) {
   transform: scale(1.025);
+  transition: transform 0.3s linear !important;
 }
 
 /* =========================================================
@@ -305,6 +307,7 @@
     0 0 16px rgba($gold-light, 0.14);
 
   transform: scale(1.05);
+  transition: transform 0.3s linear !important;
 }
 
 /* =========================================================
@@ -370,6 +373,7 @@
 
 .pillar:hover .content h3 {
   transform: translateX(3px);
+  transition: transform 0.3s linear !important;
 }
 
 /* =========================================================

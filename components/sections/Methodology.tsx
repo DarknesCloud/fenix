@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
+
 import styles from './Methodology.module.scss';
 
 const stages = [
@@ -49,9 +50,42 @@ const stages = [
 
 export default function Methodology() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
 
-  const activeStage = stages[activeIndex];
+  const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const activeStage = stages[displayIndex];
+
+  const changeStage = (nextIndex: number) => {
+    if (nextIndex === activeIndex) return;
+
+    setActiveIndex(nextIndex);
+    setIsTransitioning(true);
+
+    if (transitionTimer.current) {
+      clearTimeout(transitionTimer.current);
+    }
+
+    transitionTimer.current = setTimeout(() => {
+      setDisplayIndex(nextIndex);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(false);
+        });
+      });
+    }, 220);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimer.current) {
+        clearTimeout(transitionTimer.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (hasAutoPlayed) return;
@@ -67,12 +101,18 @@ export default function Methodology() {
 
         stages.forEach((_, index) => {
           const timer = setTimeout(() => {
-            setActiveIndex(index);
+            if (index === 0) {
+              setActiveIndex(0);
+              setDisplayIndex(0);
+              return;
+            }
+
+            changeStage(index);
 
             if (index === stages.length - 1) {
               setHasAutoPlayed(true);
             }
-          }, index * 520);
+          }, index * 720);
 
           timers.push(timer);
         });
@@ -88,6 +128,7 @@ export default function Methodology() {
 
     return () => {
       observer.disconnect();
+
       timers.forEach(clearTimeout);
     };
   }, [hasAutoPlayed]);
@@ -115,15 +156,16 @@ export default function Methodology() {
 
         <div className={styles.explorer}>
           <div
-            className={styles.visualPanel}
-            key={`visual-${activeStage.number}`}
+            className={`${styles.visualPanel} ${
+              isTransitioning ? styles.isTransitioning : ''
+            }`}
           >
             <div className={styles.imageFrame}>
               <Image
                 src={activeStage.image}
                 alt={activeStage.alt}
                 fill
-                priority={activeIndex === 0}
+                priority={displayIndex === 0}
                 sizes="(max-width: 768px) 100vw, 65vw"
               />
 
@@ -137,7 +179,11 @@ export default function Methodology() {
             </div>
           </div>
 
-          <div className={styles.stageInfo} key={`info-${activeStage.number}`}>
+          <div
+            className={`${styles.stageInfo} ${
+              isTransitioning ? styles.isTransitioning : ''
+            }`}
+          >
             <div className={styles.infoTop}>
               <span className={styles.bigNumber}>{activeStage.number}</span>
 
@@ -155,7 +201,7 @@ export default function Methodology() {
                 style={
                   {
                     '--progress': `${
-                      ((activeIndex + 1) / stages.length) * 100
+                      ((displayIndex + 1) / stages.length) * 100
                     }%`,
                   } as CSSProperties
                 }
@@ -192,9 +238,9 @@ export default function Methodology() {
                 className={`${styles.timelineStage} ${
                   isActive ? styles.active : ''
                 } ${isCompleted ? styles.completed : ''}`}
-                onMouseEnter={() => setActiveIndex(index)}
-                onFocus={() => setActiveIndex(index)}
-                onClick={() => setActiveIndex(index)}
+                onMouseEnter={() => changeStage(index)}
+                onFocus={() => changeStage(index)}
+                onClick={() => changeStage(index)}
                 aria-pressed={isActive}
               >
                 <span className={styles.timelineNode}>{stage.number}</span>

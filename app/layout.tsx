@@ -12,19 +12,41 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Fénix Solutions | Tecnología con Propósito',
-  description: 'Fénix Solutions desarrolla soluciones tecnológicas personalizadas para organizaciones que buscan crecer, evolucionar y aprovechar mejor la tecnología.',
+
+  description:
+    'Fénix Solutions desarrolla soluciones tecnológicas personalizadas para organizaciones que buscan crecer, evolucionar y aprovechar mejor la tecnología.',
+
+  icons: {
+    icon: [
+      {
+        url: '/images/fenix-icon.png',
+        type: 'image/png',
+      },
+    ],
+    shortcut: '/images/fenix-icon.png',
+    apple: '/images/fenix-icon.png',
+  },
+
   openGraph: {
     title: 'Fénix Solutions | Tecnología con Propósito',
-    description: 'Fénix Solutions desarrolla soluciones tecnológicas personalizadas para organizaciones que buscan crecer, evolucionar y aprovechar mejor la tecnología.',
+    description:
+      'Fénix Solutions desarrolla soluciones tecnológicas personalizadas para organizaciones que buscan crecer, evolucionar y aprovechar mejor la tecnología.',
     type: 'website',
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="es">
       <body className={inter.variable}>
-        <a className="skipLink" href="#main-content">Saltar al contenido principal</a>
+        <a className="skipLink" href="#main-content">
+          Saltar al contenido principal
+        </a>
+
         <Providers>{children}</Providers>
       </body>
     </html>

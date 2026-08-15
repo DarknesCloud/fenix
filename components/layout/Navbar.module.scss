@@ -80,52 +80,45 @@
   color: $neutral-light;
 }
 
-.logoMark {
-  display: grid;
-  place-items: center;
+/* =========================================================
+   LOGO OFICIAL
+========================================================= */
 
-  width: 36px;
-  height: 36px;
+.logo {
+  display: inline-flex;
+  align-items: center;
 
-  overflow: hidden;
+  flex: 0 0 auto;
 
-  border: 1px solid rgba($gold-light, 0.6);
+  width: clamp(140px, 12vw, 185px);
 
-  border-radius: 50% 50% 50% 4px;
+  text-decoration: none;
 
-  background: rgba($neutral-light, 0.96);
+  transform: translate3d(0, 0, 0);
 
-  box-shadow: 0 0 18px rgba($gold-light, 0.12);
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.logoMark img {
-  width: 150%;
-  height: 150%;
-
-  object-fit: cover;
+.logo:hover {
+  transform: translateY(-1px);
 }
 
-.logoType {
-  font-size: 0.82rem;
-  font-weight: 700;
-
-  letter-spacing: 0.13em;
-}
-
-.logoType b {
+.logoImage {
   display: block;
 
-  margin-top: 0.14rem;
+  width: 100%;
+  height: auto;
 
-  color: $accent-gold;
+  object-fit: contain;
 
-  font-size: 0.53rem;
+  /*
+   * Tu archivo tiene bastante aire blanco alrededor.
+   * Este pequeño scale permite aprovechar mejor
+   * visualmente el espacio sin deformarlo.
+   */
+  transform: scale(1.04);
 
-  letter-spacing: 0.25em;
-}
-
-.scrolled .logoType b {
-  color: $gold-light;
+  transform-origin: left center;
 }
 
 /* =========================================================

@@ -137,7 +137,7 @@ export default function WhenYouNeedUs() {
 
             <span>
               No siempre necesitas más tecnología. A veces necesitas entender
-              mejor cuál tecnología necesitas.
+              mejor que necesitas.
             </span>
           </blockquote>
 

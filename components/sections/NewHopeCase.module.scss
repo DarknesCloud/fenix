@@ -191,6 +191,7 @@
 
 .featuredCase:hover .imageFrame img {
   transform: scale(1.03);
+  transition: transform 0.3s linear !important;
 }
 
 .imageLabel {
@@ -295,6 +296,7 @@
 
 .narrativeItem:hover {
   background: rgba($neutral-light, 0.018);
+  transition: transform 0.3s linear !important;
 
   transform: translateY(-2px);
 }
@@ -489,6 +491,7 @@
 .caseLink:hover svg,
 .caseLink:focus-visible svg {
   transform: translateX(4px);
+  transition: transform 0.3s linear !important;
 }
 
 .caseLink:focus-visible {

@@ -195,13 +195,14 @@
   color: $neutral-light;
 
   outline: none;
-
+  transition: transform 0.5s linear !important;
   transform: translateY(-1px);
 }
 
 .tab:hover::after,
 .tab:focus-visible::after {
   transform: scaleX(0.35);
+  transition: transform 0.5s linear !important;
 }
 
 .tabActive {
@@ -296,7 +297,7 @@
   background: rgba($primary-card, 0.42);
 
   box-shadow: 0 22px 55px rgba(0, 0, 0, 0.13);
-
+  transition: transform 0.5s linear !important;
   transform: translateY(-3px);
 }
 
@@ -334,7 +335,7 @@
 .projectCard:hover::before,
 .projectCard:focus-within::before {
   opacity: 1;
-
+  transition: transform 0.5s linear !important;
   transform: scaleX(1);
 }
 
@@ -404,6 +405,7 @@
   filter: saturate(1) contrast(1.02);
 
   transform: scale(1.03);
+  transition: transform 0.5s linear !important;
 }
 
 /* =========================================================
@@ -505,6 +507,7 @@
 .projectCard:hover .cardBody h3,
 .projectCard:focus-within .cardBody h3 {
   transform: translateX(3px);
+  transition: transform 0.5s linear !important;
 }
 
 /* =========================================================
@@ -557,6 +560,7 @@
 .projectLink:hover svg,
 .projectLink:focus-visible svg {
   transform: translateX(4px);
+  transition: transform 0.5s linear !important;
 }
 
 .projectLink:focus-visible {

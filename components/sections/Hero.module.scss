@@ -364,6 +364,7 @@
   box-shadow: 0 12px 30px rgba($accent-gold, 0.26) !important;
 
   transform: translateY(-2px);
+  transition: transform 0.3s linear !important;
 }
 
 .primaryAction:active {
@@ -394,6 +395,7 @@
   box-shadow: 0 8px 24px rgba($accent-gold, 0.07) !important;
 
   transform: translateY(-2px);
+  transition: transform 0.3s linear !important;
 }
 
 /* =========================================================
@@ -410,6 +412,7 @@
 .primaryAction:hover :global(.MuiButton-endIcon),
 .secondaryAction:hover :global(.MuiButton-endIcon) {
   transform: translateX(4px);
+  transition: transform 0.3s linear !important;
 }
 
 /* =========================================================
@@ -634,10 +637,12 @@
 
 .footer a:hover {
   color: $accent-gold;
+  transition: transform 0.3s linear !important;
 }
 
 .footer a:hover svg {
   transform: translateX(4px);
+  transition: transform 0.3s linear !important;
 }
 
 /* =========================================================
@@ -822,11 +827,13 @@
   .primaryAction:hover,
   .secondaryAction:hover {
     transform: translate3d(0, 0, 0);
+    transition: transform 0.3s linear !important;
   }
 
   .primaryAction:hover :global(.MuiButton-endIcon),
   .secondaryAction:hover :global(.MuiButton-endIcon) {
     transform: translate3d(0, 0, 0);
+    transition: transform 0.3s linear !important;
   }
 }
 

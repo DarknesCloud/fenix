@@ -1,99 +1,310 @@
 @use '../../styles/variables' as *;
 
-.form { display: grid; gap: 1.2rem; }
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+/* =========================================================
+   FIELD GRID
+   ========================================================= */
 
 .fieldGrid {
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
+
   gap: 1rem;
 }
 
-.form label { display: grid; gap: .55rem; }
+/* =========================================================
+   LABELS
+   ========================================================= */
 
-.form label > span {
-  color: rgba($neutral-light, .86);
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .02em;
+.form label {
+  display: grid;
+
+  gap: 0.55rem;
 }
 
-.form b { color: $gold-light; }
-.form small { margin-left: .35rem; color: rgba($neutral-light, .48); font-size: .72rem; font-weight: 500; }
+.form label > span {
+  color: rgba($primary-base, 0.88);
+
+  font-size: 0.78rem;
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
+}
+
+.form b {
+  color: $accent-gold;
+}
+
+.form small {
+  margin-left: 0.35rem;
+
+  color: rgba($primary-card, 0.5);
+
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
 
 .form input,
 .form select,
 .form textarea {
   width: 100%;
-  border: 1px solid rgba($neutral-light, .16);
+
+  border: 1px solid rgba($primary-card, 0.16);
+
   border-radius: 7px;
+
   outline: none;
-  color: $neutral-light;
-  background: rgba($neutral-light, .055);
+
+  color: $primary-base;
+
+  /*
+   * Fondo muy ligeramente cálido.
+   * Evitamos blanco puro para integrarlo con
+   * el lenguaje visual de la landing.
+   */
+  background: rgba($neutral-gray, 0.42);
+
   font: inherit;
+
   line-height: 1.4;
-  transition: border-color .2s $ease, background-color .2s $ease, box-shadow .2s $ease;
+
+  transition: border-color 0.35s $ease, background-color 0.35s $ease,
+    box-shadow 0.4s $ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .form input,
-.form select { min-height: 48px; padding: .7rem .85rem; }
-.form textarea { min-height: 154px; padding: .85rem; resize: vertical; }
-.form select { appearance: auto; }
-.form select option { color: $primary-base; background: $neutral-light; }
+.form select {
+  min-height: 48px;
+
+  padding: 0.7rem 0.85rem;
+}
+
+.form textarea {
+  min-height: 154px;
+
+  padding: 0.85rem;
+
+  resize: vertical;
+}
+
+.form select {
+  appearance: auto;
+}
+
+/* =========================================================
+   SELECT OPTIONS
+   ========================================================= */
+
+.form select option {
+  color: $primary-base;
+
+  background: $neutral-light;
+}
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
 
 .form input::placeholder,
-.form textarea::placeholder { color: rgba($neutral-light, .42); }
+.form textarea::placeholder {
+  color: rgba($primary-card, 0.38);
+}
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.form input:hover,
+.form select:hover,
+.form textarea:hover {
+  border-color: rgba($primary-card, 0.28);
+
+  background: rgba($neutral-gray, 0.58);
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
 
 .form input:focus,
 .form select:focus,
 .form textarea:focus {
-  border-color: rgba($gold-light, .78);
-  background: rgba($neutral-light, .08);
-  box-shadow: 0 0 0 3px rgba($accent-gold, .12);
+  border-color: rgba($accent-gold, 0.72);
+
+  background: rgba($neutral-light, 0.94);
+
+  box-shadow: 0 0 0 3px rgba($accent-gold, 0.1);
 }
+
+/* =========================================================
+   FORM FOOTER
+   ========================================================= */
 
 .formFooter {
   display: flex;
   flex-wrap: wrap;
+
   align-items: center;
+
   gap: 1rem 1.4rem;
-  padding-top: .35rem;
+
+  padding-top: 0.35rem;
 }
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
 
 .submit {
   display: inline-flex;
   align-items: center;
-  gap: .7rem;
+
+  gap: 0.7rem;
+
   min-height: 48px;
-  padding: .75rem 1.2rem;
-  border: 1px solid transparent;
+
+  padding: 0.75rem 1.2rem;
+
+  border: 1px solid rgba($accent-gold, 0.72);
+
   border-radius: 7px;
+
   color: $primary-base;
+
   background: linear-gradient(135deg, $gold-light, $accent-gold);
+
+  box-shadow: 0 5px 18px rgba($accent-gold, 0.12);
+
   cursor: pointer;
+
   font: inherit;
+
   font-weight: 800;
-  transition: box-shadow .2s $ease, transform .2s $ease, opacity .2s $ease;
+
+  transform: translate3d(0, 0, 0);
+
+  transition: box-shadow 0.45s $ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease,
+    opacity 0.35s ease;
 }
 
-.submit:hover:not(:disabled) { box-shadow: 0 8px 20px rgba($accent-gold, .22); transform: translateY(-2px); }
-.submit:active:not(:disabled) { transform: translateY(0); }
-.submit:disabled { cursor: wait; opacity: .75; }
-.submit svg { transition: transform .2s $ease; }
-.submit:hover:not(:disabled) svg { transform: translateX(3px); }
+/* =========================================================
+   SUBMIT HOVER
+   ========================================================= */
 
-.formFooter p { margin: 0; color: rgba($neutral-light, .56); font-size: .8rem; line-height: 1.5; }
+.submit:hover:not(:disabled) {
+  box-shadow: 0 9px 24px rgba($accent-gold, 0.2);
+
+  filter: brightness(1.025);
+
+  transform: translateY(-2px);
+}
+
+.submit:active:not(:disabled) {
+  transform: translateY(0);
+
+  filter: brightness(0.985);
+}
+
+.submit:disabled {
+  cursor: wait;
+
+  opacity: 0.75;
+}
+
+/* =========================================================
+   SUBMIT ICON
+   ========================================================= */
+
+.submit svg {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.submit:hover:not(:disabled) svg {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   FOOTER MESSAGE
+   ========================================================= */
+
+.formFooter p {
+  margin: 0;
+
+  color: rgba($primary-card, 0.58);
+
+  font-size: 0.8rem;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   AUTOFILL
+   ========================================================= */
+
+/*
+ * Evita que Chrome coloque un fondo azul/amarillo
+ * extraño al autocompletar campos.
+ */
+
+.form input:-webkit-autofill,
+.form input:-webkit-autofill:hover,
+.form input:-webkit-autofill:focus,
+.form textarea:-webkit-autofill,
+.form textarea:-webkit-autofill:hover,
+.form textarea:-webkit-autofill:focus,
+.form select:-webkit-autofill {
+  -webkit-text-fill-color: $primary-base;
+
+  -webkit-box-shadow: 0 0 0 1000px $neutral-light inset;
+
+  transition: background-color 9999s ease-out;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: $bp-sm) {
-  .fieldGrid { grid-template-columns: 1fr; }
-  .submit { width: 100%; justify-content: center; }
+  .fieldGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .submit {
+    width: 100%;
+
+    justify-content: center;
+  }
 }
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .form input,
   .form select,
   .form textarea,
   .submit,
-  .submit svg { transition: none; }
+  .submit svg {
+    transition: none;
+  }
+
   .submit:hover:not(:disabled),
-  .submit:hover:not(:disabled) svg { transform: none; }
+  .submit:hover:not(:disabled) svg {
+    transform: none;
+  }
 }

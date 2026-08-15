@@ -7,6 +7,7 @@
 .methodology {
   position: relative;
   overflow: hidden;
+
   background: $neutral-light;
 }
 
@@ -16,8 +17,13 @@
 
 .header {
   display: grid;
-  grid-template-columns: 1fr 0.7fr;
+
+  grid-template-columns:
+    1fr
+    0.7fr;
+
   gap: clamp(2rem, 6vw, 6rem);
+
   align-items: end;
 }
 
@@ -27,6 +33,7 @@
   color: $primary-card;
 
   font-size: clamp(2.5rem, 5vw, 5rem);
+
   line-height: 1.02;
 
   letter-spacing: -0.06em;
@@ -34,11 +41,13 @@
 
 .header > p {
   max-width: 470px;
+
   margin: 0;
 
   color: $text-muted;
 
   font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+
   line-height: 1.75;
 }
 
@@ -48,7 +57,10 @@
 
 .explorer {
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.72fr);
+
+  grid-template-columns:
+    minmax(0, 1.65fr)
+    minmax(280px, 0.72fr);
 
   gap: clamp(2.5rem, 6vw, 6rem);
 
@@ -64,8 +76,38 @@
 .visualPanel {
   min-width: 0;
 
-  animation: visualEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 1;
+
+  filter: blur(0);
+
+  transform: translate3d(0, 0, 0) scale(1);
+
+  transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.42s ease;
+
+  animation: visualInitialEnter 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  will-change: opacity, transform, filter;
 }
+
+/*
+ * Estado de salida.
+ *
+ * El TSX mantiene el contenido actual visible
+ * hasta que esta transición llega aproximadamente
+ * a su punto medio.
+ */
+.visualPanel.isTransitioning {
+  opacity: 0;
+
+  filter: blur(2px);
+
+  transform: translate3d(0, 8px, 0) scale(0.992);
+}
+
+/* =========================================================
+   IMAGE FRAME
+   ========================================================= */
 
 .imageFrame {
   position: relative;
@@ -83,6 +125,10 @@
   box-shadow: 0 18px 45px rgba($primary-base, 0.06);
 }
 
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
 .imageFrame :global(img) {
   object-fit: cover;
 
@@ -90,12 +136,32 @@
 
   transform: scale(1.015);
 
-  animation: imageReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease,
+    opacity 0.4s ease;
+
+  will-change: transform, filter, opacity;
 }
+
+/*
+ * Durante el cambio, la imagen aumenta apenas.
+ * El efecto es deliberadamente pequeño.
+ */
+.visualPanel.isTransitioning .imageFrame :global(img) {
+  opacity: 0.72;
+
+  filter: saturate(0.88) contrast(1.01) blur(0.6px);
+
+  transform: scale(1.032);
+}
+
+/* =========================================================
+   IMAGE OVERLAY
+   ========================================================= */
 
 .imageOverlay {
   position: absolute;
   inset: 0;
+
   z-index: 1;
 
   pointer-events: none;
@@ -105,10 +171,23 @@
     rgba($primary-base, 0.02),
     rgba($primary-base, 0.09)
   );
+
+  opacity: 1;
+
+  transition: opacity 0.4s ease;
 }
+
+.visualPanel.isTransitioning .imageOverlay {
+  opacity: 0.82;
+}
+
+/* =========================================================
+   VISUAL META
+   ========================================================= */
 
 .visualMeta {
   position: absolute;
+
   right: 1.4rem;
   bottom: 1.2rem;
   left: 1.4rem;
@@ -129,9 +208,22 @@
   font-weight: 800;
 
   letter-spacing: 0.14em;
+
   text-transform: uppercase;
 
   text-shadow: 0 1px 8px rgba($primary-base, 0.35);
+
+  opacity: 1;
+
+  transform: translate3d(0, 0, 0);
+
+  transition: opacity 0.34s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.visualPanel.isTransitioning .visualMeta {
+  opacity: 0;
+
+  transform: translate3d(0, 5px, 0);
 }
 
 /* =========================================================
@@ -141,8 +233,38 @@
 .stageInfo {
   position: relative;
 
-  animation: infoEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 1;
+
+  filter: blur(0);
+
+  transform: translate3d(0, 0, 0);
+
+  transition: opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+
+  animation: infoInitialEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  will-change: opacity, transform, filter;
 }
+
+/*
+ * El texto sale horizontalmente mientras
+ * la imagen se mueve verticalmente.
+ *
+ * Esto evita que todo parezca una sola
+ * capa desapareciendo.
+ */
+.stageInfo.isTransitioning {
+  opacity: 0;
+
+  filter: blur(1.5px);
+
+  transform: translate3d(10px, 0, 0);
+}
+
+/* =========================================================
+   INFO TOP
+   ========================================================= */
 
 .infoTop {
   display: flex;
@@ -152,6 +274,10 @@
 
   margin-bottom: 1.35rem;
 }
+
+/* =========================================================
+   BIG NUMBER
+   ========================================================= */
 
 .bigNumber {
   display: grid;
@@ -172,7 +298,14 @@
   font-weight: 800;
 
   letter-spacing: 0.08em;
+
+  transition: border-color 0.45s ease, color 0.45s ease,
+    background-color 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* =========================================================
+   CONTEXT
+   ========================================================= */
 
 .context {
   color: $accent-gold;
@@ -181,8 +314,13 @@
   font-weight: 800;
 
   letter-spacing: 0.16em;
+
   text-transform: uppercase;
 }
+
+/* =========================================================
+   STAGE TITLE
+   ========================================================= */
 
 .stageInfo h3 {
   margin: 0 0 1rem;
@@ -196,6 +334,10 @@
   letter-spacing: -0.05em;
 }
 
+/* =========================================================
+   SHORT STATEMENT
+   ========================================================= */
+
 .short {
   display: block;
 
@@ -206,10 +348,15 @@
   color: $primary-card;
 
   font-size: clamp(1rem, 1.35vw, 1.1rem);
+
   font-weight: 650;
 
   line-height: 1.55;
 }
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
 
 .stageInfo > p {
   max-width: 430px;
@@ -259,6 +406,7 @@
   position: relative;
 
   display: grid;
+
   grid-template-columns: repeat(4, minmax(0, 1fr));
 
   margin-top: clamp(3.5rem, 6vw, 5rem);
@@ -266,11 +414,17 @@
   padding-top: 0.25rem;
 }
 
+/* =========================================================
+   TIMELINE TRACK
+   ========================================================= */
+
 .timelineTrack {
   position: absolute;
 
   top: 24px;
+
   left: calc(12.5% - 12px);
+
   right: calc(12.5% - 12px);
 
   height: 1px;
@@ -280,17 +434,22 @@
   pointer-events: none;
 }
 
+/* =========================================================
+   TIMELINE PROGRESS
+   ========================================================= */
+
 .timelineProgress {
   display: block;
 
   width: var(--timeline-progress);
+
   height: 100%;
 
   background: $accent-gold;
 
   box-shadow: 0 0 8px rgba($gold-light, 0.25);
 
-  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: width 0.72s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* =========================================================
@@ -299,9 +458,11 @@
 
 .timelineStage {
   position: relative;
+
   z-index: 2;
 
   display: flex;
+
   flex-direction: column;
   align-items: center;
 
@@ -316,12 +477,17 @@
   color: inherit;
 
   font: inherit;
+
   text-align: center;
 
   cursor: pointer;
 
   appearance: none;
 }
+
+/* =========================================================
+   TIMELINE NODE
+   ========================================================= */
 
 .timelineNode {
   display: grid;
@@ -343,10 +509,16 @@
 
   letter-spacing: 0.07em;
 
+  transform: scale(1);
+
   transition: background-color 0.4s ease, border-color 0.4s ease,
     color 0.4s ease, box-shadow 0.45s ease,
     transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* =========================================================
+   COMPLETED NODE
+   ========================================================= */
 
 .completed .timelineNode {
   border-color: rgba($accent-gold, 0.75);
@@ -354,12 +526,16 @@
   color: $accent-gold;
 }
 
+/* =========================================================
+   ACTIVE NODE
+   ========================================================= */
+
 .active .timelineNode {
-  background: $accent-gold;
+  border-color: $accent-gold;
 
   color: $primary-card;
 
-  border-color: $accent-gold;
+  background: $accent-gold;
 
   box-shadow: 0 0 0 5px rgba($gold-light, 0.07),
     0 0 18px rgba($gold-light, 0.14);
@@ -367,10 +543,22 @@
   transform: scale(1.05);
 }
 
+/* =========================================================
+   TIMELINE HOVER
+   ========================================================= */
+
 .timelineStage:hover .timelineNode,
 .timelineStage:focus-visible .timelineNode {
+  border-color: rgba($accent-gold, 0.9);
+
   transform: scale(1.05);
 }
+
+/*
+ * Quitamos el antiguo linear !important.
+ * La transición sigue existiendo, pero ahora
+ * usa la curva orgánica del estado base.
+ */
 
 .timelineStage:focus-visible {
   outline: none;
@@ -382,10 +570,15 @@
 
 .timelineCopy {
   display: flex;
+
   flex-direction: column;
 
   gap: 0.32rem;
 }
+
+/* =========================================================
+   TIMELINE CONTEXT
+   ========================================================= */
 
 .timelineContext {
   color: $text-muted;
@@ -397,8 +590,12 @@
 
   text-transform: uppercase;
 
-  transition: color 0.35s ease;
+  transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* =========================================================
+   TIMELINE TITLE
+   ========================================================= */
 
 .timelineCopy strong {
   color: $primary-card;
@@ -408,54 +605,75 @@
 
   letter-spacing: 0.12em;
 
-  transition: color 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(0, 0, 0);
+
+  transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* =========================================================
+   ACTIVE TIMELINE COPY
+   ========================================================= */
 
 .active .timelineContext {
   color: $accent-gold;
 }
 
 .active .timelineCopy strong {
-  transform: translateY(-1px);
+  transform: translate3d(0, -1px, 0);
 }
 
 /* =========================================================
-   ANIMATIONS
+   TIMELINE HOVER COPY
    ========================================================= */
 
-@keyframes visualEnter {
+.timelineStage:hover .timelineContext,
+.timelineStage:focus-visible .timelineContext {
+  color: $accent-gold;
+}
+
+.timelineStage:hover .timelineCopy strong,
+.timelineStage:focus-visible .timelineCopy strong {
+  transform: translate3d(0, -1px, 0);
+}
+
+/* =========================================================
+   INITIAL ENTRY ANIMATIONS
+   ========================================================= */
+
+@keyframes visualInitialEnter {
   from {
     opacity: 0;
-    transform: translateY(10px);
+
+    filter: blur(2px);
+
+    transform: translate3d(0, 12px, 0) scale(0.992);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    filter: blur(0);
+
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
-@keyframes imageReveal {
-  from {
-    opacity: 0.4;
-    transform: scale(1.035);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1.015);
-  }
-}
-
-@keyframes infoEnter {
+@keyframes infoInitialEnter {
   from {
     opacity: 0;
-    transform: translateX(10px);
+
+    filter: blur(1.5px);
+
+    transform: translate3d(12px, 0, 0);
   }
 
   to {
     opacity: 1;
-    transform: translateX(0);
+
+    filter: blur(0);
+
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -466,6 +684,7 @@
 @media (max-width: $bp-md) {
   .header {
     grid-template-columns: 1fr;
+
     gap: 1.25rem;
   }
 
@@ -487,6 +706,14 @@
 
   .stageInfo {
     max-width: 640px;
+  }
+
+  /*
+   * En tablet el texto deja de moverse
+   * lateralmente tanto.
+   */
+  .stageInfo.isTransitioning {
+    transform: translate3d(0, 7px, 0);
   }
 
   .timeline {
@@ -527,12 +754,25 @@
   }
 
   /*
-   * En móvil convertimos el timeline horizontal
-   * en una lista vertical para evitar compresión.
+   * En móvil reducimos todavía más el movimiento
+   * para evitar que la interfaz parezca saltar.
    */
+
+  .visualPanel.isTransitioning {
+    transform: translate3d(0, 5px, 0) scale(0.995);
+  }
+
+  .stageInfo.isTransitioning {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  /* =======================================================
+     MOBILE TIMELINE
+     ======================================================= */
 
   .timeline {
     display: flex;
+
     flex-direction: column;
 
     gap: 0;
@@ -558,7 +798,7 @@
 
     height: var(--timeline-progress);
 
-    transition: height 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: height 0.72s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .timelineStage {
@@ -605,12 +845,42 @@
 @media (prefers-reduced-motion: reduce) {
   .visualPanel,
   .imageFrame :global(img),
+  .imageOverlay,
+  .visualMeta,
   .stageInfo,
+  .bigNumber,
   .stagePosition span,
   .timelineProgress,
   .timelineNode,
+  .timelineContext,
   .timelineCopy strong {
     animation: none;
+
     transition: none;
+  }
+
+  .visualPanel,
+  .visualPanel.isTransitioning,
+  .stageInfo,
+  .stageInfo.isTransitioning {
+    opacity: 1;
+
+    filter: none;
+
+    transform: none;
+  }
+
+  .visualPanel.isTransitioning .imageFrame :global(img) {
+    opacity: 1;
+
+    filter: saturate(0.92) contrast(1.01);
+
+    transform: scale(1.015);
+  }
+
+  .visualPanel.isTransitioning .visualMeta {
+    opacity: 1;
+
+    transform: none;
   }
 }
