@@ -37,10 +37,10 @@ export default function Founder() {
               </div>
             </div>
 
-            <blockquote className={styles.statement}>
-              “Prefiero una solución que podamos explicar y sostener, antes que una
-              respuesta rápida que deje más preguntas después.”
-            </blockquote>
+            <p className={styles.statement}>
+              Una solución útil no termina cuando se entrega: debe poder explicarse,
+              operar con claridad y sostenerse cuando el contexto cambia.
+            </p>
 
             <p className={styles.bodyCopy}>
               Esa forma de trabajar se refleja en cada proyecto: entender el
