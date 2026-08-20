@@ -1,8 +1,6 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 
-import ScrollReveal from '@/components/ui/ScrollReveal';
-
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import WhenYouNeedUs from '@/components/sections/WhenYouNeedUs';
@@ -21,49 +19,17 @@ export default function Home() {
       <Navbar />
 
       <main id="main-content" tabIndex={-1}>
-        <ScrollReveal>
-          <Hero />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <About />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <WhenYouNeedUs />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Services />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Methodology />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <CaseStudy />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <NewHopeCase />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Philosophy />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <Founder />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <WhyUs />
-        </ScrollReveal>
-
-        <ScrollReveal>
-          <CTA />
-        </ScrollReveal>
+        <Hero />
+        <About />
+        <WhenYouNeedUs />
+        <Services />
+        <Methodology />
+        <CaseStudy />
+        <NewHopeCase />
+        <Philosophy />
+        <Founder />
+        <WhyUs />
+        <CTA />
       </main>
 
       <Footer />
