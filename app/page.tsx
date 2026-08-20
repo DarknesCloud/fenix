@@ -6,7 +6,6 @@ import About from '@/components/sections/About';
 import WhenYouNeedUs from '@/components/sections/WhenYouNeedUs';
 import Methodology from '@/components/sections/Methodology';
 import Services from '@/components/sections/Services';
-import CaseStudy from '@/components/sections/CaseStudy';
 import NewHopeCase from '@/components/sections/NewHopeCase';
 import Philosophy from '@/components/sections/Philosophy';
 import Founder from '@/components/sections/Founder';
@@ -24,7 +23,6 @@ export default function Home() {
         <WhenYouNeedUs />
         <Services />
         <Methodology />
-        <CaseStudy />
         <NewHopeCase />
         <Philosophy />
         <Founder />
