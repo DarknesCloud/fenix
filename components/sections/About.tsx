@@ -7,13 +7,34 @@ export default function About() {
         <div className={styles.grid}>
           <div className={styles.heading}>
             <span className={styles.badge}>QUIÉNES SOMOS</span>
-            <h2>Construimos tecnología con <em>propósito.</em></h2>
+
+            <h2>
+              Construimos tecnología con <em>propósito.</em>
+            </h2>
           </div>
+
           <div className={styles.editorial}>
-            <p>Fénix Solutions es una empresa de tecnología enfocada en desarrollar soluciones a medida y acompañar a las organizaciones en su evolución tecnológica.</p>
-            <p>No empezamos por la herramienta. Empezamos por comprender la necesidad real de la organización.</p>
-            <p>Analizamos el contexto, identificamos oportunidades y construimos soluciones que puedan crecer junto con la organización.</p>
-            <div className={styles.signatureLine}><span /> VISIÓN CONSULTIVA</div>
+            <p>
+              Fénix Solutions nace para ayudar a empresas y organizaciones a
+              resolver necesidades reales a través de la tecnología.
+            </p>
+
+            <p>
+              Antes de recomendar una herramienta o desarrollar una solución,
+              buscamos entender cómo trabajan, qué problema necesitan resolver
+              y qué esperan conseguir.
+            </p>
+
+            <p>
+              A partir de ahí definimos el camino adecuado: puede ser
+              desarrollar software, mejorar un proceso, implementar tecnología
+              o acompañar de forma continua su operación.
+            </p>
+
+            <div className={styles.signatureLine}>
+              <span />
+              PRIMERO ENTENDER. DESPUÉS CONSTRUIR.
+            </div>
           </div>
         </div>
       </div>
