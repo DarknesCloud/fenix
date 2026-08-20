@@ -163,7 +163,6 @@ export default function Methodology() {
                 src={activeStage.image}
                 alt={activeStage.alt}
                 fill
-                priority={displayIndex === 0}
                 sizes="(max-width: 768px) 100vw, 65vw"
               />
 
