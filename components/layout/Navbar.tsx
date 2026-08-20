@@ -146,7 +146,7 @@ export default function Navbar() {
           alt="Fénix Solutions"
           width={1815}
           height={832}
-          priority
+          sizes="180px"
         />
       </Link>
 
