@@ -3,7 +3,12 @@ import { NorthEast } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import styles from './CTA.module.scss';
 
-const lifecycle = ['Construir', 'Mantener', 'Adaptar', 'Evolucionar'] as const;
+const lifecycle = [
+  'Conversar',
+  'Compartir contexto',
+  'Acordar alcance',
+  'Definir siguiente paso',
+] as const;
 
 export default function CTA() {
   return (
@@ -15,19 +20,20 @@ export default function CTA() {
       <div className="container">
         <div id="acompanamiento" className={styles.trust}>
           <div className={styles.trustCopy}>
-            <span className="eyebrow">ACOMPAÑAMIENTO TECNOLÓGICO</span>
+            <span className="eyebrow">PRIMER CONTACTO</span>
 
-            <h3>CONSTRUIR ES SOLO EL COMIENZO.</h3>
+            <h3>NO NECESITAS LLEGAR CON UN BRIEF PERFECTO.</h3>
 
             <p>
-              Una solución tecnológica no termina cuando se implementa. Necesita
-              mantenerse, adaptarse y evolucionar junto con la organización.
+              Si puedes explicar qué está pasando, qué quieres mejorar o qué te
+              preocupa de tu tecnología actual, ya tenemos un buen punto de
+              partida para conversar.
             </p>
           </div>
 
           <div
             className={styles.lifecycle}
-            aria-label="Ciclo de evolución tecnológica"
+            aria-label="Qué ocurre después del primer contacto"
           >
             <div className={styles.lifecycleLine} aria-hidden="true">
               <span />
@@ -36,7 +42,6 @@ export default function CTA() {
             {lifecycle.map((item, index) => (
               <div className={styles.lifecycleStep} key={item}>
                 <span className={styles.lifecycleNode}>0{index + 1}</span>
-
                 <strong>{item}</strong>
               </div>
             ))}
@@ -47,11 +52,11 @@ export default function CTA() {
           <div className={styles.bannerContent}>
             <span className="eyebrow">INICIEMOS UNA CONVERSACIÓN</span>
 
-            <h2 id="cta-title">¿Tienes una necesidad tecnológica?</h2>
+            <h2 id="cta-title">¿Hay algo que quieres resolver?</h2>
 
             <p>
-              No necesitas tener la solución definida. Empecemos entendiendo el
-              problema.
+              Cuéntanos el contexto. Podemos revisar contigo si Fénix es el apoyo
+              adecuado y cuál tendría sentido que fuera el siguiente paso.
             </p>
 
             <div className={styles.actions}>
@@ -61,12 +66,12 @@ export default function CTA() {
                 href="/contacto"
                 endIcon={<NorthEast />}
               >
-                HABLEMOS CON FÉNIX
+                CONTACTAR A FÉNIX
               </Button>
 
               <small>
-                Una conversación inicial puede ser el primer paso para construir
-                con más claridad.
+                La primera conversación sirve para ubicar el problema y decidir
+                si tiene sentido avanzar.
               </small>
             </div>
           </div>
@@ -75,11 +80,11 @@ export default function CTA() {
             <span className={styles.signatureLabel}>FÉNIX SOLUTIONS</span>
 
             <div className={styles.signatureFlow}>
-              <span>ENTENDER</span>
+              <span>CONVERSAR</span>
               <i />
-              <span>CONSTRUIR</span>
+              <span>ACLARAR</span>
               <i />
-              <span>EVOLUCIONAR</span>
+              <span>DECIDIR</span>
             </div>
           </div>
         </div>
