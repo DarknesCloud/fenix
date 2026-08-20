@@ -74,7 +74,6 @@ export default function ContactPage() {
               src="/images/contact-fenix.png"
               alt=""
               fill
-              priority
               sizes="(max-width: 768px) 0px, 58vw"
             />
           </div>
