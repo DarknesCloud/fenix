@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import styles from './Founder.module.scss';
 
-const values = [
-  'Criterio técnico',
-  'Cercanía',
-  'Responsabilidad',
-  'Visión de largo plazo',
+const principles = [
+  'Explicar antes de ejecutar',
+  'Compromisos realistas',
+  'Seguimiento cercano',
+  'Construir para sostener',
 ] as const;
 
 export default function Founder() {
@@ -18,42 +18,43 @@ export default function Founder() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.copy}>
-            <span className="eyebrow">UNA MIRADA HUMANA</span>
+            <span className="eyebrow">QUIÉN ESTÁ DETRÁS</span>
 
-            <h2 id="founder-title">QUIÉN ESTÁ DETRÁS DE FÉNIX</h2>
+            <h2 id="founder-title">FÉNIX NACE DE UNA FORMA DE TRABAJAR.</h2>
 
             <p className={styles.intro}>
-              Detrás de Fénix hay una responsabilidad concreta: que las decisiones
-              técnicas puedan explicarse, sostenerse y responder por el impacto que
-              tienen en la operación de un cliente.
+              Fénix Solutions fue fundada por Saul Leiva con una idea sencilla:
+              la tecnología debe poder entenderse, justificarse y mantenerse en el
+              tiempo, no limitarse a resolver una tarea aislada.
             </p>
 
             <div className={styles.identity}>
               <span className={styles.identityLine} aria-hidden="true" />
 
               <div>
-                <strong>[Nombre del Fundador]</strong>
-                <span>Fundador de Fénix Solutions</span>
+                <strong>Saul Leiva</strong>
+                <span>Fundador · Fénix Solutions</span>
               </div>
             </div>
 
             <blockquote className={styles.statement}>
-              Tecnología clara, útil y asumida con responsabilidad.
+              “Prefiero una solución que podamos explicar y sostener, antes que una
+              respuesta rápida que deje más preguntas después.”
             </blockquote>
 
             <p className={styles.bodyCopy}>
-              El trabajo se mantiene cercano desde la primera conversación hasta la
-              implementación y el seguimiento. Eso implica comunicar con claridad,
-              asumir compromisos realistas y estar disponible cuando una decisión
-              técnica necesita contexto, explicación o continuidad.
+              Esa forma de trabajar se refleja en cada proyecto: entender el
+              contexto, hablar con claridad sobre lo que sí tiene sentido hacer y
+              acompañar la implementación sin perder de vista cómo funciona la
+              operación en la práctica.
             </p>
 
-            <div className={styles.values} aria-label="Principios de trabajo">
-              {values.map((value, index) => (
+            <div className={styles.values} aria-label="Principios personales de trabajo">
+              {principles.map((value, index) => (
                 <span key={value}>
                   {value}
 
-                  {index < values.length - 1 && <i aria-hidden="true" />}
+                  {index < principles.length - 1 && <i aria-hidden="true" />}
                 </span>
               ))}
             </div>
@@ -63,17 +64,17 @@ export default function Founder() {
             <div className={styles.figureFrame} aria-hidden="true" />
 
             <Image
-              src="/images/founder/founder-placeholder.webp"
-              alt="Placeholder de una fotografía corporativa humana y profesional del fundador de Fénix Solutions"
-              width={900}
-              height={1100}
-              sizes="(max-width: 768px) 100vw, 42vw"
+              src="/images/fenix-logo-full.png"
+              alt="Identidad visual de Fénix Solutions"
+              width={1000}
+              height={1000}
+              sizes="(max-width: 768px) 86vw, 34vw"
             />
 
-            <div className={styles.figureMeta}>
+            <figcaption className={styles.figureMeta}>
               <span>FÉNIX SOLUTIONS</span>
-              <span>FUNDADOR</span>
-            </div>
+              <span>DESDE SAN PEDRO SULA</span>
+            </figcaption>
           </figure>
         </div>
       </div>
