@@ -48,12 +48,12 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/images/fenix-icon.png',
-        type: 'image/png',
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+        sizes: 'any',
       },
     ],
-    shortcut: '/images/fenix-icon.png',
-    apple: '/images/fenix-icon.png',
+    shortcut: '/icon.svg',
   },
   openGraph: {
     title,
