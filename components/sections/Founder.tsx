@@ -23,9 +23,9 @@ export default function Founder() {
             <h2 id="founder-title">QUIÉN ESTÁ DETRÁS DE FÉNIX</h2>
 
             <p className={styles.intro}>
-              Fénix nace de una convicción: que la tecnología puede transformar
-              una organización cuando primero entendemos a las personas y las
-              necesidades que existen detrás de ella.
+              Detrás de Fénix hay una responsabilidad concreta: que las decisiones
+              técnicas puedan explicarse, sostenerse y responder por el impacto que
+              tienen en la operación de un cliente.
             </p>
 
             <div className={styles.identity}>
@@ -38,13 +38,14 @@ export default function Founder() {
             </div>
 
             <blockquote className={styles.statement}>
-              Tecnología con criterio, cercanía y propósito.
+              Tecnología clara, útil y asumida con responsabilidad.
             </blockquote>
 
             <p className={styles.bodyCopy}>
-              Nos involucramos directamente en cada proyecto porque creemos en
-              las relaciones de confianza, el criterio técnico y el valor de
-              acompañar a nuestros clientes en cada etapa de su evolución.
+              El trabajo se mantiene cercano desde la primera conversación hasta la
+              implementación y el seguimiento. Eso implica comunicar con claridad,
+              asumir compromisos realistas y estar disponible cuando una decisión
+              técnica necesita contexto, explicación o continuidad.
             </p>
 
             <div className={styles.values} aria-label="Principios de trabajo">
