@@ -87,6 +87,11 @@ export const metadata: Metadata = {
   },
 };
 
+const sameAs = [
+  process.env.NEXT_PUBLIC_FENIX_FACEBOOK_URL,
+  process.env.NEXT_PUBLIC_FENIX_INSTAGRAM_URL,
+].filter((url): url is string => Boolean(url));
+
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -111,6 +116,7 @@ const organizationJsonLd = {
     'Presencia digital',
     'Acompañamiento tecnológico',
   ],
+  ...(sameAs.length > 0 ? { sameAs } : {}),
 };
 
 export default function RootLayout({
