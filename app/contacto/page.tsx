@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,6 +16,35 @@ import Footer from '@/components/layout/Footer';
 import ContactForm from '@/components/contact/ContactForm';
 
 import styles from './page.module.scss';
+
+export const metadata: Metadata = {
+  title: 'Contacto',
+  description:
+    'Contacta a Fénix Solutions para conversar sobre desarrollo de software, soluciones tecnológicas o acompañamiento tecnológico en Honduras.',
+  alternates: {
+    canonical: '/contacto',
+  },
+  openGraph: {
+    title: 'Contacto | Fénix Solutions',
+    description:
+      'Conversemos sobre la necesidad tecnológica de tu empresa u organización.',
+    url: '/contacto',
+    type: 'website',
+    images: [
+      {
+        url: '/images/contact-fenix.png',
+        alt: 'Contacto — Fénix Solutions',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contacto | Fénix Solutions',
+    description:
+      'Conversemos sobre la necesidad tecnológica de tu empresa u organización.',
+    images: ['/images/contact-fenix.png'],
+  },
+};
 
 const contactLinks = {
   whatsapp:
@@ -39,10 +69,6 @@ export default function ContactPage() {
 
       <main id="main-content" className={styles.page} tabIndex={-1}>
         <section className={styles.contactSection}>
-          {/* =================================================
-              AMBIENT FÉNIX ARTWORK
-             ================================================= */}
-
           <div className={styles.contactArtwork} aria-hidden="true">
             <Image
               src="/images/contact-fenix.png"
@@ -86,7 +112,6 @@ export default function ContactPage() {
 
                   <span>
                     <strong>WhatsApp Directo</strong>
-
                     <small>Chat directo por WhatsApp</small>
                   </span>
 
@@ -100,7 +125,6 @@ export default function ContactPage() {
 
                   <span>
                     <strong>Correo Electrónico</strong>
-
                     <small>Envíanos un correo electrónico</small>
                   </span>
 
