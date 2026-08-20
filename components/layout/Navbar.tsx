@@ -1,6 +1,6 @@
 'use client';
 
-import { type MouseEvent, useEffect, useState } from 'react';
+import { type MouseEvent, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -19,12 +19,34 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState('#inicio');
 
   const isHome = pathname === '/';
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+
+      setOpen(false);
+      menuButtonRef.current?.focus();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -68,7 +90,6 @@ export default function Navbar() {
 
     return () => {
       window.removeEventListener('scroll', onScroll);
-
       observer.disconnect();
     };
   }, [isHome]);
@@ -93,7 +114,6 @@ export default function Navbar() {
     }
 
     event.preventDefault();
-
     setActiveId(href);
 
     const prefersReducedMotion = window.matchMedia(
@@ -167,7 +187,9 @@ export default function Navbar() {
               key={href}
               href={getHref(href)}
               className={isActive ? styles.active : ''}
-              aria-current={isActive ? 'page' : undefined}
+              aria-current={
+                isActive ? (isContact ? 'page' : 'location') : undefined
+              }
               onClick={(event) => handleNavigation(event, href)}
             >
               {label}
@@ -186,8 +208,9 @@ export default function Navbar() {
       </nav>
 
       <IconButton
+        ref={menuButtonRef}
         className={styles.menuButton}
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpen((current) => !current)}
         aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
         aria-controls="primary-navigation"
         aria-expanded={open}
