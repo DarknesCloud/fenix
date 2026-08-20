@@ -6,8 +6,8 @@ const pillars = [
     number: '01',
     concept: 'CONOCIMIENTO',
     lead: 'RENACER',
-    accent: 'Comprender antes de actuar.',
-    text: 'La tecnología comienza con entender el problema.',
+    accent: 'Aprender cambia la forma de decidir.',
+    text: 'Cada proyecto deja información, experiencia y criterio que permiten tomar mejores decisiones la próxima vez.',
     image: '/images/philosophy/renacer.webp',
     alt: 'Composición geométrica abstracta que representa comprensión y descubrimiento',
   },
@@ -15,8 +15,8 @@ const pillars = [
     number: '02',
     concept: 'TECNOLOGÍA',
     lead: 'CONSTRUIR',
-    accent: 'Convertir conocimiento en soluciones.',
-    text: 'Desarrollo preciso basado en la realidad de la empresa.',
+    accent: 'El conocimiento debe convertirse en algo útil.',
+    text: 'La tecnología tiene valor cuando se traduce en herramientas, procesos y capacidades que funcionan en el trabajo cotidiano.',
     image: '/images/philosophy/construir.webp',
     alt: 'Composición geométrica abstracta de módulos tecnológicos en ensamblaje',
   },
@@ -24,8 +24,8 @@ const pillars = [
     number: '03',
     concept: 'PROPÓSITO',
     lead: 'TRASCENDER',
-    accent: 'Crear valor que permanece.',
-    text: 'Soluciones que evolucionan y generan impacto de largo plazo.',
+    accent: 'Lo construido debe dejar capacidad, no dependencia.',
+    text: 'Buscamos que cada intervención deje una operación más clara, más preparada y con mejores bases para lo que venga después.',
     image: '/images/philosophy/trascender.webp',
     alt: 'Composición geométrica abstracta de expansión y proyección hacia el futuro',
   },
@@ -44,12 +44,12 @@ export default function Philosophy() {
 
           <div className={styles.heading}>
             <h2 id="philosophy-title">
-              Hay una idea detrás de todo lo que construimos.
+              Renacer, construir y trascender no son solo palabras de marca.
             </h2>
 
             <p>
-              Una forma de trabajar que parte de comprender antes de construir
-              soluciones que puedan permanecer.
+              Representan cómo entendemos el valor que debería dejar la tecnología
+              dentro de una empresa u organización.
             </p>
           </div>
         </header>
