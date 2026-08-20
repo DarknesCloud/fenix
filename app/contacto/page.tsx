@@ -2,14 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {
-  EmailOutlined,
-  Facebook,
-  Instagram,
-  LocationOnOutlined,
-  ScheduleOutlined,
-  WhatsApp,
-} from '@mui/icons-material';
+import { EmailOutlined, LocationOnOutlined } from '@mui/icons-material';
 
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -46,21 +39,8 @@ export const metadata: Metadata = {
   },
 };
 
-const contactLinks = {
-  whatsapp:
-    process.env.NEXT_PUBLIC_FENIX_WHATSAPP_URL ??
-    'https://wa.me/?text=Hola%2C%20quiero%20conversar%20con%20F%C3%A9nix%20Solutions.',
-
-  email: process.env.NEXT_PUBLIC_FENIX_EMAIL
-    ? `mailto:${process.env.NEXT_PUBLIC_FENIX_EMAIL}`
-    : 'mailto:',
-
-  facebook:
-    process.env.NEXT_PUBLIC_FENIX_FACEBOOK_URL ?? 'https://www.facebook.com/',
-
-  instagram:
-    process.env.NEXT_PUBLIC_FENIX_INSTAGRAM_URL ?? 'https://www.instagram.com/',
-};
+const contactEmail =
+  process.env.NEXT_PUBLIC_FENIX_EMAIL ?? 'admin@fenixsolutionshn.com';
 
 export default function ContactPage() {
   return (
@@ -89,70 +69,31 @@ export default function ContactPage() {
               <h1>Iniciemos una conversación</h1>
 
               <p>
-                Elige el canal de tu preferencia para ponerte en contacto con
-                nuestro equipo.
+                Cuéntanos qué necesitas resolver y comparte el contexto que
+                consideres importante. Ese será nuestro punto de partida.
               </p>
             </div>
 
             <div className={styles.contactGrid}>
               <aside
                 className={styles.channels}
-                aria-label="Canales de contacto"
+                aria-label="Información de contacto"
               >
                 <a
-                  className={`${styles.channelCard} ${styles.whatsapp}`}
-                  href={contactLinks.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  className={styles.channelCard}
+                  href={`mailto:${contactEmail}`}
                 >
-                  <span className={styles.channelIcon}>
-                    <WhatsApp />
-                  </span>
-
-                  <span>
-                    <strong>WhatsApp Directo</strong>
-                    <small>Chat directo por WhatsApp</small>
-                  </span>
-
-                  <b>↗</b>
-                </a>
-
-                <a className={styles.channelCard} href={contactLinks.email}>
                   <span className={styles.channelIcon}>
                     <EmailOutlined />
                   </span>
 
                   <span>
-                    <strong>Correo Electrónico</strong>
-                    <small>Envíanos un correo electrónico</small>
+                    <strong>Correo electrónico</strong>
+                    <small>{contactEmail}</small>
                   </span>
 
                   <b>↗</b>
                 </a>
-
-                <div className={styles.socialCard}>
-                  <span>REDES OFICIALES</span>
-
-                  <div>
-                    <a
-                      href={contactLinks.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Facebook de Fénix Solutions"
-                    >
-                      <Facebook />
-                    </a>
-
-                    <a
-                      href={contactLinks.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Instagram de Fénix Solutions"
-                    >
-                      <Instagram />
-                    </a>
-                  </div>
-                </div>
 
                 <div className={styles.details}>
                   <div>
@@ -161,15 +102,6 @@ export default function ContactPage() {
                     <span>
                       <strong>Ubicación</strong>
                       San Pedro Sula, Honduras
-                    </span>
-                  </div>
-
-                  <div>
-                    <ScheduleOutlined aria-hidden="true" />
-
-                    <span>
-                      <strong>Horario de atención</strong>
-                      Lunes a viernes · Horario comercial
                     </span>
                   </div>
                 </div>
