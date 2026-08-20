@@ -129,6 +129,7 @@ export default function Hero() {
               alt="Fénix compuesto por un ala dorada orgánica y un ala de circuitos tecnológicos azul y dorado"
               width={1254}
               height={1254}
+              sizes="(max-width: 767px) 92vw, (max-width: 1200px) 48vw, 610px"
               priority
             />
 
