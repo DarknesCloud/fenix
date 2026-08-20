@@ -10,9 +10,9 @@ const stages = [
     number: '01',
     context: 'CONTEXTO',
     title: 'ENTENDER',
-    short: 'Comprender antes de proponer.',
+    short: 'Definir con precisión qué debe resolverse.',
     description:
-      'Comprendemos tu problema, contexto, procesos y objetivos antes de proponer una solución.',
+      'Levantamos información sobre procesos, usuarios, restricciones, herramientas actuales y objetivos para delimitar el problema y sus prioridades.',
     image: '/images/methodology/step-01-entender.webp',
     alt: 'Esquema conceptual de análisis y mapeo de procesos',
   },
@@ -20,9 +20,9 @@ const stages = [
     number: '02',
     context: 'ESTRATEGIA',
     title: 'DISEÑAR',
-    short: 'Definir el camino adecuado.',
+    short: 'Convertir el diagnóstico en un plan ejecutable.',
     description:
-      'Definimos la arquitectura y estrategia tecnológica adecuada para tu realidad y objetivos.',
+      'Definimos alcance, arquitectura, prioridades, responsabilidades y una ruta de trabajo que permita avanzar con criterios claros.',
     image: '/images/methodology/step-02-disenar.webp',
     alt: 'Esquema conceptual de arquitectura tecnológica y diseño de solución',
   },
@@ -30,9 +30,9 @@ const stages = [
     number: '03',
     context: 'IMPLEMENTACIÓN',
     title: 'CONSTRUIR',
-    short: 'Convertir la estrategia en realidad.',
+    short: 'Implementar, validar y documentar.',
     description:
-      'Desarrollamos, integramos e implementamos la solución de forma iterativa y controlada.',
+      'Desarrollamos o implementamos por etapas, validamos el funcionamiento con el contexto real de uso y documentamos lo necesario para operar la solución.',
     image: '/images/methodology/step-03-construir.webp',
     alt: 'Esquema conceptual de construcción e integración tecnológica',
   },
@@ -40,9 +40,9 @@ const stages = [
     number: '04',
     context: 'CONTINUIDAD',
     title: 'EVOLUCIONAR',
-    short: 'Acompañar lo que viene después.',
+    short: 'Medir lo que ocurre después de la entrega.',
     description:
-      'Mantenemos, medimos y adaptamos la tecnología a medida que tu organización cambia y crece.',
+      'Revisamos uso, incidencias y cambios en la operación para priorizar ajustes, mantenimiento o nuevas mejoras cuando sean necesarias.',
     image: '/images/methodology/step-04-evolucionar.webp',
     alt: 'Esquema conceptual de evolución y escalabilidad tecnológica',
   },
@@ -93,7 +93,7 @@ export default function Methodology() {
     const section = document.getElementById('metodologia');
     if (!section) return;
 
-    let timers: ReturnType<typeof setTimeout>[] = [];
+    const timers: ReturnType<typeof setTimeout>[] = [];
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -128,7 +128,6 @@ export default function Methodology() {
 
     return () => {
       observer.disconnect();
-
       timers.forEach(clearTimeout);
     };
   }, [hasAutoPlayed]);
@@ -144,13 +143,12 @@ export default function Methodology() {
           <div>
             <span className="eyebrow">CÓMO TRABAJAMOS</span>
 
-            <h2 id="methodology-title">Cómo trabajamos</h2>
+            <h2 id="methodology-title">Del problema a una solución operable.</h2>
           </div>
 
           <p>
-            Una necesidad no se convierte en una solución de inmediato. Primero
-            la comprendemos, después diseñamos, construimos y acompañamos su
-            evolución.
+            Cada etapa deja una decisión concreta: qué resolver, cómo hacerlo,
+            cómo implementarlo y qué observar una vez que está funcionando.
           </p>
         </header>
 
@@ -173,7 +171,6 @@ export default function Methodology() {
 
               <div className={styles.visualMeta}>
                 <span>ETAPA {activeStage.number} / 04</span>
-
                 <span>PROCESO FÉNIX</span>
               </div>
             </div>
@@ -186,7 +183,6 @@ export default function Methodology() {
           >
             <div className={styles.infoTop}>
               <span className={styles.bigNumber}>{activeStage.number}</span>
-
               <span className={styles.context}>{activeStage.context}</span>
             </div>
 
