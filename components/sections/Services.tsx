@@ -15,41 +15,41 @@ const capabilities = [
   {
     number: '01',
     title: 'Desarrollo de Software Personalizado',
-    subtitle: 'NUESTRA CAPACIDAD PRINCIPAL',
-    action: 'CONSTRUIMOS',
+    subtitle: 'CAPACIDAD PRINCIPAL',
+    action: 'DESARROLLAMOS',
     description:
-      'Diseñamos y desarrollamos plataformas, sistemas y herramientas digitales adaptadas a la operación y objetivos de cada organización.',
+      'Creamos plataformas web, sistemas internos, automatizaciones y aplicaciones adaptadas a procesos que no encajan bien en herramientas genéricas.',
     capabilities:
       'Plataformas web · Sistemas internos · Automatización · Aplicaciones a medida',
     icon: Code,
   },
   {
     number: '02',
-    title: 'Soluciones Tecnológicas',
-    subtitle: 'IMPLEMENTAMOS',
+    title: 'Infraestructura y Soluciones Tecnológicas',
+    subtitle: 'ENTORNO OPERATIVO',
     action: 'IMPLEMENTAMOS',
     description:
-      'Implementamos infraestructura, redes e integraciones para responder a desafíos operativos específicos.',
+      'Instalamos y mejoramos redes, infraestructura e integraciones necesarias para mantener conectados equipos, sistemas y servicios de una operación.',
     capabilities: 'Infraestructura · Redes · Integraciones · Seguridad',
     icon: AutoGraph,
   },
   {
     number: '03',
     title: 'Presencia Digital',
-    subtitle: 'IDENTIDAD & EXPERIENCIA DIGITAL',
-    action: 'CONECTAMOS',
+    subtitle: 'CANALES DIGITALES',
+    action: 'CREAMOS',
     description:
-      'Creamos experiencias digitales que permiten comunicar quién eres, qué haces y a quiénes sirves.',
+      'Desarrollamos sitios y plataformas digitales orientados a presentar servicios, facilitar contacto y sostener una presencia profesional en línea.',
     capabilities: 'Sitios web · Plataformas digitales · Hosting · Optimización',
     icon: Language,
   },
   {
     number: '04',
     title: 'Acompañamiento Tecnológico',
-    subtitle: 'MANTENEMOS Y EVOLUCIONAMOS',
-    action: 'ACOMPAÑAMOS',
+    subtitle: 'CONTINUIDAD OPERATIVA',
+    action: 'GESTIONAMOS',
     description:
-      'Mantenemos, soportamos y evolucionamos la tecnología existente para que acompañe el crecimiento de tu organización.',
+      'Atendemos soporte, mantenimiento y seguimiento técnico para tecnología que ya forma parte del trabajo diario de una empresa u organización.',
     capabilities: 'Soporte · Mantenimiento · Sistemas · Asesoría tecnológica',
     icon: Handshake,
   },
@@ -93,18 +93,16 @@ export default function Services() {
           <div>
             <span className="eyebrow">CAPACIDADES TECNOLÓGICAS</span>
 
-            <h2 id="services-title">Tecnología para necesidades reales.</h2>
+            <h2 id="services-title">Qué podemos hacer por tu operación.</h2>
           </div>
 
           <p>
-            Desde construir software hasta implementar, mantener y evolucionar
-            tecnología, nuestras capacidades parten siempre de una necesidad
-            concreta.
+            Nuestro trabajo se concentra en cuatro frentes: software,
+            infraestructura, presencia digital y continuidad tecnológica.
           </p>
         </header>
 
         <div className={styles.layout} onMouseLeave={() => setActiveIndex(0)}>
-          {/* PANEL PRINCIPAL DINÁMICO */}
           <article
             className={styles.featured}
             onMouseEnter={() => setActiveIndex(0)}
@@ -147,12 +145,11 @@ export default function Services() {
             </div>
 
             <a href="#contacto" className={styles.featureLink}>
-              Hablemos de tu necesidad
+              Consultar esta capacidad
               <ArrowForward />
             </a>
           </article>
 
-          {/* NAVEGACIÓN EDITORIAL */}
           <div
             className={styles.complementary}
             aria-label="Explorar capacidades tecnológicas"
@@ -209,20 +206,20 @@ export default function Services() {
 
         <aside className={styles.closing}>
           <div>
-            <span className="eyebrow">ENTENDER PRIMERO. PROPONER DESPUÉS.</span>
+            <span className="eyebrow">UNA OPERACIÓN PUEDE NECESITAR MÁS DE UN FRENTE</span>
 
-            <h3>¿Y si tu necesidad no aparece aquí?</h3>
+            <h3>Las capacidades pueden combinarse.</h3>
           </div>
 
           <div>
             <p>
-              Las categorías organizan nuestras capacidades, pero no limitan las
-              soluciones que podemos construir. Si tienes un problema
-              tecnológico, podemos empezar por entenderlo contigo.
+              Un proyecto puede comenzar en software y requerir infraestructura,
+              mantenimiento o presencia digital. Organizamos el trabajo alrededor
+              del resultado que debe funcionar, no alrededor de categorías aisladas.
             </p>
 
             <a href="#contacto" className={styles.closingLink}>
-              Empecemos por entenderla
+              Cuéntanos qué necesitas resolver
               <ArrowForward />
             </a>
           </div>
