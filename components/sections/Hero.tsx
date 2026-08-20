@@ -32,22 +32,17 @@ export default function Hero() {
       const progress = Math.min(Math.max(-rect.top / heroHeight, 0), 1);
 
       setScrollProgress(progress);
-
       animationFrameId = null;
     };
 
     const handleScroll = () => {
       if (animationFrameId !== null) return;
-
       animationFrameId = window.requestAnimationFrame(updateScrollProgress);
     };
 
     updateScrollProgress();
 
-    window.addEventListener('scroll', handleScroll, {
-      passive: true,
-    });
-
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
 
     return () => {
@@ -85,9 +80,9 @@ export default function Hero() {
             </h1>
 
             <p>
-              Desarrollamos soluciones tecnológicas a la medida de
-              organizaciones que buscan resolver problemas reales, mejorar su
-              forma de trabajar y crecer con tecnología.
+              Diseñamos y desarrollamos software, implementamos soluciones
+              tecnológicas y acompañamos a empresas y organizaciones que
+              necesitan resolver problemas concretos en su operación.
             </p>
 
             <div
@@ -108,7 +103,7 @@ export default function Hero() {
                 endIcon={<ArrowForward />}
                 disableRipple
               >
-                Conoce Fénix
+                Conoce cómo trabajamos
               </Button>
 
               <Button
@@ -117,7 +112,7 @@ export default function Hero() {
                 endIcon={<ArrowForward />}
                 disableRipple
               >
-                Hablemos
+                Cuéntanos qué necesitas
               </Button>
             </div>
           </div>
@@ -149,7 +144,7 @@ export default function Hero() {
           <NarrativeIndicator />
 
           <a href="#nosotros">
-            Scroll para explorar
+            Conoce Fénix
             <East />
           </a>
         </div>
