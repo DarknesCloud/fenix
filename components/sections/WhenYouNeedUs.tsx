@@ -5,34 +5,38 @@ import styles from './WhenYouNeedUs.module.scss';
 
 const painPoints = [
   {
-    title: 'Necesitas desarrollar algo que no existe.',
+    title:
+      'Las herramientas que utilizas ya no responden bien a tu forma de trabajar.',
     description:
-      'Diseñamos y desarrollamos software personalizado para resolver necesidades específicas de tu organización.',
-    capabilities: 'Software · Plataformas · Automatización · Integraciones',
-    flow: ['Necesidad', 'Software', 'Solución'],
+      'Empiezas a depender de hojas de cálculo, procesos paralelos o varias herramientas que resuelven partes del problema, pero ninguna se adapta realmente a tu operación.',
+    capabilities:
+      'Herramientas limitadas · Información dispersa · Procesos desconectados',
+    flow: ['Necesidad', 'Limitación', 'Decisión'],
   },
   {
-    title: 'Quieres transformar un proceso.',
+    title: 'Un proceso cotidiano está consumiendo más tiempo del que debería.',
     description:
-      'Convertimos procesos manuales o poco eficientes en herramientas digitales que mejoran la operación y permiten crecer.',
-    capabilities: 'Digitalización · Automatización · Sistemas internos',
-    flow: ['Proceso', 'Digitalización', 'Eficiencia'],
+      'Tareas repetitivas, registros duplicados, seguimiento manual o información que pasa por demasiadas manos suelen ser señales de que un proceso puede simplificarse.',
+    capabilities: 'Tareas repetitivas · Duplicidad · Seguimiento manual',
+    flow: ['Proceso', 'Fricción', 'Oportunidad'],
   },
   {
-    title: 'Necesitas una presencia digital profesional.',
+    title: 'Tu presencia digital ya no representa bien a tu empresa.',
     description:
-      'Creamos experiencias digitales que comunican quién eres, qué haces y a quién sirves.',
-    capabilities: 'Sitios web · Plataformas · Hosting · Mantenimiento',
-    flow: ['Identidad', 'Experiencia', 'Presencia'],
+      'El negocio ha cambiado, pero el sitio web quedó atrás, la información ya no refleja lo que haces o tus clientes tienen dificultades para entender tu propuesta.',
+    capabilities:
+      'Información desactualizada · Imagen inconsistente · Experiencia deficiente',
+    flow: ['Realidad', 'Percepción', 'Confianza'],
   },
   {
-    title: 'Ya tienes tecnología, pero necesitas acompañamiento.',
+    title:
+      'Mantener la tecnología de tu operación empieza a convertirse en una carga.',
     description:
-      'Ayudamos a mantener, soportar y evolucionar la tecnología que ya forma parte de tu operación.',
-    capabilities: 'Soporte · Mantenimiento · Infraestructura · Asesoría',
-    flow: ['Tecnología', 'Soporte', 'Evolución'],
+      'Equipos, redes, cámaras, sistemas y pequeñas incidencias comienzan a exigir tiempo y atención que deberían estar concentrados en las actividades principales de tu empresa.',
+    capabilities: 'Incidencias · Mantenimiento · Continuidad operativa',
+    flow: ['Tecnología', 'Carga', 'Continuidad'],
   },
-];
+] as const;
 
 export default function WhenYouNeedUs() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -47,24 +51,27 @@ export default function WhenYouNeedUs() {
     >
       <div className="container">
         <header className={styles.heading}>
-          <span className="eyebrow">-- ¿CUÁNDO NECESITAS A FÉNIX?</span>
+          <span className="eyebrow">
+            -- CUÁNDO TIENE SENTIDO REVISAR TU TECNOLOGÍA
+          </span>
 
           <div className={styles.headingGrid}>
             <div>
               <h2 id="when-you-need-us-title">
-                ¿En qué momento puede ayudarte Fénix?
+                Hay momentos en los que la tecnología empieza a quedarse corta.
               </h2>
 
               <p className={styles.intro}>
-                Desde desarrollar una solución que no existe hasta acompañar la
-                tecnología que ya forma parte de tu operación.
+                No siempre aparece como un gran problema. A veces comienza con
+                una tarea que tarda demasiado, información difícil de encontrar
+                o una herramienta que ya no acompaña la forma en que trabajas.
               </p>
             </div>
 
             <div className={styles.visual} aria-hidden="true">
               <div className={styles.visualLabel}>
-                <span>EL CAMINO</span>
-                <span>FÉNIX</span>
+                <span>DETECTAR</span>
+                <span>LA SEÑAL</span>
               </div>
 
               <div className={styles.flow}>
@@ -137,23 +144,24 @@ export default function WhenYouNeedUs() {
 
             <span>
               No siempre necesitas más tecnología. A veces necesitas entender
-              mejor que necesitas.
+              mejor qué está dificultando tu forma de trabajar.
             </span>
           </blockquote>
 
           <div className={styles.methodBridge}>
             <span className={styles.bridgeLabel}>
-              PRIMERO ENTENDEMOS. DESPUÉS CONSTRUIMOS.
+              LAS SEÑALES PEQUEÑAS TAMBIÉN TIENEN UN COSTO.
             </span>
 
-            <div className={styles.methodFlow} aria-label="Método Fénix">
-              <span>ENTENDER</span>
+            <div
+              className={styles.methodFlow}
+              aria-label="Impacto de una fricción tecnológica"
+            >
+              <span>TIEMPO</span>
               <span className={styles.methodArrow}>→</span>
-              <span>DISEÑAR</span>
+              <span>FRICCIÓN</span>
               <span className={styles.methodArrow}>→</span>
-              <span>CONSTRUIR</span>
-              <span className={styles.methodArrow}>→</span>
-              <span>EVOLUCIONAR</span>
+              <span>COSTO OPERATIVO</span>
             </div>
           </div>
         </div>
