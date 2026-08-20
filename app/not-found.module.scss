@@ -1,0 +1,96 @@
+@use '../styles/variables' as *;
+
+.page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 82% 24%, rgba($accent-gold, 0.1), transparent 24rem),
+    $neutral-light;
+}
+
+.content {
+  display: flex;
+  min-height: 72vh;
+  align-items: center;
+  padding: calc(#{$nav-height} + clamp(4rem, 8vw, 7rem)) 0 clamp(5rem, 9vw, 8rem);
+  color: $primary-base;
+}
+
+.content :global(.container) {
+  width: 100%;
+}
+
+.code {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: rgba($primary-base, 0.16);
+  font-size: clamp(4.5rem, 12vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.85;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: $accent-gold;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.content h1 {
+  max-width: 760px;
+  margin: 1rem 0 1.2rem;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.content p {
+  max-width: 620px;
+  margin: 0;
+  color: rgba($primary-base, 0.68);
+  font-size: clamp(1rem, 1.5vw, 1.08rem);
+  line-height: 1.75;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 0.85rem 1.15rem;
+  border: 1px solid rgba($accent-gold, 0.42);
+  border-radius: 8px;
+  color: $primary-base;
+  background: linear-gradient(135deg, $gold-light, $accent-gold);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: box-shadow 0.2s $ease, transform 0.2s $ease;
+}
+
+.action:hover {
+  box-shadow: 0 8px 24px rgba($accent-gold, 0.2);
+  transform: translateY(-2px);
+}
+
+@media (max-width: $bp-sm) {
+  .content {
+    min-height: 68vh;
+    padding-top: calc(#{$nav-height} + 3rem);
+  }
+
+  .code {
+    font-size: 4.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
+  }
+
+  .action:hover {
+    transform: none;
+  }
+}
