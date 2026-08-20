@@ -6,20 +6,20 @@ const narrative = [
   {
     number: '01',
     phase: 'NECESIDAD',
-    label: 'EL RETO',
-    text: 'New Hope Opportunities es una fundación educativa en San Pedro Sula que necesitaba fortalecer su presencia digital y contar con una solución web que representara adecuadamente su trabajo.',
+    label: 'EL PUNTO DE PARTIDA',
+    text: 'New Hope Opportunities necesitaba una presencia web institucional que comunicara con claridad su trabajo educativo y ofreciera una base digital más profesional para la organización.',
   },
   {
     number: '02',
     phase: 'DESARROLLO',
-    label: 'LA SOLUCIÓN',
-    text: 'Fénix desarrolló su sitio web institucional, creando una presencia digital profesional alineada con la identidad y propósito de la organización.',
+    label: 'LA IMPLEMENTACIÓN',
+    text: 'Diseñamos y desarrollamos su sitio web institucional, organizando el contenido, la experiencia de navegación y la presentación de la organización alrededor de sus necesidades reales.',
   },
   {
     number: '03',
-    phase: 'ACOMPAÑAMIENTO',
-    label: 'LA EVOLUCIÓN',
-    text: 'El proyecto evolucionó más allá del desarrollo web hacia un acompañamiento tecnológico continuo para la operación de la escuela.',
+    phase: 'CONTINUIDAD',
+    label: 'LO QUE VINO DESPUÉS',
+    text: 'La relación continuó después de publicar el sitio. Hoy Fénix mantiene un vínculo de soporte y acompañamiento tecnológico con New Hope para atender nuevas necesidades de su operación.',
   },
 ] as const;
 
@@ -33,15 +33,15 @@ export default function NewHopeCase() {
       <div className="container">
         <div className={styles.featuredCase}>
           <div className={styles.caseHeader}>
-            <span className="eyebrow">CASO DE ÉXITO · 01</span>
+            <span className="eyebrow">CASO REAL · 01</span>
 
             <h2 id="new-hope-title">
               New Hope <em>Opportunities</em>
             </h2>
 
             <p>
-              De una necesidad digital a una relación de acompañamiento
-              tecnológico.
+              Un proyecto web que abrió la puerta a una relación tecnológica más
+              cercana y continua.
             </p>
 
             <div className={styles.meta}>
@@ -56,8 +56,8 @@ export default function NewHopeCase() {
               </div>
 
               <div>
-                <span>RELACIÓN</span>
-                <strong>Desarrollo + acompañamiento</strong>
+                <span>ALCANCE</span>
+                <strong>Web institucional + acompañamiento</strong>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function NewHopeCase() {
           <div className={styles.imageFrame}>
             <Image
               src="/images/projects/project-new-hope.webp"
-              alt="Placeholder documental de New Hope Opportunities y su plataforma institucional"
+              alt="Presentación del proyecto web institucional desarrollado para New Hope Opportunities"
               fill
               priority={false}
               sizes="(max-width: 800px) 100vw, 47vw"
@@ -73,7 +73,7 @@ export default function NewHopeCase() {
 
             <div className={styles.imageLabel}>
               <span>PROYECTO</span>
-              <strong>Presencia digital + acompañamiento</strong>
+              <strong>Presencia digital + continuidad tecnológica</strong>
             </div>
           </div>
 
@@ -98,12 +98,11 @@ export default function NewHopeCase() {
                   </div>
 
                   <h3>{item.label}</h3>
-
                   <p>{item.text}</p>
 
                   {isEvolution && (
                     <span className={styles.evolutionNote}>
-                      Aquí comienza el acompañamiento.
+                      El proyecto no terminó con la entrega.
                     </span>
                   )}
                 </article>
@@ -113,20 +112,21 @@ export default function NewHopeCase() {
 
           <div className={styles.caseFooter}>
             <div className={styles.footerCopy}>
-              <span className={styles.footerLabel}>LO QUE CAMBIÓ</span>
+              <span className={styles.footerLabel}>POR QUÉ IMPORTA</span>
 
               <p>
-                Lo que comenzó como un proyecto digital se convirtió en una
-                relación de acompañamiento tecnológico.
+                Este caso representa la forma en que queremos trabajar: resolver una
+                necesidad concreta y conservar el contexto para poder acompañar lo que
+                venga después.
               </p>
             </div>
 
             <a
               href="/contacto"
               className={styles.caseLink}
-              aria-label="Conocer el caso completo de New Hope Opportunities"
+              aria-label="Conversar con Fénix Solutions sobre un proyecto similar"
             >
-              Conocer el caso completo
+              Conversemos sobre tu necesidad
               <ArrowForward aria-hidden="true" />
             </a>
           </div>
