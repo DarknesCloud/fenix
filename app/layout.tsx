@@ -10,8 +10,9 @@ const inter = Inter({
   weight: ['400', '500', '600', '700', '800'],
 });
 
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 const siteUrl = new URL(
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://fenixsolutionshn.com'
+  configuredSiteUrl || 'https://fenixsolutionshn.com'
 );
 
 const title = 'Fénix Solutions | Tecnología con Propósito';
