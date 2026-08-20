@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'motion/react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
 import { ReactNode, useRef } from 'react';
 
 interface ScrollRevealProps {
@@ -15,11 +15,20 @@ export default function ScrollReveal({
   delay = 0,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const isInView = useInView(ref, {
     amount: 0.15,
     margin: '-10% 0px -10% 0px',
   });
+
+  if (shouldReduceMotion) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <motion.div
