@@ -72,13 +72,16 @@ export default function CaseStudy() {
           <p>Experiencias reales donde la tecnología se convirtió en una solución para una necesidad concreta.</p>
         </header>
 
-        <div className={styles.tabList} role="tablist" aria-label="Filtrar capacidades demostradas por categoría">
+        <div
+          className={styles.tabList}
+          role="group"
+          aria-label="Filtrar capacidades demostradas por categoría"
+        >
           {filters.map((filter) => (
             <button
               className={activeFilter === filter.id ? styles.tabActive : styles.tab}
               type="button"
-              role="tab"
-              aria-selected={activeFilter === filter.id}
+              aria-pressed={activeFilter === filter.id}
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
             >
@@ -87,7 +90,12 @@ export default function CaseStudy() {
           ))}
         </div>
 
-        <div className={styles.projectGrid} key={activeFilter} aria-live="polite">
+        <div
+          className={styles.projectGrid}
+          key={activeFilter}
+          aria-live="polite"
+          aria-atomic="true"
+        >
           {visibleProjects.map((project, index) => (
             <article className={styles.projectCard} key={project.id} style={{ '--card-index': index } as CSSProperties}>
               <div className={styles.imageFrame}>
