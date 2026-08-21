@@ -10,6 +10,11 @@ const technicalWork = [
     summary:
       'Instalación, organización y adecuación de infraestructura tecnológica para mantener conectividad, equipos y puntos de trabajo listos para la operación diaria.',
     image: '/images/work/infraestructura.png',
+    gallery: [
+      '/images/work/infraestructura1.png',
+      '/images/work/infraestructura2.png',
+      '/images/work/infraestructura3.png',
+    ],
     alt: 'Instalación de infraestructura de red con gabinete, cableado y equipos de conectividad',
     capabilities: ['Cableado y puntos de red', 'Conectividad', 'Adecuación técnica'],
   },
@@ -20,6 +25,11 @@ const technicalWork = [
     summary:
       'Revisión de fallas de hardware, componentes y alimentación para entender qué está ocurriendo antes de reemplazar equipos o tomar decisiones innecesarias.',
     image: '/images/work/diagnostico.png',
+    gallery: [
+      '/images/work/hardware1.png',
+      '/images/work/hardware2.png',
+      '/images/work/hardware3.png',
+    ],
     alt: 'Mesa de diagnóstico técnico con computadora abierta, multímetro y herramientas de reparación',
     capabilities: ['Diagnóstico', 'Mantenimiento', 'Recuperación'],
   },
@@ -30,6 +40,11 @@ const technicalWork = [
     summary:
       'Evaluación de tarjetas, alimentación, conexiones y componentes en equipos especializados cuando una falla requiere un análisis técnico más profundo.',
     image: '/images/work/continuidad.png',
+    gallery: [
+      '/images/work/diagnostico1.png',
+      '/images/work/diagnostico2.png',
+      '/images/work/diagnostico3.png',
+    ],
     alt: 'Estación de diagnóstico electrónico con equipo especializado abierto, instrumentos de medición y herramientas de precisión',
     capabilities: ['Electrónica', 'Medición', 'Diagnóstico de componentes'],
   },
@@ -40,6 +55,11 @@ const technicalWork = [
     summary:
       'Instalación y organización de sistemas de videovigilancia, grabación y conectividad para mantener una solución de seguridad ordenada, accesible y operativa.',
     image: '/images/work/seguridad.png',
+    gallery: [
+      '/images/work/seguridad1.png',
+      '/images/work/seguridad2.png',
+      '/images/work/seguridad3.png',
+    ],
     alt: 'Instalación de DVR y equipos de videovigilancia dentro de un gabinete de red',
     capabilities: ['DVR y cámaras', 'Cableado', 'Organización de gabinete'],
   },
@@ -85,15 +105,20 @@ export default function CaseStudy() {
                 </div>
 
                 <div className={styles.visualStrip} aria-hidden="true">
-                  <div className={styles.miniVisual}>
-                    <Image src={work.image} alt="" fill sizes="180px" />
-                  </div>
-                  <div className={`${styles.miniVisual} ${styles.miniOffset}`}>
-                    <Image src={work.image} alt="" fill sizes="180px" />
-                  </div>
-                  <div className={`${styles.miniVisual} ${styles.miniClose}`}>
-                    <Image src={work.image} alt="" fill sizes="180px" />
-                  </div>
+                  {work.gallery.map((image, galleryIndex) => (
+                    <div
+                      className={`${styles.miniVisual} ${
+                        galleryIndex === 1
+                          ? styles.miniOffset
+                          : galleryIndex === 2
+                            ? styles.miniClose
+                            : ''
+                      }`}
+                      key={image}
+                    >
+                      <Image src={image} alt="" fill sizes="180px" />
+                    </div>
+                  ))}
                 </div>
 
                 <span className={styles.visualIndex}>
