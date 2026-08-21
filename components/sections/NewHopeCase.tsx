@@ -6,6 +6,8 @@ const newHopeUrl =
   process.env.NEXT_PUBLIC_NEW_HOPE_URL ??
   'https://new-hope-opportunities.vercel.app';
 
+const newHopeBaseUrl = newHopeUrl.replace(/\/$/, '');
+
 const narrative = [
   {
     number: '01',
@@ -103,6 +105,63 @@ export default function NewHopeCase() {
                 Ver sitio
                 <OpenInNew aria-hidden="true" />
               </a>
+            </div>
+          </div>
+
+          <div
+            className={styles.contextGallery}
+            aria-label="Fotografías reales de New Hope Opportunities"
+          >
+            <div className={styles.contextIntro}>
+              <span>EL CONTEXTO REAL</span>
+              <p>
+                Estas imágenes forman parte del material institucional que New Hope
+                utiliza para contar su trabajo. Las incorporamos aquí para conectar el
+                producto digital con la realidad que representa.
+              </p>
+            </div>
+
+            <figure
+              className={`${styles.contextPhoto} ${styles.contextPhotoPrimary}`}
+            >
+              <img
+                src={`${newHopeBaseUrl}/assets/education-early.webp`}
+                alt="Escena educativa de New Hope Opportunities"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                <span>ENTORNO EDUCATIVO</span>
+                <strong>La organización detrás del proyecto.</strong>
+              </figcaption>
+            </figure>
+
+            <div className={styles.contextStack}>
+              <figure className={styles.contextPhoto}>
+                <img
+                  src={`${newHopeBaseUrl}/assets/chicos.jpg`}
+                  alt="Estudiantes participando en actividades de New Hope Opportunities"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>COMUNIDAD</span>
+                  <strong>Personas y experiencias reales.</strong>
+                </figcaption>
+              </figure>
+
+              <figure className={styles.contextPhoto}>
+                <img
+                  src={`${newHopeBaseUrl}/assets/education-secondary.jpg`}
+                  alt="Actividad educativa de New Hope Opportunities"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>EDUCACIÓN</span>
+                  <strong>El trabajo que la web debía representar.</strong>
+                </figcaption>
+              </figure>
             </div>
           </div>
 
