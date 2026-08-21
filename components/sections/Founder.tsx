@@ -64,16 +64,16 @@ export default function Founder() {
             <div className={styles.figureFrame} aria-hidden="true" />
 
             <Image
-              src="/images/fenix-logo-full.png"
-              alt="Identidad visual de Fénix Solutions"
-              width={1000}
-              height={1000}
-              sizes="(max-width: 768px) 86vw, 34vw"
+              src="/images/founder/saul.png"
+              alt="Saul Leiva, fundador de Fénix Solutions"
+              fill
+              priority={false}
+              sizes="(max-width: 767px) 100vw, (max-width: 1100px) 42vw, 34rem"
             />
 
             <figcaption className={styles.figureMeta}>
-              <span>FÉNIX SOLUTIONS</span>
-              <span>DESDE SAN PEDRO SULA</span>
+              <span>SAUL LEIVA · FUNDADOR</span>
+              <span>SAN PEDRO SULA</span>
             </figcaption>
           </figure>
         </div>
