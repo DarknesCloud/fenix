@@ -2,7 +2,13 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { EmailOutlined, LocationOnOutlined } from '@mui/icons-material';
+import {
+  EmailOutlined,
+  Facebook,
+  Instagram,
+  LocationOnOutlined,
+  WhatsApp,
+} from '@mui/icons-material';
 
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -39,8 +45,14 @@ export const metadata: Metadata = {
   },
 };
 
+const envValue = (value: string | undefined) => value?.trim() || null;
+
 const contactEmail =
-  process.env.NEXT_PUBLIC_FENIX_EMAIL ?? 'admin@fenixsolutionshn.com';
+  envValue(process.env.NEXT_PUBLIC_FENIX_EMAIL) ?? 'admin@fenixsolutionshn.com';
+const whatsappUrl = envValue(process.env.NEXT_PUBLIC_FENIX_WHATSAPP_URL);
+const facebookUrl = envValue(process.env.NEXT_PUBLIC_FENIX_FACEBOOK_URL);
+const instagramUrl = envValue(process.env.NEXT_PUBLIC_FENIX_INSTAGRAM_URL);
+const hasSocialProfiles = Boolean(facebookUrl || instagramUrl);
 
 export default function ContactPage() {
   return (
@@ -79,6 +91,26 @@ export default function ContactPage() {
                 className={styles.channels}
                 aria-label="Información de contacto"
               >
+                {whatsappUrl && (
+                  <a
+                    className={`${styles.channelCard} ${styles.whatsapp}`}
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className={styles.channelIcon}>
+                      <WhatsApp />
+                    </span>
+
+                    <span>
+                      <strong>WhatsApp directo</strong>
+                      <small>Conversemos por WhatsApp</small>
+                    </span>
+
+                    <b>↗</b>
+                  </a>
+                )}
+
                 <a
                   className={styles.channelCard}
                   href={`mailto:${contactEmail}`}
@@ -94,6 +126,36 @@ export default function ContactPage() {
 
                   <b>↗</b>
                 </a>
+
+                {hasSocialProfiles && (
+                  <div className={styles.socialCard}>
+                    <span>REDES OFICIALES</span>
+
+                    <div>
+                      {facebookUrl && (
+                        <a
+                          href={facebookUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Facebook de Fénix Solutions"
+                        >
+                          <Facebook />
+                        </a>
+                      )}
+
+                      {instagramUrl && (
+                        <a
+                          href={instagramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Instagram de Fénix Solutions"
+                        >
+                          <Instagram />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 <div className={styles.details}>
                   <div>
