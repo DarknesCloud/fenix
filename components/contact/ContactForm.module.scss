@@ -15,9 +15,7 @@
 
 .fieldGrid {
   display: grid;
-
   grid-template-columns: repeat(2, minmax(0, 1fr));
-
   gap: 1rem;
 }
 
@@ -27,16 +25,13 @@
 
 .form label {
   display: grid;
-
   gap: 0.55rem;
 }
 
 .form label > span {
   color: rgba($primary-base, 0.88);
-
   font-size: 0.78rem;
   font-weight: 700;
-
   letter-spacing: 0.02em;
 }
 
@@ -46,9 +41,7 @@
 
 .form small {
   margin-left: 0.35rem;
-
   color: rgba($primary-card, 0.5);
-
   font-size: 0.72rem;
   font-weight: 500;
 }
@@ -61,26 +54,13 @@
 .form select,
 .form textarea {
   width: 100%;
-
   border: 1px solid rgba($primary-card, 0.16);
-
   border-radius: 7px;
-
   outline: none;
-
   color: $primary-base;
-
-  /*
-   * Fondo muy ligeramente cálido.
-   * Evitamos blanco puro para integrarlo con
-   * el lenguaje visual de la landing.
-   */
   background: rgba($neutral-gray, 0.42);
-
   font: inherit;
-
   line-height: 1.4;
-
   transition: border-color 0.35s $ease, background-color 0.35s $ease,
     box-shadow 0.4s $ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -88,15 +68,12 @@
 .form input,
 .form select {
   min-height: 48px;
-
   padding: 0.7rem 0.85rem;
 }
 
 .form textarea {
   min-height: 154px;
-
   padding: 0.85rem;
-
   resize: vertical;
 }
 
@@ -104,49 +81,60 @@
   appearance: auto;
 }
 
-/* =========================================================
-   SELECT OPTIONS
-   ========================================================= */
-
 .form select option {
   color: $primary-base;
-
   background: $neutral-light;
 }
-
-/* =========================================================
-   PLACEHOLDER
-   ========================================================= */
 
 .form input::placeholder,
 .form textarea::placeholder {
   color: rgba($primary-card, 0.38);
 }
 
-/* =========================================================
-   HOVER
-   ========================================================= */
-
 .form input:hover,
 .form select:hover,
 .form textarea:hover {
   border-color: rgba($primary-card, 0.28);
-
   background: rgba($neutral-gray, 0.58);
 }
-
-/* =========================================================
-   FOCUS
-   ========================================================= */
 
 .form input:focus,
 .form select:focus,
 .form textarea:focus {
   border-color: rgba($accent-gold, 0.72);
-
   background: rgba($neutral-light, 0.94);
-
   box-shadow: 0 0 0 3px rgba($accent-gold, 0.1);
+}
+
+/* =========================================================
+   BOT PROTECTION
+   ========================================================= */
+
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.securityRow {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+}
+
+.securityUnavailable {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba($accent-gold, 0.3);
+  border-radius: 7px;
+  color: rgba($primary-card, 0.68);
+  background: rgba($accent-gold, 0.05);
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 /* =========================================================
@@ -156,78 +144,46 @@
 .formFooter {
   display: flex;
   flex-wrap: wrap;
-
   align-items: center;
-
   gap: 1rem 1.4rem;
-
   padding-top: 0.35rem;
 }
-
-/* =========================================================
-   SUBMIT BUTTON
-   ========================================================= */
 
 .submit {
   display: inline-flex;
   align-items: center;
-
   gap: 0.7rem;
-
   min-height: 48px;
-
   padding: 0.75rem 1.2rem;
-
   border: 1px solid rgba($accent-gold, 0.72);
-
   border-radius: 7px;
-
   color: $primary-base;
-
   background: linear-gradient(135deg, $gold-light, $accent-gold);
-
   box-shadow: 0 5px 18px rgba($accent-gold, 0.12);
-
   cursor: pointer;
-
   font: inherit;
-
   font-weight: 800;
-
   transform: translate3d(0, 0, 0);
-
   transition: box-shadow 0.45s $ease,
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease,
     opacity 0.35s ease;
 }
 
-/* =========================================================
-   SUBMIT HOVER
-   ========================================================= */
-
 .submit:hover:not(:disabled) {
   box-shadow: 0 9px 24px rgba($accent-gold, 0.2);
-
   filter: brightness(1.025);
-
   transform: translateY(-2px);
 }
 
 .submit:active:not(:disabled) {
   transform: translateY(0);
-
   filter: brightness(0.985);
 }
 
 .submit:disabled {
-  cursor: wait;
-
-  opacity: 0.75;
+  cursor: not-allowed;
+  opacity: 0.62;
 }
-
-/* =========================================================
-   SUBMIT ICON
-   ========================================================= */
 
 .submit svg {
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
@@ -237,28 +193,20 @@
   transform: translateX(3px);
 }
 
-/* =========================================================
-   FOOTER MESSAGE
-   ========================================================= */
-
 .formFooter p {
   margin: 0;
-
   color: rgba($primary-card, 0.58);
-
   font-size: 0.8rem;
-
   line-height: 1.5;
+}
+
+.formFooter .errorMessage {
+  color: #9f2d20;
 }
 
 /* =========================================================
    AUTOFILL
    ========================================================= */
-
-/*
- * Evita que Chrome coloque un fondo azul/amarillo
- * extraño al autocompletar campos.
- */
 
 .form input:-webkit-autofill,
 .form input:-webkit-autofill:hover,
@@ -268,9 +216,7 @@
 .form textarea:-webkit-autofill:focus,
 .form select:-webkit-autofill {
   -webkit-text-fill-color: $primary-base;
-
   -webkit-box-shadow: 0 0 0 1000px $neutral-light inset;
-
   transition: background-color 9999s ease-out;
 }
 
@@ -283,9 +229,12 @@
     grid-template-columns: 1fr;
   }
 
+  .securityRow {
+    overflow-x: auto;
+  }
+
   .submit {
     width: 100%;
-
     justify-content: center;
   }
 }
