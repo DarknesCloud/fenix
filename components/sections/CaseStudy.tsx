@@ -9,8 +9,8 @@ const technicalWork = [
     title: 'Infraestructura para una operación conectada',
     summary:
       'Instalación, organización y adecuación de infraestructura tecnológica para mantener conectividad, equipos y puntos de trabajo listos para la operación diaria.',
-    image: '/images/projects/project-installation.webp',
-    alt: 'Trabajo de instalación y organización de infraestructura tecnológica',
+    image: '/images/work/infraestructura.png',
+    alt: 'Instalación de infraestructura de red con gabinete, cableado y equipos de conectividad',
     capabilities: ['Cableado y puntos de red', 'Conectividad', 'Adecuación técnica'],
   },
   {
@@ -18,20 +18,30 @@ const technicalWork = [
     tag: 'SOPORTE TÉCNICO & HARDWARE',
     title: 'Diagnóstico y recuperación de equipos',
     summary:
-      'Revisión de fallas de hardware, componentes y alimentación para determinar qué está ocurriendo antes de reemplazar equipos o tomar decisiones innecesarias.',
-    image: '/images/projects/project-repair.webp',
-    alt: 'Trabajo de diagnóstico y mantenimiento de equipo informático',
+      'Revisión de fallas de hardware, componentes y alimentación para entender qué está ocurriendo antes de reemplazar equipos o tomar decisiones innecesarias.',
+    image: '/images/work/diagnostico.png',
+    alt: 'Mesa de diagnóstico técnico con computadora abierta, multímetro y herramientas de reparación',
     capabilities: ['Diagnóstico', 'Mantenimiento', 'Recuperación'],
   },
   {
-    id: 'continuity',
-    tag: 'ENERGÍA & CONTINUIDAD',
-    title: 'Continuidad y respaldo para equipos críticos',
+    id: 'electronics',
+    tag: 'ELECTRÓNICA & EQUIPOS ESPECIALIZADOS',
+    title: 'Diagnóstico electrónico más allá del equipo convencional',
     summary:
-      'Pruebas, mantenimiento y revisión de sistemas de respaldo eléctrico para reducir interrupciones y proteger los equipos que sostienen la operación.',
-    image: '/images/projects/project-installation.webp',
-    alt: 'Trabajo técnico relacionado con infraestructura y continuidad operativa',
-    capabilities: ['UPS y baterías', 'Pruebas eléctricas', 'Continuidad'],
+      'Evaluación de tarjetas, alimentación, conexiones y componentes en equipos especializados cuando una falla requiere un análisis técnico más profundo.',
+    image: '/images/work/continuidad.png',
+    alt: 'Estación de diagnóstico electrónico con equipo especializado abierto, instrumentos de medición y herramientas de precisión',
+    capabilities: ['Electrónica', 'Medición', 'Diagnóstico de componentes'],
+  },
+  {
+    id: 'security',
+    tag: 'SEGURIDAD & VIDEOVIGILANCIA',
+    title: 'Instalaciones de seguridad integradas a la infraestructura',
+    summary:
+      'Instalación y organización de sistemas de videovigilancia, grabación y conectividad para mantener una solución de seguridad ordenada, accesible y operativa.',
+    image: '/images/work/seguridad.png',
+    alt: 'Instalación de DVR y equipos de videovigilancia dentro de un gabinete de red',
+    capabilities: ['DVR y cámaras', 'Cableado', 'Organización de gabinete'],
   },
 ];
 
@@ -56,7 +66,7 @@ export default function CaseStudy() {
             <p>
               No todo reto tecnológico necesita convertirse en un gran proyecto.
               También trabajamos sobre necesidades concretas de infraestructura,
-              equipos, continuidad y desarrollo digital.
+              equipos, electrónica, seguridad y desarrollo digital.
             </p>
           </div>
         </header>
@@ -70,7 +80,7 @@ export default function CaseStudy() {
                     src={work.image}
                     alt={work.alt}
                     fill
-                    sizes="(max-width: 900px) 100vw, 33vw"
+                    sizes="(max-width: 900px) 100vw, 50vw"
                   />
                 </div>
 
