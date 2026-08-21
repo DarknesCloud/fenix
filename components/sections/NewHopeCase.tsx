@@ -1,5 +1,6 @@
 import { ArrowForward, OpenInNew } from '@mui/icons-material';
 import styles from './NewHopeCase.module.scss';
+import previewStyles from './NewHopePreview.module.scss';
 
 const newHopeUrl =
   process.env.NEXT_PUBLIC_NEW_HOPE_URL ??
@@ -65,19 +66,19 @@ export default function NewHopeCase() {
             </div>
           </div>
 
-          <div className={`${styles.imageFrame} ${styles.livePreview}`}>
-            <div className={styles.browserBar} aria-hidden="true">
-              <span className={styles.browserDots}>
+          <div className={`${styles.imageFrame} ${previewStyles.livePreview}`}>
+            <div className={previewStyles.browserBar} aria-hidden="true">
+              <span className={previewStyles.browserDots}>
                 <i />
                 <i />
                 <i />
               </span>
-              <span className={styles.browserAddress}>
+              <span className={previewStyles.browserAddress}>
                 new-hope-opportunities.vercel.app
               </span>
             </div>
 
-            <div className={styles.previewViewport}>
+            <div className={previewStyles.previewViewport}>
               <iframe
                 src={newHopeUrl}
                 title="Vista previa del sitio web de New Hope Opportunities desarrollado por Fénix Solutions"
@@ -87,7 +88,7 @@ export default function NewHopeCase() {
               />
             </div>
 
-            <div className={styles.imageLabel}>
+            <div className={`${styles.imageLabel} ${previewStyles.previewLabel}`}>
               <div>
                 <span>PROYECTO REAL · VISTA EN VIVO</span>
                 <strong>Sitio web institucional de New Hope Opportunities</strong>
@@ -97,7 +98,7 @@ export default function NewHopeCase() {
                 href={newHopeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.previewLink}
+                className={previewStyles.previewLink}
               >
                 Ver sitio
                 <OpenInNew aria-hidden="true" />
