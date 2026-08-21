@@ -64,8 +64,8 @@
 
 .workGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.6rem);
 }
 
 .workCard {
@@ -91,7 +91,7 @@
 
 .mainVisual {
   position: relative;
-  min-height: clamp(230px, 24vw, 350px);
+  min-height: clamp(290px, 31vw, 440px);
   overflow: hidden;
   border-radius: 8px;
   background: $primary-card;
@@ -109,13 +109,13 @@
 .mainVisual img,
 .miniVisual img {
   object-fit: cover;
-  filter: saturate(0.82) contrast(1.05) brightness(0.9);
+  filter: saturate(0.88) contrast(1.04) brightness(0.92);
   transition: transform 0.7s ease, filter 0.5s ease;
 }
 
 .workCard:hover .mainVisual img {
   transform: scale(1.025);
-  filter: saturate(0.96) contrast(1.05) brightness(0.94);
+  filter: saturate(0.98) contrast(1.04) brightness(0.96);
 }
 
 .visualStrip {
@@ -129,7 +129,7 @@
 
 .miniVisual {
   position: relative;
-  aspect-ratio: 1.45 / 1;
+  aspect-ratio: 1.55 / 1;
   overflow: hidden;
   border: 1px solid rgba($neutral-light, 0.34);
   border-radius: 8px;
@@ -168,7 +168,7 @@
 }
 
 .workBody {
-  padding: 1.25rem 1.3rem 1.4rem;
+  padding: 1.35rem 1.4rem 1.5rem;
 }
 
 .tag,
@@ -181,18 +181,20 @@
 }
 
 .workBody h3 {
+  max-width: 620px;
   margin: 0.7rem 0 0;
   color: $neutral-light;
-  font-size: clamp(1.25rem, 1.7vw, 1.65rem);
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
   line-height: 1.12;
   letter-spacing: -0.035em;
 }
 
 .workBody p {
+  max-width: 660px;
   margin: 0.8rem 0 1.15rem;
   color: rgba($neutral-light, 0.6);
-  font-size: 0.9rem;
-  line-height: 1.65;
+  font-size: 0.92rem;
+  line-height: 1.68;
 }
 
 .capabilities,
@@ -231,7 +233,7 @@
   grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.35fr);
   gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
-  margin-top: clamp(1.4rem, 2.5vw, 2rem);
+  margin-top: clamp(1.5rem, 3vw, 2.4rem);
   padding: clamp(1.5rem, 3vw, 2.5rem);
   overflow: hidden;
   border: 1px solid rgba($neutral-light, 0.11);
@@ -347,14 +349,6 @@
 }
 
 @media (max-width: $bp-lg) {
-  .workGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .workCard:last-child {
-    grid-column: 1 / -1;
-  }
-
   .digitalFeature {
     grid-template-columns: 1fr;
   }
@@ -373,12 +367,8 @@
     grid-template-columns: 1fr;
   }
 
-  .workCard:last-child {
-    grid-column: auto;
-  }
-
   .mainVisual {
-    min-height: clamp(240px, 54vw, 390px);
+    min-height: clamp(250px, 58vw, 420px);
   }
 
   .previewViewport iframe {
