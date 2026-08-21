@@ -133,30 +133,35 @@
 
 .figure {
   position: relative;
-  display: grid;
   width: min(100%, 34rem);
-  min-height: clamp(23rem, 38vw, 34rem);
+  aspect-ratio: 0.78;
+  min-height: clamp(29rem, 45vw, 42rem);
   margin: 0;
-  padding: clamp(2.6rem, 5vw, 4.6rem);
-  place-items: center;
   justify-self: end;
   overflow: hidden;
-  border: 1px solid rgba($primary-base, 0.08);
+  border: 1px solid rgba($primary-base, 0.1);
+  background: $primary-base;
+  box-shadow: 0 26px 64px rgba($primary-base, 0.14);
+}
+
+.figure::before {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: '';
   background:
-    radial-gradient(circle at 72% 28%, rgba($secondary-tech, 0.1), transparent 34%),
-    linear-gradient(145deg, #fbfaf7 0%, #f2f5f7 100%);
-  box-shadow: 0 20px 50px rgba($primary-base, 0.06);
+    linear-gradient(to top, rgba($primary-base, 0.72) 0%, rgba($primary-base, 0.13) 28%, transparent 54%),
+    linear-gradient(135deg, rgba($primary-base, 0.1), transparent 44%);
 }
 
 .figure::after {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   content: '';
-  background:
-    linear-gradient(135deg, rgba($primary-base, 0.035), transparent 48%),
-    linear-gradient(to top, rgba($accent-gold, 0.045), transparent 40%);
+  box-shadow: inset 0 0 0 1px rgba(#fff, 0.06);
 }
 
 .figureFrame {
@@ -172,8 +177,8 @@
   left: 0;
   width: 28%;
   height: 24%;
-  border-top: 1px solid rgba($accent-gold, 0.8);
-  border-left: 1px solid rgba($accent-gold, 0.8);
+  border-top: 1px solid rgba($accent-gold, 0.86);
+  border-left: 1px solid rgba($accent-gold, 0.86);
   content: '';
 }
 
@@ -183,20 +188,15 @@
   bottom: 0;
   width: 28%;
   height: 24%;
-  border-right: 1px solid rgba($accent-gold, 0.8);
-  border-bottom: 1px solid rgba($accent-gold, 0.8);
+  border-right: 1px solid rgba($accent-gold, 0.86);
+  border-bottom: 1px solid rgba($accent-gold, 0.86);
   content: '';
 }
 
 .figure img {
-  position: relative;
-  z-index: 2;
-  display: block;
-  width: min(100%, 24rem);
-  height: auto;
-  object-fit: contain;
-  filter: none;
-  transform: none;
+  z-index: 1;
+  object-fit: cover;
+  object-position: 50% 43%;
 }
 
 .figureMeta {
@@ -209,8 +209,8 @@
   justify-content: space-between;
   gap: 1rem;
   padding-top: 0.7rem;
-  border-top: 1px solid rgba($primary-base, 0.13);
-  color: rgba($primary-base, 0.72);
+  border-top: 1px solid rgba(#fff, 0.24);
+  color: rgba(#fff, 0.9);
   font-size: 0.52rem;
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -220,6 +220,10 @@
   .layout {
     grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.85fr);
     gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .figure {
+    min-height: 31rem;
   }
 }
 
@@ -235,9 +239,13 @@
 
   .figure {
     width: 100%;
-    min-height: 22rem;
-    padding: 2.4rem;
+    aspect-ratio: 0.82;
+    min-height: 30rem;
     justify-self: stretch;
+  }
+
+  .figure img {
+    object-position: 50% 40%;
   }
 
   .figureFrame {
@@ -250,5 +258,12 @@
 
   .values {
     max-width: 32rem;
+  }
+
+  .figureMeta {
+    right: 1rem;
+    bottom: 0.9rem;
+    left: 1rem;
+    font-size: 0.48rem;
   }
 }
