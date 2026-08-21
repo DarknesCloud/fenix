@@ -1,0 +1,168 @@
+@use '../../styles/variables' as *;
+
+.livePreview {
+  isolation: isolate;
+}
+
+.livePreview::before,
+.livePreview::after {
+  display: none;
+}
+
+.browserBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+
+  min-height: 2.5rem;
+  padding: 0.55rem 0.85rem;
+
+  border-bottom: 1px solid rgba($neutral-light, 0.12);
+  background: rgba($primary-base, 0.96);
+}
+
+.browserDots {
+  display: inline-flex;
+  gap: 0.32rem;
+}
+
+.browserDots i {
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 50%;
+  background: rgba($neutral-light, 0.34);
+}
+
+.browserDots i:nth-child(2) {
+  background: rgba($gold-light, 0.54);
+}
+
+.browserDots i:nth-child(3) {
+  background: rgba($secondary-tech, 0.72);
+}
+
+.browserAddress {
+  min-width: 0;
+  overflow: hidden;
+  padding: 0.34rem 0.7rem;
+  border: 1px solid rgba($neutral-light, 0.1);
+  border-radius: 999px;
+
+  color: rgba($neutral-light, 0.5);
+  background: rgba($neutral-light, 0.045);
+
+  font-size: 0.58rem;
+  letter-spacing: 0.025em;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.previewViewport {
+  position: absolute;
+  inset: 2.5rem 0 0;
+  z-index: 0;
+
+  overflow: hidden;
+  background: #fff;
+}
+
+.previewViewport iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 133.333%;
+  height: 133.333%;
+  border: 0;
+
+  pointer-events: none;
+  transform: scale(0.75);
+  transform-origin: top left;
+}
+
+.previewLabel {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding: 0.9rem 0.95rem;
+  border-top: 1px solid rgba($neutral-light, 0.16);
+  border-radius: 8px;
+  background: rgba($primary-base, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.previewLabel > div {
+  min-width: 0;
+}
+
+.previewLink {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.42rem;
+
+  padding: 0.5rem 0.65rem;
+  border: 1px solid rgba($gold-light, 0.34);
+  border-radius: 6px;
+
+  color: $gold-light;
+  background: rgba($gold-light, 0.06);
+
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+
+  transition: border-color 0.3s ease, background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.previewLink svg {
+  font-size: 0.9rem;
+}
+
+.previewLink:hover,
+.previewLink:focus-visible {
+  border-color: rgba($gold-light, 0.7);
+  background: rgba($gold-light, 0.11);
+  transform: translateY(-1px);
+}
+
+.previewLink:focus-visible {
+  outline: 2px solid rgba($gold-light, 0.6);
+  outline-offset: 3px;
+}
+
+@media (max-width: $bp-sm) {
+  .browserAddress {
+    font-size: 0.52rem;
+  }
+
+  .previewViewport iframe {
+    width: 166.667%;
+    height: 166.667%;
+    transform: scale(0.6);
+  }
+
+  .previewLabel {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .previewLink {
+    transition: none;
+  }
+}
