@@ -2,10 +2,7 @@ import { ArrowForward, OpenInNew } from '@mui/icons-material';
 import styles from './NewHopeCase.module.scss';
 import previewStyles from './NewHopePreview.module.scss';
 
-const newHopeUrl =
-  process.env.NEXT_PUBLIC_NEW_HOPE_URL ??
-  'https://new-hope-opportunities.vercel.app';
-
+const newHopeUrl = 'https://nhohonduras.org';
 const newHopeBaseUrl = newHopeUrl.replace(/\/$/, '');
 
 const narrative = [
@@ -75,9 +72,7 @@ export default function NewHopeCase() {
                 <i />
                 <i />
               </span>
-              <span className={previewStyles.browserAddress}>
-                new-hope-opportunities.vercel.app
-              </span>
+              <span className={previewStyles.browserAddress}>nhohonduras.org</span>
             </div>
 
             <div className={previewStyles.previewViewport}>
@@ -121,9 +116,7 @@ export default function NewHopeCase() {
               </p>
             </div>
 
-            <figure
-              className={`${styles.contextPhoto} ${styles.contextPhotoPrimary}`}
-            >
+            <figure className={`${styles.contextPhoto} ${styles.contextPhotoPrimary}`}>
               <img
                 src={`${newHopeBaseUrl}/assets/education-early.webp`}
                 alt="Escena educativa de New Hope Opportunities"
@@ -175,9 +168,7 @@ export default function NewHopeCase() {
 
               return (
                 <article
-                  className={`${styles.narrativeItem} ${
-                    isEvolution ? styles.evolution : ''
-                  }`}
+                  className={`${styles.narrativeItem} ${isEvolution ? styles.evolution : ''}`}
                   key={item.label}
                 >
                   <div className={styles.itemTop}>
