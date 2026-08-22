@@ -79,12 +79,14 @@
   top: 0;
   left: 0;
 
-  width: 142.857%;
-  height: 142.857%;
+  /* Render the embedded site at a desktop-sized virtual viewport so its
+     full navigation and hero composition remain visible inside the card. */
+  width: 200%;
+  height: 200%;
   border: 0;
 
   pointer-events: none;
-  transform: scale(0.7);
+  transform: scale(0.5);
   transform-origin: top left;
 }
 
