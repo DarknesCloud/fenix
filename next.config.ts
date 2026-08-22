@@ -1,19 +1,6 @@
 import type { NextConfig } from 'next';
 
-function asOrigin(value: string | undefined) {
-  if (!value) return null;
-
-  try {
-    return new URL(value).origin;
-  } catch {
-    return null;
-  }
-}
-
-const newHopeOrigin =
-  asOrigin(process.env.NEXT_PUBLIC_NEW_HOPE_URL) ??
-  'https://new-hope-opportunities.vercel.app';
-
+const newHopeOrigin = 'https://nhohonduras.org';
 const cefiseOrigin = 'https://cefise.vercel.app';
 const cloudflareTurnstileOrigin = 'https://challenges.cloudflare.com';
 
